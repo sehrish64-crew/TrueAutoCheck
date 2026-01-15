@@ -1,0 +1,19 @@
+{
+  "nav_home": "Startseite",
+  "nav_pricing": "Preise",
+  "nav_contact": "Kontakt",
+  "nav_about": "Über uns",
+  "select_country": "Land auswählen",
+  "search_placeholder": "Tippe zum Suchen",
+  "banner_get_report": "Bericht anfordern",
+  "banner_no_vin": "Ich habe keine VIN",
+  "banner_input_placeholder": "VIN eingeben",
+  "vin_get_report": "Bericht anfordern",
+  "vin_no_vin_alert": "Bitte geben Sie eine VIN ein, um fortzufahren",
+  "vin_placeholder": "1VWBN7A35CCXXXXXX",
+  "form_title": "Bericht anfordern",
+  "form_cancel": "Abbrechen",
+  "form_continue": "Weiter zur Zahlung",
+  "form_cod": "Barzahlung bei Lieferung",
+  "payment_complete": "Zahlung abschließen"
+}
