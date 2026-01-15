@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useState } from 'react'
+import { Suspense, useEffect, useMemo, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -28,7 +28,7 @@ const SECTIONS = [
   { key: 'advanced', label: 'Advanced' },
 ]
 
-export default function AdminSettingsPage() {
+function AdminSettingsContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const initialSection = (searchParams?.get('section')) || 'general'
@@ -372,5 +372,13 @@ export default function AdminSettingsPage() {
         )}
       </div>
     </div>
+  )
+}
+
+export default function AdminSettingsPage() {
+  return (
+    <Suspense fallback={<div className="p-8">Loading settings...</div>}>
+      <AdminSettingsContent />
+    </Suspense>
   )
 }
