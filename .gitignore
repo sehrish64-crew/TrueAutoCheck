@@ -34,3 +34,19 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# OS files
+.DS_Store
+.vscode/
+.idea/
+
+# Production files (for local build testing)
+.env.local
+.env.production.local
+
+# Build artifacts
+.next/
+
+# Lock files (for team development - optional)
+# package-lock.json
+# yarn.lock
