@@ -105,7 +105,7 @@ export default function ChatWidget({ position = 'right' as 'left' | 'right' }) {
                   <div className="text-xs text-gray-500">Get quick help with VINs, plates and reports</div>
                 </div>
               </div>
-              <button onClick={() => setOpen(false)} className="p-2 rounded hover:bg-gray-100" aria-label="Close chat"><X className="w-4 h-4 text-gray-600" /></button>
+              <button suppressHydrationWarning onClick={() => setOpen(false)} className="p-2 rounded hover:bg-gray-100" aria-label="Close chat"><X className="w-4 h-4 text-gray-600" /></button>
             </div>
 
             <div ref={messagesRef} className="p-3 max-h-80 overflow-auto space-y-3 bg-white chat-scrollbar">
@@ -141,7 +141,7 @@ export default function ChatWidget({ position = 'right' as 'left' | 'right' }) {
                   placeholder={t('chat_input_placeholder')}
                   aria-label={t('chat_input_placeholder')}
                 />
-                <button onClick={send} disabled={loading || !input.trim()} className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center shadow hover:scale-105 transition-transform" aria-label="Send message">
+                <button suppressHydrationWarning onClick={send} disabled={loading || !input.trim()} className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center shadow hover:scale-105 transition-transform" aria-label="Send message">
                   <Send className="w-4 h-4" />
                 </button>
               </div>
@@ -150,6 +150,7 @@ export default function ChatWidget({ position = 'right' as 'left' | 'right' }) {
         )}
 
         <button
+          suppressHydrationWarning
           onClick={() => { setOpen(o => !o); if (!open) setUnread(0) }}
           onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { setOpen(o => !o); if (!open) setUnread(0) } }}
           className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow flex items-center justify-center hover:scale-110 transition-transform relative ring-0 hover:ring-4 hover:ring-blue-200/50"

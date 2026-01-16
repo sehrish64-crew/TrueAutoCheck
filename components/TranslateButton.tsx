@@ -33,6 +33,7 @@ export default function TranslateButton() {
 
   return (
     <button
+      suppressHydrationWarning
       onClick={handleTranslate}
       disabled={loading}
       className="p-2 rounded-lg hover:bg-gray-50 transition-colors text-gray-700"

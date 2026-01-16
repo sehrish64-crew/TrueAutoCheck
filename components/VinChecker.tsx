@@ -114,11 +114,11 @@ export default function VinChecker() {
               >
                 <div className="flex items-center justify-between mb-3">
                   <div className="inline-flex items-center bg-white/10 p-1 rounded-full gap-1">
-                    <button type="button" onClick={() => setVehicleIdType('vin')} className={`flex items-center gap-2 px-3 py-1 rounded-full transition-all ${vehicleIdType === 'vin' ? 'bg-gradient-to-r from-yellow-400 to-yellow-300 text-gray-900 shadow' : 'text-black hover:bg-white/10'}`}>
+                    <button suppressHydrationWarning type="button" onClick={() => setVehicleIdType('vin')} className={`flex items-center gap-2 px-3 py-1 rounded-full transition-all ${vehicleIdType === 'vin' ? 'bg-gradient-to-r from-yellow-400 to-yellow-300 text-gray-900 shadow' : 'text-black hover:bg-white/10'}`}>
                       <Key className="w-4 h-4" />
                       <span className="text-sm font-medium">By VIN</span>
                     </button>
-                    <button type="button" onClick={() => setVehicleIdType('plate')} className={`flex items-center gap-2 px-3 py-1 rounded-full transition-all ${vehicleIdType === 'plate' ? 'bg-gradient-to-r from-blue-500 to-cyan-400 text-white shadow' : 'text-black hover:bg-white/10'}`}>
+                    <button suppressHydrationWarning type="button" onClick={() => setVehicleIdType('plate')} className={`flex items-center gap-2 px-3 py-1 rounded-full transition-all ${vehicleIdType === 'plate' ? 'bg-gradient-to-r from-blue-500 to-cyan-400 text-white shadow' : 'text-black hover:bg-white/10'}`}>
                       <Hash className="w-4 h-4" />
                       <span className="text-sm font-medium">By Plate</span>
                     </button>
@@ -131,6 +131,7 @@ export default function VinChecker() {
                     {vehicleIdType === 'vin' ? (
                       <>
                         <Input
+                          suppressHydrationWarning
                           type="text"
                           placeholder={t('vin_placeholder')}
                           value={vin}
@@ -145,7 +146,7 @@ export default function VinChecker() {
                         )}
                         {vin.length > 0 && (
                           <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                            <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center">
+                            <div suppressHydrationWarning className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center">
                               <Info className="w-4 h-4 text-blue-600" strokeWidth={2} />
                             </div>
                           </div>
@@ -154,6 +155,7 @@ export default function VinChecker() {
                     ) : (
                       <>
                         <Input
+                          suppressHydrationWarning
                           type="text"
                           placeholder="Enter Plate Number"
                           value={plate}
