@@ -36,10 +36,10 @@ export default function PrivacyPageClient() {
             <h3 className="text-xl font-semibold text-gray-800 mt-5 mb-3">1.1 Personal Information</h3>
             <p className="mt-3">We may collect personal information that you voluntarily provide to us when you:</p>
             <ul className="mt-3 space-y-2 list-disc list-inside">
-              <li>Register for an account</li>
+              {/* <li>Register for an account</li> */}
               <li>Purchase a vehicle history report</li>
               <li>Contact customer support</li>
-              <li>Subscribe to our newsletter or marketing communications</li>
+              {/* <li>Subscribe to our newsletter or marketing communications</li> */}
             </ul>
             <p className="mt-4">This information may include:</p>
             <ul className="mt-2 space-y-2 list-disc list-inside">

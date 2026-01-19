@@ -14,7 +14,7 @@ export default function RefundPolicyPageClient() {
     <div className="bg-white">
       <div className="container mx-auto px-6 py-20">
         <div className="max-w-3xl mx-auto text-center space-y-6">
-          <h1 className="text-4xl font-bold text-gray-900">Terms & Conditions and Refund Policy</h1>
+          <h1 className="text-4xl font-bold text-gray-900">Refund Policy</h1>
           <p className="text-gray-600 text-lg">Effective Date: January 2026</p>
         </div>
 
@@ -87,8 +87,8 @@ export default function RefundPolicyPageClient() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900">Refund Policy</h2>
-            <div className="mt-4 ml-4">
+            {/* <h2 className="text-2xl font-semibold text-gray-900">Refund Policy</h2> */}
+            {/* <div className="mt-4 ml-4">
               <h3 className="text-xl font-semibold text-gray-900">Digital Product Refunds</h3>
               <p className="mt-2">Due to the nature of digital vehicle reports:</p>
               <ul className="mt-2 space-y-2 list-disc list-inside">
@@ -102,7 +102,7 @@ export default function RefundPolicyPageClient() {
                 </li>
               </ul>
               <p className="mt-3">All refund requests are handled <strong>at Paddle's discretion</strong>.</p>
-            </div>
+            </div> */}
 
             <div className="mt-6 ml-4">
               <h3 className="text-xl font-semibold text-gray-900">Fraud & Abuse</h3>
@@ -116,7 +116,7 @@ export default function RefundPolicyPageClient() {
 
             <div className="mt-6 ml-4">
               <h3 className="text-xl font-semibold text-gray-900">Refund Request Timeline</h3>
-              <p className="mt-2">All refund requests received after 60 days from the date of purchase will not be processed.</p>
+              <p className="mt-2">All refund requests received after 60 days  from the date of purchase will not be processed and We will proceed according to Paddle’s refund policy. Any refund request will be handled in line with Paddle’s standard terms and conditions, including eligibility criteria and applicable timelines. Once approved, the refund will be processed through the original payment method within the specified timeframe.</p>
             </div>
 
             <div className="mt-6 ml-4">
@@ -132,20 +132,20 @@ export default function RefundPolicyPageClient() {
             </div>
 
             <div className="mt-6 ml-4">
-              <h3 className="text-xl font-semibold text-gray-900">Refund Processing</h3>
-              <p className="mt-2">Once your refund request is approved:</p>
-              <ul className="mt-2 space-y-2 list-disc list-inside">
+              <h3 className="text-xl font-semibold text-gray-900">Refund Window</h3>
+              <p className="mt-2">We offer a 14-day refund policy from the date of purchase in accordance with Paddle’s refund requirements.</p>
+              {/* <ul className="mt-2 space-y-2 list-disc list-inside">
                 <li>Refunds will be processed within 3-5 business days</li>
                 <li>The refund will be issued to the original payment method</li>
                 <li>Bank processing may add an additional 5-10 business days</li>
                 <li>You will receive a confirmation email once processed</li>
-              </ul>
+              </ul> */}
             </div>
 
-            <div className="mt-6 ml-4">
+            {/* <div className="mt-6 ml-4">
               <h3 className="text-xl font-semibold text-gray-900">Chargebacks</h3>
               <p className="mt-2">If you initiate a chargeback without contacting us first, we reserve the right to permanently ban your account and dispute the chargeback. Please contact us directly to resolve issues.</p>
-            </div>
+            </div> */}
 
             <div className="mt-6 ml-4">
               <h3 className="text-xl font-semibold text-gray-900">Partial Refunds</h3>
@@ -158,20 +158,20 @@ export default function RefundPolicyPageClient() {
             </div>
           </section>
 
-          <section>
+          {/* <section>
             <h2 className="text-2xl font-semibold text-gray-900">Consumer Right to Cancel</h2>
             <p className="mt-3">If you are a Consumer, you may cancel your order within <strong>14 days</strong> <strong>only if the Digital Content has NOT been accessed or delivered</strong>.</p>
             <p className="mt-3">Once the report is generated or accessed, the right to cancel is forfeited.</p>
-          </section>
+          </section> */}
 
-          <section>
+          {/* <section>
             <h2 className="text-2xl font-semibold text-gray-900">Subscriptions (If Applicable)</h2>
             <ul className="mt-3 space-y-2 list-disc list-inside">
               <li>Subscriptions automatically renew until cancelled</li>
               <li>Cancellation must be requested <strong>at least 48 hours before renewal</strong></li>
               <li>No refunds for unused subscription periods</li>
             </ul>
-          </section>
+          </section> */}
 
           <section>
             <h2 className="text-2xl font-semibold text-gray-900">Limitation of Liability</h2>
