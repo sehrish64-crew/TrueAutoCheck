@@ -40,19 +40,23 @@ export async function POST(request: NextRequest) {
 async function fetchUSVINData(vin: string) {
   try {
     const apiKey = process.env.AUTO_DEV_API_KEY;
+    console.log(`[VIN API] API Key configured: ${!!apiKey}`);
+    
     if (!apiKey) {
+      console.error('[VIN API] CRITICAL: AUTO_DEV_API_KEY is not set');
       return NextResponse.json(
         {
           success: false,
           error: 'API key not configured',
           code: 'MISSING_API_KEY',
+          debug: 'AUTO_DEV_API_KEY environment variable is missing',
         },
         { status: 500 }
       );
     }
 
     const apiUrl = `${US_API_BASE_URL}/${vin}?apiKey=${apiKey}`;
-    console.log(`[VIN API] Fetching from: ${US_API_BASE_URL}/${vin}?apiKey=***`);
+    console.log(`[VIN API] Fetching from: ${US_API_BASE_URL}/${vin}?apiKey=${apiKey.substring(0, 5)}***`);
 
     // Create an AbortController with a 10-second timeout
     const controller = new AbortController();
@@ -65,6 +69,7 @@ async function fetchUSVINData(vin: string) {
     let data;
     
     try {
+      console.log(`[VIN API] Making fetch request to external API...`);
       response = await fetch(apiUrl, {
         signal: controller.signal,
         headers: {
@@ -74,6 +79,7 @@ async function fetchUSVINData(vin: string) {
       });
       clearTimeout(timeoutId);
       
+      console.log(`[VIN API] Received response with status: ${response.status}`);
       data = await response.json();
     } catch (fetchError: any) {
       clearTimeout(timeoutId);
@@ -94,12 +100,14 @@ async function fetchUSVINData(vin: string) {
       
       // Handle other network errors
       console.error(`[VIN API] Network error: ${fetchError.message}`);
+      console.error(`[VIN API] Error stack:`, fetchError.stack);
       return NextResponse.json(
         {
           success: false,
           error: 'Network error while fetching VIN data',
           details: fetchError.message,
           code: 'NETWORK_ERROR',
+          debug: `Error: ${fetchError.message}`,
         },
         { status: 503 }
       );
@@ -107,6 +115,7 @@ async function fetchUSVINData(vin: string) {
 
     if (!response.ok) {
       console.warn(`[VIN API] API returned status ${response.status} for VIN: ${vin}`);
+      console.warn(`[VIN API] Response data:`, JSON.stringify(data).substring(0, 200));
       return NextResponse.json(
         {
           success: false,
