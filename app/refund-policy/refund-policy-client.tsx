@@ -20,13 +20,13 @@ export default function RefundPolicyPageClient() {
 
         <div className="mt-10 space-y-8 max-w-3xl mx-auto text-gray-700">
           <section>
-            <p className="text-lg font-semibold text-gray-900 mb-4">At Grace Global LTD (trueautocheck.com), we are committed to customer satisfaction. This Refund Policy outlines the circumstances under which refunds may be issued for our vehicle history reports and related services.</p>
+            <p className="text-lg font-semibold text-gray-900 mb-4">At Grace Globals LTD (trueautocheck.com), we are committed to customer satisfaction. This Refund Policy outlines the circumstances under which refunds may be issued for our vehicle history reports and related services.</p>
             <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
               <p className="text-gray-700"><strong>Quick Summary:</strong> We offer refunds within 14 days of purchase if the report contains no data or if there was a technical error preventing access to your report.</p>
             </div>
           </section>
 
-          <section>
+          {/* <section>
             <h2 className="text-2xl font-semibold text-gray-900">1. Refund Eligibility</h2>
             <p className="mt-3">You may be eligible for a full refund under the following circumstances:</p>
             <ul className="mt-3 space-y-2 list-disc list-inside">
@@ -35,7 +35,7 @@ export default function RefundPolicyPageClient() {
               <li><strong>Duplicate Purchase:</strong> If you accidentally purchased the same report multiple times.</li>
               <li><strong>Incorrect VIN Entry:</strong> If you entered an incorrect VIN number and contact us within 24 hours of purchase.</li>
             </ul>
-          </section>
+          </section> */}
 {/* 
           <section>
             <h2 className="text-2xl font-semibold text-gray-900">2. Non-Refundable Situations</h2>
@@ -50,12 +50,12 @@ export default function RefundPolicyPageClient() {
           </section> */}
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900">2. Refund Request</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">1. Refund Request</h2>
             <p className="mt-3">All refund requests received after 60 days from the date of the Transaction will not be processed.</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900">3. How to Request a Refund</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">2. How to Request a Refund</h2>
             <p className="mt-3">To request a refund, please follow these steps:</p>
             <ul className="mt-3 space-y-2 list-disc list-inside">
               <li>Contact our customer support team at <a href="mailto:info@trueautocheck.com" className="text-blue-600 hover:underline">info@trueautocheck.com</a></li>
@@ -67,7 +67,7 @@ export default function RefundPolicyPageClient() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900">4. Refund Processing</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">3. Refund Processing</h2>
             <p className="mt-3">Once your refund request is approved:</p>
             <ul className="mt-3 space-y-2 list-disc list-inside">
               <li>Refunds will be processed within 3-5 business days</li>
@@ -77,8 +77,8 @@ export default function RefundPolicyPageClient() {
             </ul>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-semibold text-gray-900">5. Subscription Services</h2>
+          {/* <section>
+            <h2 className="text-2xl font-semibold text-gray-900">4. Subscription Services</h2>
             <p className="mt-3">For subscription-based services:</p>
             <ul className="mt-3 space-y-2 list-disc list-inside">
               <li>You may cancel your subscription at any time</li>
@@ -86,16 +86,16 @@ export default function RefundPolicyPageClient() {
               <li>No refunds will be issued for partial subscription periods</li>
               <li>You will retain access to the service until the end of the paid period</li>
             </ul>
-          </section>
+          </section> */}
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900">6. Chargebacks</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">4. Chargebacks</h2>
             <p className="mt-3">If you initiate a chargeback or payment dispute with your bank or credit card company without first contacting us, we reserve the right to permanently ban your account and may dispute the chargeback. Please contact us directly so we can resolve any issues before taking such action.</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900">7. Partial Refunds</h2>
-            <p className="mt-3">In certain situations, Grace Global LTD may offer partial refunds at its discretion. This may apply when:</p>
+            <h2 className="text-2xl font-semibold text-gray-900">5. Partial Refunds</h2>
+            <p className="mt-3">In certain situations, Grace Globals LTD may offer partial refunds at its discretion. This may apply when:</p>
             <ul className="mt-3 space-y-2 list-disc list-inside">
               <li>The report contains some data but is incomplete</li>
               <li>There was a minor technical issue that caused inconvenience</li>
@@ -104,15 +104,15 @@ export default function RefundPolicyPageClient() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900">8. Modifications to Refund Policy</h2>
-            <p className="mt-3">Grace Global LTD reserves the right to modify this Refund Policy at any time. Changes will be effective immediately upon posting to our website. Your continued use of our services after changes are posted constitutes acceptance of the modified policy.</p>
+            <h2 className="text-2xl font-semibold text-gray-900">6. Modifications to Refund Policy</h2>
+            <p className="mt-3">Grace Globals LTD reserves the right to modify this Refund Policy at any time. Changes will be effective immediately upon posting to our website. Your continued use of our services after changes are posted constitutes acceptance of the modified policy.</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900">9. Contact Information</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">7. Contact Information</h2>
             <p className="mt-3">For refund requests or questions about this policy, please contact:</p>
             <div className="mt-4 bg-blue-50 p-4 rounded-lg border border-blue-200 space-y-2">
-              <p className="text-gray-700"><strong>Grace Global LTD Customer Support</strong></p>
+              <p className="text-gray-700"><strong>Grace Globals LTD Customer Support</strong></p>
               <p className="text-gray-700"><strong>Email:</strong> <a href="mailto:info@trueautocheck.com" className="text-blue-600 hover:underline">info@trueautocheck.com</a></p>
               <p className="text-gray-700"><strong>Website:</strong> <a href="https://trueautocheck.com" className="text-blue-600 hover:underline">https://trueautocheck.com</a></p>
             </div>
@@ -120,7 +120,7 @@ export default function RefundPolicyPageClient() {
           </section>
 
           <section className="bg-gray-50 p-6 rounded-lg border border-gray-200 mt-8">
-            <p className="text-sm text-gray-700">This Refund Policy is effective as of December 22, 2025. Grace Global LTD values customer satisfaction and is committed to resolving any issues promptly and fairly.</p>
+            <p className="text-sm text-gray-700">This Refund Policy is effective as of December 22, 2025. Grace Globals LTD values customer satisfaction and is committed to resolving any issues promptly and fairly.</p>
           </section>
         </div>
       </div>
