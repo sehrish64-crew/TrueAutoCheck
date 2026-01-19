@@ -46,7 +46,7 @@ export default function PrivacyPageClient() {
               <li>Name</li>
               <li>Email address</li>
               <li>Phone number</li>
-              <li>Billing and payment information (processed securely through PayPal)</li>
+              <li>Billing and payment information (processed securely through Paddle)</li>
               <li>Vehicle identification information (VIN, license plate)</li>
             </ul>
 
@@ -93,7 +93,7 @@ export default function PrivacyPageClient() {
             <h3 className="text-xl font-semibold text-gray-800 mt-5 mb-3">3.1 Service Providers</h3>
             <p className="mt-3">We work with third-party service providers who assist us in operating our website and services:</p>
             <ul className="mt-3 space-y-2 list-disc list-inside">
-              <li>Payment Processors: PayPal (for secure payment processing)</li>
+              <li>Payment Processors: Paddle (for secure payment processing)</li>
               <li>Data Providers: Vehicle history data sources</li>
               <li>Analytics Services: Google Analytics and similar tools</li>
               <li>Email Services: For sending communications</li>
@@ -213,7 +213,7 @@ export default function PrivacyPageClient() {
           </section>
 
           <section className="bg-gray-50 p-6 rounded-lg border border-gray-200 mt-8">
-            <p className="text-sm text-gray-700">This Privacy Policy is effective as of December 22, 2025. Grace Global Ltd reserves the right to modify this policy at any time. Your continued use of our services constitutes your acceptance of these terms.</p>
+            <p className="text-sm text-gray-700">This Privacy Policy is effective as of January 1st, 2026. Grace Global Ltd reserves the right to modify this policy at any time. Your continued use of our services constitutes your acceptance of these terms.</p>
           </section>
         </div>
       </div>
