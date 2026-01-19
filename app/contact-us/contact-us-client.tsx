@@ -13,7 +13,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: 'Email',
-    details: ['info@trueautocheck.com', 'info@trueautocheck.com'],
+    details: ['info@trueautocheck.com'],
     gradient: 'from-blue-500 to-cyan-500'
   },
 

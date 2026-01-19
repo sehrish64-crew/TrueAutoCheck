@@ -34,7 +34,7 @@ export default function Footer() {
         <div className="border-b border-gray-800 pb-4 sm:pb-5">
           <div className="flex flex-col items-center gap-3 sm:gap-4">
             <p className="text-center text-gray-400 text-xs sm:text-xs md:text-sm lg:text-sm leading-tight sm:leading-relaxed" style={{ fontSize: '11px' }}>
-              <span className="block mb-1.5 sm:mb-2 md:mb-0 md:inline">TrueAutoCheck VIN Reports. All Rights Reserved. {new Date().getFullYear()} © TrueAutoCheck. Use of this Website constitutes acceptance of{' '}</span>
+              <span className="block mb-1.5 sm:mb-2 md:mb-0 md:inline">Grace Global LTD VIN Reports. All Rights Reserved. {new Date().getFullYear()} © TrueAutoCheck. Use of this Website constitutes acceptance of{' '}</span>
           
               <Link href="/terms" className="text-blue-400 hover:text-blue-300 transition-colors">
                <u>Terms & Conditions</u>
@@ -48,7 +48,7 @@ export default function Footer() {
                <u>Refund Policy</u>
               </Link>
               <span className="block md:inline md:mx-1">.</span>
-              <span className="block md:inline">This site is owned and operated by TrueAutoCheck - an approved NMVTIS data provider. <u>Email: Info@trueautocheck.com</u></span>
+              <span className="block md:inline">This site is owned and operated by Grace Global LTD - an approved NMVTIS data provider. <u>Email: Info@trueautocheck.com</u></span>
             </p>
 
         
