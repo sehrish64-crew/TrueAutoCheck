@@ -63,7 +63,7 @@ export default function TermsPageClient() {
 
           <section>
             <h2 className="text-2xl font-semibold text-gray-900">6. Pricing and Payment</h2>
-            <p className="mt-3">Pricing for our services is displayed on our website. All prices are in USD and are subject to change without notice. Payment is processed securely through our authorized payment processor, PayPal. By purchasing a report, you agree to pay the stated price and authorize the charge to your payment method.</p>
+            <p className="mt-3">Pricing for our services is displayed on our website. All prices are in USD and are subject to change without notice. Payment is processed securely through our authorized payment processor, paddle. By purchasing a report, you agree to pay the stated price and authorize the charge to your payment method.</p>
           </section>
 
           <section>
@@ -108,12 +108,12 @@ export default function TermsPageClient() {
 
           <section>
             <h2 className="text-2xl font-semibold text-gray-900">15. Governing Law</h2>
-            <p className="mt-3">These Terms and Conditions shall be governed by and construed in accordance with the laws of the United States and the State of Florida, without regard to its conflict of law provisions.</p>
+            <p className="mt-3">These Terms and Conditions shall be governed by and construed in accordance with the laws of the United Kingdom and the England and Wales, without regard to its conflict of law provisions.</p>
           </section>
 
           <section>
             <h2 className="text-2xl font-semibold text-gray-900">16. Dispute Resolution</h2>
-            <p className="mt-3">Any disputes arising from these terms or your use of our services shall be resolved through binding arbitration in accordance with the rules of the American Arbitration Association, rather than in court.</p>
+            <p className="mt-3">Any disputes arising from these terms or your use of our services shall be resolved through binding arbitration in accordance with the rules of the London Court of international Arbitration (LCIA), rather than in court.</p>
           </section>
 
           <section>
