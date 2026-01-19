@@ -216,7 +216,7 @@ export default function GetReportForm({ isOpen, onClose, preselectedPackage, pre
       <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white z-[9999] rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         <div className="p-8">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-3xl font-bold text-gray-900">{t('form_title')}</h2>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">{t('form_title')}</h2>
             <button
               onClick={onClose}
               className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -227,7 +227,7 @@ export default function GetReportForm({ isOpen, onClose, preselectedPackage, pre
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <Label className="block text-sm font-semibold text-gray-900 mb-2">
+              <Label className="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">
                 Search By
               </Label>
               <div className="mb-2">

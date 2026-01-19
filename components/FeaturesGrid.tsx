@@ -1,156 +1,400 @@
 "use client"
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { FileText, TrendingUp, Settings, DollarSign, AlertTriangle, Shield, Cloud } from 'lucide-react'
-
-// We build the feature text from translations so everything is localizable
-const buildFeatures = (t: (key: string) => string) => ([
-  {
-    icon: AlertTriangle,
-    title: t('feature_spot_damage_title'),
-    description: t('feature_spot_damage_desc'),
-    color: 'bg-blue-50',
-    iconColor: 'text-blue-600',
-    image: 'https://images.pexels.com/photos/4489702/pexels-photo-4489702.jpeg?auto=compress&cs=tinysrgb&w=600',
-  },
-  {
-    icon: TrendingUp,
-    title: t('feature_verify_mileage_title'),
-    description: t('feature_verify_mileage_desc'),
-    color: 'bg-cyan-50',
-    iconColor: 'text-cyan-600',
-    image: 'https://images.pexels.com/photos/248747/pexels-photo-248747.jpeg?auto=compress&cs=tinysrgb&w=600',
-  },
-  {
-    icon: Settings,
-    title: t('feature_specs_title'),
-    description: t('feature_specs_desc'),
-    color: 'bg-indigo-50',
-    iconColor: 'text-indigo-600',
-    image: 'https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg?auto=compress&cs=tinysrgb&w=600',
-  },
-  {
-    icon: DollarSign,
-    title: t('feature_value_title'),
-    description: t('feature_value_desc'),
-    color: 'bg-emerald-50',
-    iconColor: 'text-emerald-600',
-    image: 'https://images.pexels.com/photos/6863332/pexels-photo-6863332.jpeg?auto=compress&cs=tinysrgb&w=600',
-  },
-  {
-    icon: FileText,
-    title: t('feature_avoid_hidden_title'),
-    description: t('feature_avoid_hidden_desc'),
-    color: 'bg-amber-50',
-    iconColor: 'text-amber-600',
-    image: 'https://images.pexels.com/photos/4427430/pexels-photo-4427430.jpeg?auto=compress&cs=tinysrgb&w=600',
-  },
-  {
-    icon: Shield,
-    title: t('feature_safety_title'),
-    description: t('feature_safety_desc'),
-    color: 'bg-rose-50',
-    iconColor: 'text-rose-600',
-    image: 'https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=600',
-  },
-  {
-    icon: Cloud,
-    title: t('feature_disasters_title'),
-    description: t('feature_disasters_desc'),
-    color: 'bg-purple-50',
-    iconColor: 'text-purple-600',
-    image: 'https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=600',
-  },
-])
-
+import Link from 'next/link'
+import { ChevronRight, TrendingUp, FileText, AlertTriangle, Zap, Shield } from 'lucide-react'
 import { useTranslations } from '@/lib/translations'
 
 export default function FeaturesGrid() {
   const { t } = useTranslations()
-  const features = buildFeatures(t)
-  const [visibleCards, setVisibleCards] = useState<number[]>([])
-  const sectionRef = useRef<HTMLDivElement>(null)
+  const [activeTab, setActiveTab] = useState('odometer')
+  const [isAutoPlay, setIsAutoPlay] = useState(true)
 
+  const tabs = [
+    { id: 'odometer', label: 'Odometer Check' },
+    { id: 'ownership', label: 'Ownership History' },
+    { id: 'photos', label: 'Photos on Sale' },
+    { id: 'damage', label: 'Damage Check' },
+    { id: 'technical', label: 'Technical Data' },
+    { id: 'stolen', label: 'Stolen VIN Check' },
+  ]
+
+  // Auto-cycle through tabs
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            features.forEach((_, index) => {
-              setTimeout(() => {
-                setVisibleCards((prev) => [...prev, index])
-              }, index * 100)
-            })
-            observer.disconnect()
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
+    if (!isAutoPlay) return
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
+    const interval = setInterval(() => {
+      setActiveTab((prevTab) => {
+        const currentIndex = tabs.findIndex((tab) => tab.id === prevTab)
+        const nextIndex = (currentIndex + 1) % tabs.length
+        return tabs[nextIndex].id
+      })
+    }, 5000) // Change tab every 5 seconds
 
-    return () => observer.disconnect()
-  }, [])
+    return () => clearInterval(interval)
+  }, [isAutoPlay, tabs])
 
   return (
-    <section ref={sectionRef} className="py-16 md:py-24 bg-gray-50">
-      <div className="container mx-auto px-6">
-        <div className="text-center max-w-4xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            {t('features_title')}
+    <section className="py-12 sm:py-16 md:py-24 bg-white">
+      <div className="container mx-auto px-4 sm:px-6">
+        {/* Section Header */}
+        <div className="text-center max-w-4xl mx-auto mb-8 sm:mb-12 md:mb-16 animate-fade-in px-2 sm:px-4">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4 leading-[1.2]">
+            Always Check the History of a Car Before Buying It
           </h2>
-          <p className="text-lg text-gray-700">
-            {t('features_subtitle')}
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-600 leading-relaxed">
+            Uncover comprehensive insights with a TrueAutoCheck Vehicle History Report
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {features.map((feature, index) => {
-            const Icon = feature.icon
-            const isVisible = visibleCards.includes(index)
-
-            return (
-              <div
-                key={index}
-                className={`group relative transform transition-all duration-700 ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        {/* Tab Navigation */}
+        <div 
+          className="flex overflow-x-auto gap-2 sm:gap-4 md:gap-8 mb-0 border-b border-gray-200 pb-0 animate-fade-in-up" 
+          style={{ animationDelay: '0.1s' }}
+          onMouseEnter={() => setIsAutoPlay(false)}
+          onMouseLeave={() => setIsAutoPlay(true)}
+        >
+          {tabs.map((tab) => (
+            <div key={tab.id} className="relative min-w-max md:flex-initial">
+              <button
+                onClick={() => {
+                  setActiveTab(tab.id)
+                  setIsAutoPlay(false)
+                }}
+                className={`text-xs sm:text-sm md:text-base font-semibold whitespace-nowrap pb-3 sm:pb-4 px-2 sm:px-3 md:px-4 transition-all duration-300 relative group ${
+                  activeTab === tab.id
+                    ? 'text-blue-600'
+                    : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
-                <div className="h-full bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-blue-200 hover:-translate-y-2">
-                  <div className={`${feature.color} p-6 transition-all duration-300 relative overflow-hidden`}>
-                    <div className="relative h-48 rounded-lg overflow-hidden bg-white shadow-sm group-hover:shadow-md transition-shadow">
-                      <Image
-                        src={feature.image}
-                        alt={feature.title}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm rounded-full p-2.5 shadow-lg z-10">
-                        <Icon className={`w-5 h-5 ${feature.iconColor}`} strokeWidth={2} />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="p-6 space-y-3">
-                    <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
-                      {feature.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
-
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-blue-400/10 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </div>
+                {tab.label}
+              </button>
+              
+              {/* Loader Bar */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200 rounded-full overflow-hidden w-full">
+                {activeTab === tab.id && isAutoPlay && (
+                  <div 
+                    className="h-full bg-gradient-to-r from-blue-500 via-blue-600 to-cyan-500 rounded-full"
+                    style={{
+                      animation: 'tabProgress 5s linear forwards',
+                      width: '100%',
+                    }}
+                  ></div>
+                )}
+                {activeTab === tab.id && !isAutoPlay && (
+                  <div className="h-full w-full bg-gradient-to-r from-blue-600 to-cyan-500"></div>
+                )}
               </div>
-            )
-          })}
+            </div>
+          ))}
+        </div>
+
+        {/* Content Section - Add top padding to prevent overlap */}
+        <div className="mt-6 sm:mt-8 md:mt-12 lg:mt-16">
+        {activeTab === 'odometer' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-start animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            {/* Left Side - Image */}
+             <div className="relative w-full h-60 sm:h-72 md:h-80 lg:h-96 rounded-xl sm:rounded-2xl overflow-hidden">
+              <Image
+                src="/odometer-check-en@1x.webp"
+                alt="Odometer Check"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+
+            {/* Right Side - Content */}
+            <div className="space-y-3 sm:space-y-4 md:space-y-6">
+              {/* Icon */}
+              <div className="inline-flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-blue-100 rounded-xl sm:rounded-2xl">
+                <TrendingUp className="w-6 sm:w-7 md:w-8 h-6 sm:h-7 md:h-8 text-blue-600" strokeWidth={2} />
+              </div>
+
+              <div>
+                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-gray-900 mb-2 sm:mb-2.5 md:mb-3">
+                  Past Odometer Readings
+                </h3>
+                <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
+                  Has the odometer ever been rolled back? Detect potential odometer fraud with our comprehensive mileage history analysis. Compare recorded mileage across all data sources and identify inconsistencies that may indicate fraud.
+                </p>
+              </div>
+
+              {/* Data Table */}
+              {/* <div className="bg-gray-50 rounded-lg sm:rounded-xl overflow-x-auto border border-gray-200">
+                <table className="w-full text-2xs sm:text-xs md:text-sm">
+                  <thead className="bg-gray-100 border-b border-gray-200">
+                    <tr>
+                      <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold text-gray-700">Date</th>
+                      <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold text-gray-700">Mileage</th>
+                      <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold text-gray-700">Provider</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-gray-100 hover:bg-white transition">
+                      <td className="px-2 sm:px-4 py-2 sm:py-3 text-gray-900 font-medium">07/14/2021</td>
+                      <td className="px-2 sm:px-4 py-2 sm:py-3">
+                        <span className="inline-flex items-center gap-1 text-gray-700">
+                          <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-green-500 rounded-full"></span>
+                          44,952 mi
+                        </span>
+                      </td>
+                      <td className="px-2 sm:px-4 py-2 sm:py-3 text-gray-600 text-2xs sm:text-xs">VIN provided</td>
+                    </tr>
+                    <tr className="border-b border-gray-100 hover:bg-white transition">
+                      <td className="px-2 sm:px-4 py-2 sm:py-3 text-gray-900 font-medium">08/18/2013</td>
+                      <td className="px-2 sm:px-4 py-2 sm:py-3">
+                        <span className="inline-flex items-center gap-1 text-gray-700">
+                          <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-yellow-500 rounded-full"></span>
+                          44,862 mi
+                        </span>
+                      </td>
+                      <td className="px-2 sm:px-4 py-2 sm:py-3 text-gray-600 text-2xs sm:text-xs">UNCHKIN</td>
+                    </tr>
+                    <tr className="hover:bg-white transition">
+                      <td className="px-2 sm:px-4 py-2 sm:py-3 text-gray-900 font-medium">02/04/2015</td>
+                      <td className="px-2 sm:px-4 py-2 sm:py-3">
+                        <span className="inline-flex items-center gap-1 text-gray-700">
+                          <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-red-500 rounded-full"></span>
+                          75,898 mi
+                        </span>
+                      </td>
+                      <td className="px-2 sm:px-4 py-2 sm:py-3 text-gray-600 text-2xs sm:text-xs">Arizona Department of Environmental Quality</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div> */}
+
+              {/* CTA Button */}
+              <Link href="/pricing" className="inline-flex items-center gap-1 sm:gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-full transition-all duration-300 hover:gap-3 shadow-lg hover:shadow-xl text-sm sm:text-base">
+                Check Your Car
+                <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5" />
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'ownership' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-start animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <div className="relative w-full h-60 sm:h-72 md:h-80 lg:h-96 rounded-xl sm:rounded-2xl overflow-hidden">
+              <Image
+                src="/ownership.webp"
+                alt="Ownership History"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            <div className="space-y-3 sm:space-y-4 md:space-y-6">
+              <div className="inline-flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-cyan-100 rounded-xl sm:rounded-2xl">
+                <FileText className="w-6 sm:w-7 md:w-8 h-6 sm:h-7 md:h-8 text-cyan-600" strokeWidth={2} />
+              </div>
+              <div>
+                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-gray-900 mb-2 sm:mb-2.5 md:mb-3">
+                  Ownership History
+                </h3>
+                <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
+                  Complete ownership timeline and vehicle history. Track how many previous owners, lease vs. personal use, and detailed ownership timeline information.
+                </p>
+              </div>
+              <Link href="/pricing" className="inline-flex items-center gap-1 sm:gap-2 bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-full transition-all duration-300 hover:gap-3 shadow-lg hover:shadow-xl text-sm sm:text-base">
+                Check Ownership
+                <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5" />
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'photos' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-start animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+           <div className="relative w-full h-60 sm:h-72 md:h-80 lg:h-96 rounded-xl sm:rounded-2xl overflow-hidden">
+              <Image
+                src="/photos-sale.webp"
+                alt="Photos on Sale"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            <div className="space-y-3 sm:space-y-4 md:space-y-6">
+              <div className="inline-flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-purple-100 rounded-xl sm:rounded-2xl">
+                <Zap className="w-6 sm:w-7 md:w-8 h-6 sm:h-7 md:h-8 text-purple-600" strokeWidth={2} />
+              </div>
+              <div>
+                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-gray-900 mb-2 sm:mb-2.5 md:mb-3">
+                  Photos on Sale
+                </h3>
+                <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
+                  Compare vehicle conditions across different time periods. View high-quality photos and track cosmetic changes to identify potential damage indicators.
+                </p>
+              </div>
+              <Link href="/pricing" className="inline-flex items-center gap-1 sm:gap-2 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-full transition-all duration-300 hover:gap-3 shadow-lg hover:shadow-xl text-sm sm:text-base">
+                View Photos
+                <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5" />
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'damage' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-start animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <div className="relative w-full h-60 sm:h-72 md:h-80 lg:h-96 rounded-xl sm:rounded-2xl overflow-hidden">
+              <Image
+                src="/damage.webp"
+                alt="Damage Check"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            <div className="space-y-3 sm:space-y-4 md:space-y-6">
+              <div className="inline-flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-red-100 rounded-xl sm:rounded-2xl">
+                <AlertTriangle className="w-6 sm:w-7 md:w-8 h-6 sm:h-7 md:h-8 text-red-600" strokeWidth={2} />
+              </div>
+              <div>
+                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-gray-900 mb-2 sm:mb-2.5 md:mb-3">
+                  Damage Check
+                </h3>
+                <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
+                  Uncover accident history with comprehensive damage assessment. Includes accidents, collisions, flood damage, fire damage, and structural issues reported to insurance.
+                </p>
+              </div>
+              <Link href="/pricing" className="inline-flex items-center gap-1 sm:gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-full transition-all duration-300 hover:gap-3 shadow-lg hover:shadow-xl text-sm sm:text-base">
+                Check Damage
+                <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5" />
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'technical' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-start animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <div className="relative w-full h-60 sm:h-72 md:h-80 lg:h-96 rounded-xl sm:rounded-2xl overflow-hidden">
+              <Image
+                src="/specification.webp"
+                alt="Technical Data"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            <div className="space-y-3 sm:space-y-4 md:space-y-6">
+              <div className="inline-flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-indigo-100 rounded-xl sm:rounded-2xl">
+                <Zap className="w-6 sm:w-7 md:w-8 h-6 sm:h-7 md:h-8 text-indigo-600" strokeWidth={2} />
+              </div>
+              <div>
+                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-gray-900 mb-2 sm:mb-2.5 md:mb-3">
+                  Technical Data
+                </h3>
+                <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
+                  Complete specifications including engine type, transmission, fuel type, GVWR, and all manufacturer details for accurate vehicle identification.
+                </p>
+              </div>
+              <button className="inline-flex items-center gap-1 sm:gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-full transition-all duration-300 hover:gap-3 shadow-lg hover:shadow-xl text-sm sm:text-base">
+                View Specs
+                <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5" />
+              </button>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'stolen' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-start animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+             <div className="relative w-full h-60 sm:h-72 md:h-80 lg:h-96 rounded-xl sm:rounded-2xl overflow-hidden">
+              <Image
+                src="/stolen.webp"
+                alt="Stolen VIN Check"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            <div className="space-y-3 sm:space-y-4 md:space-y-6">
+              <div className="inline-flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-amber-100 rounded-xl sm:rounded-2xl">
+                <Shield className="w-6 sm:w-7 md:w-8 h-6 sm:h-7 md:h-8 text-amber-600" strokeWidth={2} />
+              </div>
+              <div>
+                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-gray-900 mb-2 sm:mb-2.5 md:mb-3">
+                  Stolen VIN Check
+                </h3>
+                <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
+                  Verify vehicle status against national stolen vehicle databases. Ensure the vehicle is not reported stolen, salvaged, or listed as a lemon law buyback.
+                </p>
+              </div>
+              <Link href="/pricing" className="inline-flex items-center gap-1 sm:gap-2 bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-full transition-all duration-300 hover:gap-3 shadow-lg hover:shadow-xl text-sm sm:text-base">
+                Verify Status
+                <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5" />
+              </Link>
+            </div>
+          </div>
+        )}
+        </div>
+
+        {/* NMVTIS Badge */}
+        <div className="mt-8 sm:mt-12 md:mt-16 p-4 sm:p-6 bg-blue-50 border border-blue-200 rounded-xl sm:rounded-2xl flex items-start gap-3 sm:gap-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+          <div className="inline-flex items-center justify-center w-10 sm:w-12 h-10 sm:h-12 bg-blue-100 rounded-full flex-shrink-0">
+            <span className="text-lg sm:text-xl">✓</span>
+          </div>
+          <div>
+            <h4 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">Official NMVTIS Source</h4>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              TrueAutoCheck is an approved NMVTIS data provider. NMVTIS is a national database designed to protect consumers from fraud and unsafe vehicles, to prevent stolen vehicles from being resold, and to provide users with accurate and complete vehicle information.
+            </p>
+          </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes autoTabProgress {
+          from {
+            width: 0%;
+            opacity: 1;
+          }
+          to {
+            width: 100%;
+            opacity: 1;
+          }
+        }
+
+        @keyframes tabProgress {
+          from {
+            width: 0%;
+          }
+          to {
+            width: 100%;
+          }
+        }
+
+        .animate-fade-in {
+          animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .animate-fade-in-up {
+          animation: fadeInUp 0.8s ease-out forwards;
+          opacity: 0;
+        }
+      `}</style>
     </section>
   )
 }

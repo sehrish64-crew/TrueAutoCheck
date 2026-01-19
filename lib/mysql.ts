@@ -5,7 +5,7 @@ const {
   DB_PORT = '3306',
   DB_USER = 'u319625572_trueautocheck',
   DB_PASSWORD = 'Trueautocheck321@',
-  DB_NAME = 'u319625572_trueautocheck',
+  DB_NAME = 'u319625572_carvertical',
 } = process.env
 
 const pool = mysql.createPool({

@@ -2,16 +2,16 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { X, Search } from 'lucide-react'
+import { X, Search, Menu } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { useCountry, countries } from '@/contexts/CountryContext'
 import { useTranslations } from '@/lib/translations'
-import TranslateButton from '@/components/TranslateButton'
 
 export default function Header() {
   const { selectedCountry, setSelectedCountry } = useCountry()
   const { t } = useTranslations()
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
 
   const filteredCountries = countries.filter(country =>
@@ -26,11 +26,11 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-[40]">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center">
-              <span className="text-2xl font-bold text-blue-600">True<span className="font-normal">AutoCheck</span></span>
+            <Link href="/" className="flex items-center gap-2">
+              <img src="/logo.png" alt="TrueAutoCheck" className="h-8 sm:h-10 w-auto" />
             </Link>
 
             <nav className="hidden md:flex items-center space-x-8">
@@ -55,7 +55,7 @@ export default function Header() {
               <button
                 suppressHydrationWarning
                 onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
-                className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors rounded-lg hover:bg-gray-50"
+                className="hidden md:flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors rounded-lg hover:bg-gray-50"
               >
                 <img
                   src={`https://flagcdn.com/w40/${selectedCountry?.countryCode}.png`}
@@ -65,11 +65,98 @@ export default function Header() {
                 <span className="font-semibold">{selectedCountry?.code}</span>
               </button>
 
-              <TranslateButton />
+              <button
+                suppressHydrationWarning
+                type="button"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors z-[60]"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="w-6 h-6 text-gray-600" />
+                ) : (
+                  <Menu className="w-6 h-6 text-gray-600" />
+                )}
+              </button>
             </div>
           </div>
         </div>
       </header>
+
+      {isMobileMenuOpen && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/50 z-[40] md:hidden"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+          <div className="fixed top-0 left-0 right-0 bottom-0 bg-white z-[100] md:hidden overflow-y-auto animate-in slide-in-from-top duration-300">
+            <div className="p-6 space-y-6">
+              <div className="flex items-center justify-between pb-6 border-b border-gray-200">
+                <Link href="/" className="flex items-center gap-2">
+                  <img src="/logo.png" alt="TrueAutoCheck" className="h-8 w-auto" />
+                </Link>
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                >
+                  <X className="w-6 h-6 text-gray-600" />
+                </button>
+              </div>
+
+              <nav className="space-y-2">
+                <Link 
+                  href="/" 
+                  className="block text-lg text-gray-700 hover:text-blue-600 transition-colors font-semibold py-3 px-4 rounded-lg hover:bg-gray-50"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {t('nav_home')}
+                </Link>
+
+                <Link 
+                  href="/pricing" 
+                  className="block text-lg text-gray-700 hover:text-blue-600 transition-colors font-semibold py-3 px-4 rounded-lg hover:bg-gray-50"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {t('nav_pricing')}
+                </Link>
+
+                <Link 
+                  href="/contact-us" 
+                  className="block text-lg text-gray-700 hover:text-blue-600 transition-colors font-semibold py-3 px-4 rounded-lg hover:bg-gray-50"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {t('nav_contact')}
+                </Link>
+
+                <Link 
+                  href="/about-us" 
+                  className="block text-lg text-gray-700 hover:text-blue-600 transition-colors font-semibold py-3 px-4 rounded-lg hover:bg-gray-50"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {t('nav_about')}
+                </Link>
+              </nav>
+
+              <div className="border-t border-gray-200 pt-6">
+                <button
+                  suppressHydrationWarning
+                  onClick={() => {
+                    setIsCountryDropdownOpen(true)
+                    setIsMobileMenuOpen(false)
+                  }}
+                  className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:text-blue-600 transition-colors rounded-lg hover:bg-gray-50 border border-gray-200"
+                >
+                  <img
+                    src={`https://flagcdn.com/w40/${selectedCountry?.countryCode}.png`}
+                    alt={selectedCountry?.name}
+                    className="w-6 h-4 rounded object-cover"
+                  />
+                  <span className="font-semibold text-lg">{selectedCountry?.name}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
 
       {isCountryDropdownOpen && (
         <>

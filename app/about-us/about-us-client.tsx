@@ -78,66 +78,66 @@ export default function AboutUsClient() {
     <div className="bg-white">
       <div className="relative bg-gradient-to-b from-slate-50 to-white overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-        <div className="relative container mx-auto px-6 py-20 md:py-32">
-          <div className={`max-w-4xl mx-auto text-center space-y-8 transform transition-all duration-1000 ${
+        <div className="relative container mx-auto px-4 sm:px-6 py-12 sm:py-20 md:py-32">
+          <div className={`max-w-4xl mx-auto text-center space-y-6 sm:space-y-8 transform transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <div className="inline-flex items-center gap-2 px-5 py-2 bg-blue-50 border border-blue-200 rounded-full">
-              <Building2 className="w-4 h-4 text-blue-600" />
-              <span className="text-sm font-semibold text-blue-900">About TrueAutoCheck</span>
+            <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-1.5 sm:py-2 bg-blue-50 border border-blue-200 rounded-full">
+              <Building2 className="w-3 sm:w-4 h-3 sm:h-4 text-blue-600" />
+              <span className="text-2xs sm:text-sm font-semibold text-blue-900">About TrueAutoCheck</span>
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-tight">
               Driving Transparency in the Automotive Industry
             </h1>
 
-            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               We empower millions of buyers and sellers with comprehensive vehicle history reports, making every transaction safer and more transparent.
             </p>
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-6 py-16">
-        <div className={`grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto transform transition-all duration-1000 delay-200 ${
+      <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        <div className={`grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 max-w-5xl mx-auto transform transition-all duration-1000 delay-200 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="text-center space-y-3 p-6 rounded-xl bg-white border border-gray-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300"
+              className="text-center space-y-2 sm:space-y-3 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl bg-white border border-gray-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300"
             >
               <div className="flex justify-center">
-                <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center">
-                  <stat.icon className="w-6 h-6 text-blue-600" />
+                <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-blue-50 flex items-center justify-center">
+                  <stat.icon className="w-5 sm:w-6 h-5 sm:h-6 text-blue-600" />
                 </div>
               </div>
-              <div className="text-4xl font-bold text-gray-900">
+              <div className="text-3xl sm:text-4xl font-bold text-gray-900">
                 {counters[index]}{stat.suffix}
               </div>
-              <div className="text-sm font-medium text-gray-600">{stat.label}</div>
+              <div className="text-xs sm:text-sm font-medium text-gray-600">{stat.label}</div>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="bg-gradient-to-b from-white to-slate-50 py-20">
-        <div className="container mx-auto px-6">
+      <div className="bg-gradient-to-b from-white to-slate-50 py-12 sm:py-16 md:py-20">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className={`max-w-6xl mx-auto transform transition-all duration-1000 delay-300 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full">
+            <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center">
+              <div className="space-y-4 sm:space-y-5 md:space-y-6">
+                <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-2 bg-blue-50 rounded-full">
                   <div className="w-2 h-2 rounded-full bg-blue-600"></div>
-                  <span className="text-sm font-semibold text-blue-900">Our Story</span>
+                  <span className="text-2xs sm:text-sm font-semibold text-blue-900">Our Story</span>
                 </div>
 
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
                   Building Trust Through Technology
                 </h2>
 
-                <div className="space-y-5 text-gray-700 text-lg leading-relaxed">
+                <div className="space-y-4 sm:space-y-5 text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed">
                   <p>
                     Founded in 2026, TrueAutoCheck emerged from a simple yet powerful vision: to eliminate information asymmetry in the used car market. We recognized that buyers were making one of their most significant purchases without access to complete vehicle histories.
                   </p>
@@ -149,32 +149,32 @@ export default function AboutUsClient() {
                   </p>
                 </div>
 
-                <div className="flex gap-4 pt-4">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
                   <div className="flex items-center gap-2">
-                    <Award className="w-5 h-5 text-blue-600" />
-                    <span className="text-sm font-medium text-gray-700">Industry Leader</span>
+                    <Award className="w-4 sm:w-5 h-4 sm:h-5 text-blue-600" />
+                    <span className="text-2xs sm:text-sm font-medium text-gray-700">Industry Leader</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Heart className="w-5 h-5 text-blue-600" />
-                    <span className="text-sm font-medium text-gray-700">Customer Trusted</span>
+                    <Heart className="w-4 sm:w-5 h-4 sm:h-5 text-blue-600" />
+                    <span className="text-2xs sm:text-sm font-medium text-gray-700">Customer Trusted</span>
                   </div>
                 </div>
               </div>
 
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-3xl transform rotate-3"></div>
-                <div className="relative bg-white rounded-3xl shadow-2xl p-8 border border-gray-200">
-                  <div className="space-y-8">
-                    <div className="space-y-4">
-                      <h3 className="text-2xl font-bold text-gray-900">Our Mission</h3>
-                      <p className="text-gray-700 leading-relaxed">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl sm:rounded-3xl transform rotate-3"></div>
+                <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 border border-gray-200">
+                  <div className="space-y-6 sm:space-y-8">
+                    <div className="space-y-3 sm:space-y-4">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Our Mission</h3>
+                      <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">
                         To create a transparent automotive marketplace where every buyer has access to complete, verified vehicle history information before making a purchase decision.
                       </p>
                     </div>
 
-                    <div className="border-t border-gray-200 pt-6 space-y-4">
-                      <h3 className="text-2xl font-bold text-gray-900">Our Vision</h3>
-                      <p className="text-gray-700 leading-relaxed">
+                    <div className="border-t border-gray-200 pt-4 sm:pt-6 space-y-3 sm:space-y-4">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Our Vision</h3>
+                      <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">
                         A world where vehicle fraud is eliminated and every car transaction is built on trust, transparency, and verified data.
                       </p>
                     </div>
@@ -186,32 +186,32 @@ export default function AboutUsClient() {
         </div>
       </div>
 
-      <div className="container mx-auto px-6 py-20">
-        <div className={`max-w-6xl mx-auto space-y-12 transform transition-all duration-1000 delay-400 ${
+      <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20">
+        <div className={`max-w-6xl mx-auto space-y-8 sm:space-y-10 md:space-y-12 transform transition-all duration-1000 delay-400 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <div className="text-center space-y-4 max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">Our Core Values</h2>
-            <p className="text-xl text-gray-600">
+          <div className="text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">Our Core Values</h2>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600">
               The principles that guide our work and define who we are
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
             {values.map((value, index) => (
               <div
                 key={index}
-                className="group bg-white border border-gray-200 rounded-2xl p-8 hover:border-blue-300 hover:shadow-xl transition-all duration-300"
+                className="group bg-white border border-gray-200 rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 hover:border-blue-300 hover:shadow-xl transition-all duration-300"
               >
-                <div className="flex items-start gap-6">
+                <div className="flex items-start gap-4 sm:gap-5 md:gap-6">
                   <div className="flex-shrink-0">
-                    <div className="w-14 h-14 rounded-xl bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
-                      <value.icon className="w-7 h-7 text-blue-600" strokeWidth={2} />
+                    <div className="w-12 sm:w-14 h-12 sm:h-14 rounded-lg sm:rounded-xl bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
+                      <value.icon className="w-6 sm:w-7 h-6 sm:h-7 text-blue-600" strokeWidth={2} />
                     </div>
                   </div>
-                  <div className="space-y-3">
-                    <h3 className="text-2xl font-bold text-gray-900">{value.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                  <div className="space-y-2 sm:space-y-3">
+                    <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900">{value.title}</h3>
+                    <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">{value.description}</p>
                   </div>
                 </div>
               </div>
@@ -220,18 +220,18 @@ export default function AboutUsClient() {
         </div>
       </div>
 
-      <div className="bg-slate-50 py-20">
-        <div className="container mx-auto px-6">
-          <div className={`max-w-5xl mx-auto space-y-12 transform transition-all duration-1000 delay-500 ${
+      <div className="bg-slate-50 py-12 sm:py-16 md:py-20">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className={`max-w-5xl mx-auto space-y-8 sm:space-y-10 md:space-y-12 transform transition-all duration-1000 delay-500 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <div className="text-center space-y-4">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900">Our Journey</h2>
-              <p className="text-xl text-gray-600">Key milestones in our growth</p>
+            <div className="text-center space-y-3 sm:space-y-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">Our Journey</h2>
+              <p className="text-sm sm:text-base md:text-lg text-gray-600">Key milestones in our growth</p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6 mb-12">
-              <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 md:gap-6 mb-8 sm:mb-10 md:mb-12">
+              <div className="relative h-48 sm:h-56 md:h-60 lg:h-64 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-xl">
                 <Image
                   src="https://images.pexels.com/photos/3803517/pexels-photo-3803517.jpeg?auto=compress&cs=tinysrgb&w=800"
                   alt="Technology innovation"
@@ -239,13 +239,13 @@ export default function AboutUsClient() {
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-white">Innovation First</h3>
-                    <p className="text-white/90 text-sm">Blockchain-powered verification</p>
+                  <div className="p-4 sm:p-5 md:p-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-white">Innovation First</h3>
+                    <p className="text-xs sm:text-sm text-white/90">Blockchain-powered verification</p>
                   </div>
                 </div>
               </div>
-              <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl">
+              <div className="relative h-48 sm:h-56 md:h-60 lg:h-64 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-xl">
                 <Image
                   src="https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg?auto=compress&cs=tinysrgb&w=800"
                   alt="Vehicle technology"
@@ -253,30 +253,30 @@ export default function AboutUsClient() {
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-white">Global Coverage</h3>
-                    <p className="text-white/90 text-sm">50+ countries worldwide</p>
+                  <div className="p-4 sm:p-5 md:p-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-white">Global Coverage</h3>
+                    <p className="text-xs sm:text-sm text-white/90">50+ countries worldwide</p>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="relative">
-              <div className="absolute left-8 top-8 bottom-8 w-0.5 bg-gradient-to-b from-blue-600 via-cyan-500 to-blue-600 hidden md:block"></div>
-              <div className="space-y-8">
+              <div className="absolute left-4 sm:left-8 top-8 bottom-8 w-0.5 bg-gradient-to-b from-blue-600 via-cyan-500 to-blue-600 hidden md:block"></div>
+              <div className="space-y-5 sm:space-y-6 md:space-y-8">
                 {timeline.map((item, index) => (
                   <div
                     key={index}
-                    className="relative md:pl-20 bg-white rounded-xl p-8 border border-gray-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300"
+                    className="relative md:pl-20 bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 lg:p-8 border border-gray-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300"
                   >
-                    <div className="absolute left-5 top-8 w-7 h-7 rounded-full bg-blue-600 border-4 border-white shadow-lg hidden md:flex items-center justify-center">
+                    <div className="absolute left-3 sm:left-5 top-6 sm:top-8 w-6 sm:w-7 h-6 sm:h-7 rounded-full bg-blue-600 border-4 border-white shadow-lg hidden md:flex items-center justify-center">
                       <div className="w-2 h-2 rounded-full bg-white"></div>
                     </div>
 
-                    <div className="space-y-2">
-                      <div className="text-sm font-bold text-blue-600 uppercase tracking-wider">{item.year}</div>
-                      <h3 className="text-2xl font-bold text-gray-900">{item.title}</h3>
-                      <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                    <div className="space-y-1.5 sm:space-y-2">
+                      <div className="text-2xs sm:text-xs md:text-sm font-bold text-blue-600 uppercase tracking-wider">{item.year}</div>
+                      <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900">{item.title}</h3>
+                      <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">{item.description}</p>
                     </div>
                   </div>
                 ))}
@@ -286,27 +286,27 @@ export default function AboutUsClient() {
         </div>
       </div>
 
-      <div className="relative bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 py-20">
+      <div className="relative bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 py-12 sm:py-16 md:py-20">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-        <div className={`relative container mx-auto px-6 transform transition-all duration-1000 delay-600 ${
+        <div className={`relative container mx-auto px-4 sm:px-6 transform transition-all duration-1000 delay-600 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h2 className="text-4xl md:text-5xl font-bold text-white">
+          <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">
               Ready to Make an Informed Decision?
             </h2>
 
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
               Join millions of satisfied customers who trust TrueAutoCheck for comprehensive vehicle history reports. Start your journey with confidence today.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-8 py-6 text-lg rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-4">
+              <Button className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-6 sm:px-8 py-3 sm:py-4 md:py-6 text-sm sm:text-base md:text-lg rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300">
                 Get Your Report
               </Button>
-              <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-gray-900 font-semibold px-8 py-6 text-lg rounded-lg transition-all duration-300">
+              {/* <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-gray-900 font-semibold px-6 sm:px-8 py-3 sm:py-4 md:py-6 text-sm sm:text-base md:text-lg rounded-lg transition-all duration-300">
                 Contact Sales
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>

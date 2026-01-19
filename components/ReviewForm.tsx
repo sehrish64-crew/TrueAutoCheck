@@ -49,8 +49,21 @@ export default function ReviewForm({ isOpen, onClose }: ReviewFormProps) {
         }),
       })
 
+      // Parse response to get error details
+      let data;
+      try {
+        data = await response.json()
+      } catch (parseErr) {
+        console.error('Failed to parse response:', parseErr)
+        data = {}
+      }
+
       if (!response.ok) {
-        throw new Error(t('review_error_submit_failed'))
+        const errorMessage = data?.error || t('review_error_submit_failed') || 'Failed to submit review'
+        console.error(`API Error (${response.status}):`, errorMessage, data)
+        setError(errorMessage)
+        setIsSubmitting(false)
+        return
       }
 
       setSubmitSuccess(true)
@@ -67,8 +80,9 @@ export default function ReviewForm({ isOpen, onClose }: ReviewFormProps) {
       // show pending notice to user via SweetAlert popup
       showSwal({ title: t('review_alert_pending'), icon: 'info', timer: 2500, showConfirmButton: false })
     } catch (err) {
-      setError('Failed to submit review. Please try again.')
-      console.error('Error submitting review:', err)
+      const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred. Please try again.'
+      setError(errorMessage)
+      console.error('Review submission error:', errorMessage, err)
     } finally {
       setIsSubmitting(false)
     }

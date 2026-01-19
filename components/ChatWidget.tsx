@@ -5,6 +5,13 @@ import { MessageSquare, Send, X, User } from 'lucide-react'
 import { useTranslations } from '@/lib/translations'
 import { useCountry } from '@/contexts/CountryContext'
 
+const FAQ_QUESTIONS = [
+  'What is a vehicle inspection?',
+  'What is checked during a vehicle inspection?',
+  'How long does it take to get the inspection report?',
+  'Do I need to book an appointment for a vehicle inspection?',
+]
+
 export default function ChatWidget({ position = 'right' as 'left' | 'right' }) {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<{ from: 'user' | 'bot'; text: string }[]>([])
@@ -40,9 +47,10 @@ export default function ChatWidget({ position = 'right' as 'left' | 'right' }) {
 
   const messagesRef = useRef<HTMLDivElement | null>(null)
 
-  const send = async () => {
-    if (!input.trim()) return
-    const userMsg = input.trim()
+  const send = async (messageText?: string) => {
+    const userMsg = messageText || input.trim()
+    if (!userMsg) return
+    
     setMessages(prev => [...prev, { from: 'user', text: userMsg }])
     setInput('')
 
@@ -115,6 +123,22 @@ export default function ChatWidget({ position = 'right' as 'left' | 'right' }) {
                 </div>
               ))}
 
+              {/* Show FAQ questions if no messages yet or just welcome message */}
+              {messages.length <= 1 && !loading && (
+                <div className="space-y-2">
+                  <p className="text-xs text-gray-500 px-3 py-1">Quick questions:</p>
+                  {FAQ_QUESTIONS.map((question, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => send(question)}
+                      className="w-full text-left px-3 py-2 rounded-lg bg-blue-50 hover:bg-blue-100 text-sm text-blue-900 transition-colors duration-200 border border-blue-200 hover:border-blue-400"
+                    >
+                      {question}
+                    </button>
+                  ))}
+                </div>
+              )}
+
               {/* Typing indicator */}
               {loading && (
                 <div className="max-w-[60%] px-3 py-2 rounded-lg bg-gray-100 text-gray-900 inline-block">
@@ -141,7 +165,7 @@ export default function ChatWidget({ position = 'right' as 'left' | 'right' }) {
                   placeholder={t('chat_input_placeholder')}
                   aria-label={t('chat_input_placeholder')}
                 />
-                <button suppressHydrationWarning onClick={send} disabled={loading || !input.trim()} className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center shadow hover:scale-105 transition-transform" aria-label="Send message">
+                <button suppressHydrationWarning onClick={() => send()} disabled={loading || !input.trim()} className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center shadow hover:scale-105 transition-transform" aria-label="Send message">
                   <Send className="w-4 h-4" />
                 </button>
               </div>

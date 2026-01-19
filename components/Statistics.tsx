@@ -1,171 +1,155 @@
-"use client"
+// "use client"
 
-import { useState, useEffect, useRef } from 'react'
-import { ShieldCheck, Gauge, AlertCircle, CheckCircle2 } from 'lucide-react'
-import { useTranslations } from '@/lib/translations'
+// import { useState, useEffect, useRef } from 'react'
+// import { ThumbsUp, Mail, Clock } from 'lucide-react'
+// import Image from 'next/image'
+// import { useTranslations } from '@/lib/translations'
 
-const buildStats = (t: (key: string) => string) => ([
-  {
-    icon: ShieldCheck,
-    value: 3700000,
-    label: t('stats_vehicles_checked'),
-    prefix: '+',
-    suffix: '',
-    color: 'from-blue-400 to-blue-600',
-    bgColor: 'bg-blue-100',
-    iconColor: 'text-blue-600',
-  },
-  {
-    icon: Gauge,
-    value: 115453,
-    label: t('stats_clocked_found'),
-    prefix: '',
-    suffix: '',
-    color: 'from-cyan-400 to-cyan-600',
-    bgColor: 'bg-cyan-100',
-    iconColor: 'text-cyan-600',
-  },
-  {
-    icon: AlertCircle,
-    value: 1574512,
-    label: t('stats_damaged_detected'),
-    prefix: '',
-    suffix: '',
-    color: 'from-red-400 to-red-600',
-    bgColor: 'bg-red-100',
-    iconColor: 'text-red-600',
-  },
-])
+// export default function Statistics() {
+//   const { t } = useTranslations()
+//   const [isVisible, setIsVisible] = useState(false)
+//   const sectionRef = useRef<HTMLDivElement>(null)
 
-function useCountUp(end: number, duration: number = 2000, isVisible: boolean) {
-  const [count, setCount] = useState(0)
+//   useEffect(() => {
+//     const observer = new IntersectionObserver(
+//       (entries) => {
+//         entries.forEach((entry) => {
+//           if (entry.isIntersecting) {
+//             setIsVisible(true)
+//             observer.disconnect()
+//           }
+//         })
+//       },
+//       { threshold: 0.2 }
+//     )
 
-  useEffect(() => {
-    if (!isVisible) return
+//     if (sectionRef.current) {
+//       observer.observe(sectionRef.current)
+//     }
 
-    let startTime: number | null = null
-    const step = (timestamp: number) => {
-      if (!startTime) startTime = timestamp
-      const progress = Math.min((timestamp - startTime) / duration, 1)
+//     return () => observer.disconnect()
+//   }, [])
 
-      const easeOutQuart = 1 - Math.pow(1 - progress, 4)
-      setCount(Math.floor(easeOutQuart * end))
+//   const supportMetrics = [
+//     {
+//       icon: ThumbsUp,
+//       value: '98%',
+//       label: 'Satisfaction rate',
+//       color: 'from-blue-400 to-blue-600',
+//       bgColor: 'bg-blue-100',
+//       iconColor: 'text-blue-600',
+//     },
+//     {
+//       icon: Mail,
+//       value: '10 minutes',
+//       label: 'Avg. response time',
+//       color: 'from-cyan-400 to-cyan-600',
+//       bgColor: 'bg-cyan-100',
+//       iconColor: 'text-cyan-600',
+//     },
+//     {
+//       icon: Clock,
+//       value: '24/7',
+//       label: 'Chat Availability',
+//       color: 'from-purple-400 to-purple-600',
+//       bgColor: 'bg-purple-100',
+//       iconColor: 'text-purple-600',
+//     },
+//   ]
 
-      if (progress < 1) {
-        requestAnimationFrame(step)
-      }
-    }
+//   // Placeholder avatars - you can replace with actual user images
+//   const avatars = [
+//     { initials: 'JD', color: 'bg-gradient-to-br from-blue-400 to-blue-600' },
+//     { initials: 'SM', color: 'bg-gradient-to-br from-orange-400 to-orange-600' },
+//     { initials: 'AC', color: 'bg-gradient-to-br from-green-400 to-green-600' },
+//   ]
 
-    requestAnimationFrame(step)
-  }, [end, duration, isVisible])
+//   return (
+//     <section ref={sectionRef} className="py-16 md:py-24 bg-white relative overflow-hidden">
+//       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 via-transparent to-purple-50/20"></div>
 
-  return count
-}
+//       <div className="container mx-auto px-6 relative z-10">
+//         {/* Avatar Section */}
+//         <div className={`flex justify-center mb-12 transition-all duration-1000 ${
+//           isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+//         }`}>
+//           <div className="flex -space-x-4">
+//             {avatars.map((avatar, index) => (
+//               <div
+//                 key={index}
+//                 className={`w-16 h-16 rounded-full border-4 border-white shadow-lg ${avatar.color} flex items-center justify-center text-white font-bold text-sm transform transition-all duration-500 hover:scale-110 hover:z-10 cursor-pointer`}
+//                 style={{
+//                   transitionDelay: `${index * 100}ms`,
+//                 }}
+//               >
+//                 {avatar.initials}
+//               </div>
+//             ))}
+//           </div>
+//         </div>
 
-export default function Statistics() {
-  const { t } = useTranslations()
-  const stats = buildStats(t)
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLDivElement>(null)
+//         {/* Title and Description */}
+//         <div className="text-center max-w-4xl mx-auto mb-16">
+//           <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 transition-all duration-1000 delay-200 ${
+//             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+//           }`}>
+//             Dedicated Customer Support: We're Here to Help
+//           </h2>
+//           <p className={`text-lg text-gray-600 max-w-2xl mx-auto transition-all duration-1000 delay-300 ${
+//             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+//           }`}>
+//             Our support team is always ready to assist you. Simply drop us a message, and we'll promptly respond to ensure a seamless experience.
+//           </p>
+//         </div>
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true)
-            observer.disconnect()
-          }
-        })
-      },
-      { threshold: 0.2 }
-    )
+//         {/* Metrics Grid */}
+//         <div className="grid md:grid-cols-3 gap-8 md:gap-12 max-w-5xl mx-auto">
+//           {supportMetrics.map((metric, index) => {
+//             const Icon = metric.icon
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
+//             return (
+//               <div
+//                 key={index}
+//                 className={`group text-center transform transition-all duration-700 ${
+//                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+//                 }`}
+//                 style={{
+//                   transitionDelay: `${400 + index * 100}ms`,
+//                 }}
+//               >
+//                 {/* Icon Container */}
+//                 <div className="relative inline-block mb-8">
+//                   <div className={`absolute inset-0 ${metric.bgColor} rounded-full blur-2xl opacity-40 group-hover:opacity-70 transition-opacity duration-500 animate-pulse`}></div>
 
-    return () => observer.disconnect()
-  }, [])
+//                   <div className={`relative ${metric.bgColor} rounded-full p-8 group-hover:scale-110 transition-all duration-500 shadow-lg group-hover:shadow-2xl`}>
+//                     <Icon className={`w-10 h-10 md:w-14 md:h-14 ${metric.iconColor} group-hover:scale-110 transition-transform duration-300`} strokeWidth={1.5} />
+//                   </div>
 
-  return (
-    <section ref={sectionRef} className="py-16 md:py-24 bg-white relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-transparent to-cyan-50/30"></div>
+//                   {/* Floating accent */}
+//                   <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full animate-bounce"></div>
+//                 </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center max-w-4xl mx-auto mb-16">
-          <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}>
-            {t('stats_title')}
-          </h2>
-          <p className={`text-lg text-gray-700 transition-all duration-1000 delay-200 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}>
-            {t('stats_subtitle')}
-          </p>
-        </div>
+//                 {/* Metric Value and Label */}
+//                 <div className="space-y-3">
+//                   <div className={`text-3xl md:text-4xl font-bold bg-gradient-to-br ${metric.color} bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300 inline-block`}>
+//                     {metric.value}
+//                   </div>
+//                   <p className="text-base md:text-lg text-gray-700 font-medium">
+//                     {metric.label}
+//                   </p>
+//                 </div>
 
-        <div className="grid md:grid-cols-3 gap-8 md:gap-12 max-w-6xl mx-auto">
-          {stats.map((stat, index) => {
-            const Icon = stat.icon
-            const displayValue = useCountUp(stat.value, 2500, isVisible)
-            const formattedValue = displayValue.toLocaleString()
+//                 {/* Animated underline */}
+//                 <div className="mt-8 h-1 w-16 mx-auto bg-gradient-to-r from-transparent via-gray-300 to-transparent group-hover:via-blue-500 transition-all duration-500 rounded-full"></div>
+//               </div>
+//             )
+//           })}
+//         </div>
+//       </div>
 
-            return (
-              <div
-                key={index}
-                className={`group text-center transform transition-all duration-700 delay-${index * 100} ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
-              >
-                <div className="relative inline-block mb-6">
-                  <div className={`absolute inset-0 ${stat.bgColor} rounded-full blur-2xl opacity-50 group-hover:opacity-75 transition-opacity duration-500 animate-pulse`}></div>
-
-                  <div className={`relative ${stat.bgColor} rounded-full p-6 group-hover:scale-110 transition-all duration-500 shadow-lg group-hover:shadow-xl`}>
-                    <Icon className={`w-12 h-12 md:w-16 md:h-16 ${stat.iconColor} group-hover:scale-110 transition-transform duration-300`} strokeWidth={2} />
-                  </div>
-
-                  <div className="absolute -top-2 -right-2 w-4 h-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full animate-ping"></div>
-                  <div className="absolute -top-2 -right-2 w-4 h-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full"></div>
-                </div>
-
-                <div className="space-y-2">
-                  <div className={`text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-br ${stat.color} bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300 inline-block`}>
-                    {stat.prefix}{formattedValue}{stat.suffix}
-                  </div>
-                  <p className="text-base md:text-lg text-gray-700 font-medium">
-                    {stat.label}
-                  </p>
-                </div>
-
-                <div className="mt-6 h-1 w-24 mx-auto bg-gradient-to-r from-transparent via-gray-300 to-transparent group-hover:via-blue-500 transition-all duration-500"></div>
-              </div>
-            )
-          })}
-        </div>
-
-        <div className={`text-center mt-16 transition-all duration-1000 delay-700 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-full border border-blue-200">
-            <div className="flex -space-x-2">
-              {[...Array(3)].map((_, i) => (
-                <div
-                  key={i}
-                  className={`w-8 h-8 rounded-full bg-gradient-to-br ${
-                    i === 0 ? 'from-blue-400 to-blue-600' : i === 1 ? 'from-cyan-400 to-cyan-600' : 'from-indigo-400 to-indigo-600'
-                  } border-2 border-white`}
-                ></div>
-              ))}
-            </div>
-            <p className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-              <CheckCircle2 className="w-5 h-5 text-green-500" />
-              Trusted by <span className="text-blue-600">3.7M+</span> car buyers worldwide
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+//       {/* Animated background elements */}
+//       <div className="absolute top-20 right-10 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+//       <div className="absolute bottom-20 left-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+//     </section>
+//   )
+// }

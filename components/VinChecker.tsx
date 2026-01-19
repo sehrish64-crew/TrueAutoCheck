@@ -8,10 +8,10 @@ import GetReportForm from './GetReportForm'
 import { useTranslations } from '@/lib/translations'
 
 const trustLogos = [
-  { name: 'AutoBild', width: 'w-16' },
-  { name: 'TopGear', width: 'w-24' },
+  { name: 'AutoBild', width: 'w-20' },
+  { name: 'TopGear', width: 'w-20' },
   { name: 'Forbes', width: 'w-20' },
-  { name: 'REUTERS', width: 'w-24' },
+  { name: 'REUTERS', width: 'w-20' },
 ]
 
 export default function VinChecker() {
@@ -67,10 +67,10 @@ export default function VinChecker() {
               }`}
             >
               <div className="space-y-4">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
                   Let the data do the talking
                 </h2>
-                <p className="text-base md:text-lg text-blue-50 leading-relaxed">
+                <p className="text-sm sm:text-base md:text-lg text-blue-50 leading-relaxed">
                   Look deeper before you drive further – get access to verified records that reveal your vehicle&apos;s history.
                 </p>
               </div>
@@ -78,12 +78,12 @@ export default function VinChecker() {
               <div className="space-y-4 pt-4">
                 <div className="flex items-center space-x-2 text-blue-50">
                   <CheckCircle className="w-5 h-5 flex-shrink-0" strokeWidth={2} />
-                  <span className="text-sm md:text-base font-medium">
+                  <span className="text-xs sm:text-sm md:text-base font-medium">
                     Trusted by 4,500,000+ people across 35 countries
                   </span>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-6 pt-2">
+                <div className="flex flex-wrap items-center justify-start gap-3 md:gap-6 pt-2">
                   {trustLogos.map((logo, index) => (
                     <div
                       key={logo.name}
@@ -91,8 +91,8 @@ export default function VinChecker() {
                         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                       }`}
                     >
-                      <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 hover:scale-105">
-                        <span className={`text-white font-bold ${logo.width} block text-center text-sm`}>
+                      <div className="bg-white/10 backdrop-blur-sm rounded-lg px-3 sm:px-4 py-2 border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 hover:scale-105 min-w-max">
+                        <span className={`text-white font-bold ${logo.width} block text-center text-2xs sm:text-xs md:text-sm`}>
                           {logo.name}
                         </span>
                       </div>
@@ -113,7 +113,7 @@ export default function VinChecker() {
                 }`}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <div className="inline-flex items-center bg-white/10 p-1 rounded-full gap-1">
+                  <div className="inline-flex items-center bg-[#8787871a] p-1 rounded-full gap-1">
                     <button suppressHydrationWarning type="button" onClick={() => setVehicleIdType('vin')} className={`flex items-center gap-2 px-3 py-1 rounded-full transition-all ${vehicleIdType === 'vin' ? 'bg-gradient-to-r from-yellow-400 to-yellow-300 text-gray-900 shadow' : 'text-black hover:bg-white/10'}`}>
                       <Key className="w-4 h-4" />
                       <span className="text-sm font-medium">By VIN</span>

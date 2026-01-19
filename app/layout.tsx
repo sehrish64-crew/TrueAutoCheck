@@ -51,18 +51,18 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: `TrueAutoCheck - ${tmap['banner_title'] || "Check any car's history"}`,
-    description: tmap['banner_subtitle'] || "Trust data, not words. Check any car's history in seconds",
+    description: tmap['banner_subtitle'] || "VIN Check Can Save You Thousands — Get a Full Vehicle History Report",
     keywords: ['car history', 'vehicle report', 'VIN check', 'used car', 'vehicle history check', 'car background check'],
     authors: [{ name: 'TrueAutoCheck' }],
     creator: 'TrueAutoCheck',
     icons: {
-      icon: '/favicon.ico',
+      icon: '/favicon.png',
     },
     openGraph: {
       type: 'website',
       url: 'https://trueautocheck.com',
       title: `TrueAutoCheck - ${tmap['banner_title'] || "Check any car's history"}`,
-      description: tmap['banner_subtitle'] || "Trust data, not words. Check any car's history in seconds",
+      description: tmap['banner_subtitle'] || "VIN Check Can Save You Thousands — Get a Full Vehicle History Report",
       siteName: 'TrueAutoCheck',
       images: [
         { url: 'https://trueautocheck.com/banner-hero.png', width: 1200, height: 630 },
@@ -71,7 +71,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: 'summary_large_image',
       title: `TrueAutoCheck - ${tmap['banner_title'] || "Check any car's history"}`,
-      description: tmap['banner_subtitle'] || "Trust data, not words. Check any car's history in seconds",
+      description: tmap['banner_subtitle'] || "VIN Check Can Save You Thousands — Get a Full Vehicle History Report",
       images: [
         { url: 'https://trueautocheck.com/banner-hero.png' },
       ],

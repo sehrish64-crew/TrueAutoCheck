@@ -12,17 +12,38 @@ export interface Review {
 }
 
 export async function insertReview(review: Omit<Review, 'id' | 'created_at' | 'status' | 'approved_at'>): Promise<Review> {
-  const conn = await pool.getConnection();
+  let conn;
   try {
+    console.log('📝 Getting database connection...');
+    conn = await pool.getConnection();
+    console.log('✅ Database connection obtained');
+    
+    console.log('📝 Executing INSERT query...');
     const [result]: any = await conn.execute(
       'INSERT INTO reviews (name, email, rating, comment, status, created_at) VALUES (?, ?, ?, ?, ?, NOW())',
       [review.name, review.email, review.rating, review.comment, 'pending']
     );
+    console.log('✅ INSERT successful, insertId:', result.insertId);
+    
     const insertId = result.insertId;
+    console.log('📝 Fetching inserted review...');
     const [rows]: any = await conn.execute('SELECT * FROM reviews WHERE id = ?', [insertId]);
+    console.log('✅ Review fetched successfully:', rows[0]);
+    
     return rows[0];
+  } catch (error) {
+    console.error('❌ Error in insertReview:', error);
+    console.error('❌ Error details:', {
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined
+    });
+    throw error;
   } finally {
-    conn.release();
+    if (conn) {
+      console.log('🔄 Releasing database connection...');
+      conn.release();
+      console.log('✅ Connection released');
+    }
   }
 }
 

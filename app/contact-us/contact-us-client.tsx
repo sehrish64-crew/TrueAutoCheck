@@ -104,40 +104,40 @@ export default function ContactUsClient() {
       <div className="absolute top-40 right-10 w-96 h-96 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
       <div className="absolute bottom-40 left-1/2 -translate-x-1/2 w-96 h-96 bg-yellow-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
 
-      <div ref={heroRef} className="relative container mx-auto px-6 py-16 md:py-24">
+      <div ref={heroRef} className="relative container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <div className="max-w-6xl mx-auto">
-          <div className={`grid lg:grid-cols-2 gap-12 items-center mb-20 transform transition-all duration-1000 ${
+          <div className={`grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center mb-12 sm:mb-16 md:mb-20 transform transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-blue-200 rounded-full shadow-sm">
-                <MessageCircle className="w-4 h-4 text-blue-600" />
-                <span className="text-sm font-semibold text-blue-900">{t('contact_get_in_touch')}</span>
+            <div className="space-y-4 sm:space-y-5 md:space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/80 backdrop-blur-sm border border-blue-200 rounded-full shadow-sm">
+                <MessageCircle className="w-3 sm:w-4 h-3 sm:h-4 text-blue-600" />
+                <span className="text-2xs sm:text-sm font-semibold text-blue-900">{t('contact_get_in_touch')}</span>
               </div>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-tight">
                 {t('contact_title')}
               </h1>
 
-              <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
                 {t('contact_subtitle')}
               </p>
 
-              <div className="flex items-center gap-3 pt-4">
+              <div className="flex items-center gap-2 sm:gap-3 pt-4">
                 <div className="flex -space-x-2">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 border-2 border-white flex items-center justify-center">
-                    <Car className="w-5 h-5 text-white" />
+                  <div className="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 border-2 border-white flex items-center justify-center">
+                    <Car className="w-4 sm:w-5 h-4 sm:h-5 text-white" />
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-500 border-2 border-white flex items-center justify-center">
-                    <MessageCircle className="w-5 h-5 text-gray-900" />
+                  <div className="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-500 border-2 border-white flex items-center justify-center">
+                    <MessageCircle className="w-4 sm:w-5 h-4 sm:h-5 text-gray-900" />
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 border-2 border-white flex items-center justify-center">
-                    <Clock className="w-5 h-5 text-white" />
+                  <div className="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 border-2 border-white flex items-center justify-center">
+                    <Clock className="w-4 sm:w-5 h-4 sm:h-5 text-white" />
                   </div>
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-gray-900">{t('contact_quick_response')}</p>
-                  <p className="text-xs text-gray-600">{t('contact_response_time')}</p>
+                  <p className="text-2xs sm:text-sm font-semibold text-gray-900">{t('contact_quick_response')}</p>
+                  <p className="text-2xs sm:text-xs text-gray-600">{t('contact_response_time')}</p>
                 </div>
               </div>
             </div>
@@ -160,16 +160,16 @@ export default function ContactUsClient() {
                       <MessageCircle className="w-8 h-8 text-gray-900" />
                     </div>
                   </div>
-                  <div className="p-8 text-center space-y-2">
-                    <h3 className="text-2xl font-bold text-gray-900">{t('contact_help_title')}</h3>
-                    <p className="text-gray-600">{t('contact_help_subtitle')}</p>
+                  <div className="p-4 sm:p-6 md:p-8 text-center space-y-2">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">{t('contact_help_title')}</h3>
+                    <p className="text-xs sm:text-sm text-gray-600">{t('contact_help_subtitle')}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-6 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 mb-12 sm:mb-16">
             {contactInfo.map((info, index) => (
               <div
                 key={index}
@@ -180,14 +180,14 @@ export default function ContactUsClient() {
               >
                 <div className="relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100">
                   <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${info.gradient}`}></div>
-                  <div className="p-6 space-y-4">
-                    <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${info.gradient} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      <info.icon className="w-6 h-6 text-white" strokeWidth={2} />
+                  <div className="p-4 sm:p-5 md:p-6 space-y-3 sm:space-y-4">
+                    <div className={`inline-flex p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl bg-gradient-to-br ${info.gradient} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                      <info.icon className="w-5 sm:w-6 h-5 sm:h-6 text-white" strokeWidth={2} />
                     </div>
                     <div>
-                      <h3 className="font-bold text-gray-900 text-lg mb-2">{info.title}</h3>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg mb-1.5 sm:mb-2">{info.title}</h3>
                       {info.details.map((detail, idx) => (
-                        <p key={idx} className={`text-gray-600 ${idx === 0 ? 'font-medium' : 'text-sm'}`}>
+                        <p key={idx} className={`text-gray-600 ${idx === 0 ? 'font-medium text-2xs sm:text-xs md:text-sm' : 'text-2xs sm:text-xs'}`}>
                           {detail}
                         </p>
                       ))}
@@ -201,19 +201,19 @@ export default function ContactUsClient() {
           <div ref={formRef} className={`transform transition-all duration-1000 delay-700 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}>
-            <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
-              <div className="bg-gradient-to-r from-blue-600 to-cyan-500 px-8 py-8 text-white">
-                <h2 className="text-3xl md:text-4xl font-bold mb-3">
+            <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
+              <div className="bg-gradient-to-r from-blue-600 to-cyan-500 px-4 sm:px-6 md:px-8 py-6 sm:py-8 text-white">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3">
                   Fill this form and your request will be answered as soon as possible
                 </h2>
-                <p className="text-blue-50">We'll get back to you within 24 hours</p>
+                <p className="text-xs sm:text-sm text-blue-50">We'll get back to you within 24 hours</p>
               </div>
 
-              <div className="p-8 md:p-12">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
+              <div className="p-4 sm:p-6 md:p-8 lg:p-12">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 md:space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label htmlFor="name" className="block text-2xs sm:text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2">
                         Your Name
                       </label>
                       <Input
@@ -225,14 +225,14 @@ export default function ContactUsClient() {
                         onFocus={() => setFocusedField('name')}
                         onBlur={() => setFocusedField(null)}
                         required
-                        className={`w-full h-12 transition-all duration-300 ${
+                        className={`w-full h-10 sm:h-12 text-sm transition-all duration-300 ${
                           focusedField === 'name' ? 'ring-2 ring-blue-500 border-blue-500' : ''
                         }`}
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label htmlFor="email" className="block text-2xs sm:text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2">
                         Your Email
                       </label>
                       <Input
@@ -244,7 +244,7 @@ export default function ContactUsClient() {
                         onFocus={() => setFocusedField('email')}
                         onBlur={() => setFocusedField(null)}
                         required
-                        className={`w-full h-12 transition-all duration-300 ${
+                        className={`w-full h-10 sm:h-12 text-sm transition-all duration-300 ${
                           focusedField === 'email' ? 'ring-2 ring-blue-500 border-blue-500' : ''
                         }`}
                       />
@@ -252,7 +252,7 @@ export default function ContactUsClient() {
                   </div>
 
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="subject" className="block text-2xs sm:text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2">
                       Subject
                     </label>
                     <Input
@@ -264,14 +264,14 @@ export default function ContactUsClient() {
                       onFocus={() => setFocusedField('subject')}
                       onBlur={() => setFocusedField(null)}
                       required
-                      className={`w-full h-12 transition-all duration-300 ${
+                      className={`w-full h-10 sm:h-12 text-sm transition-all duration-300 ${
                         focusedField === 'subject' ? 'ring-2 ring-blue-500 border-blue-500' : ''
                       }`}
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="message" className="block text-2xs sm:text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2">
                       Your Message
                     </label>
                     <Textarea
@@ -282,32 +282,32 @@ export default function ContactUsClient() {
                       onFocus={() => setFocusedField('message')}
                       onBlur={() => setFocusedField(null)}
                       required
-                      className={`w-full min-h-[180px] transition-all duration-300 ${
+                      className={`w-full min-h-32 sm:min-h-40 md:min-h-48 text-sm transition-all duration-300 ${
                         focusedField === 'message' ? 'ring-2 ring-blue-500 border-blue-500' : ''
                       }`}
                     />
                   </div>
 
                   {submitSuccess && (
-                    <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-                      <p className="text-sm text-green-600 font-semibold">Message sent successfully! We'll get back to you soon.</p>
+                    <div className="p-3 sm:p-4 bg-green-50 border border-green-200 rounded-lg">
+                      <p className="text-2xs sm:text-sm text-green-600 font-semibold">Message sent successfully! We'll get back to you soon.</p>
                     </div>
                   )}
 
                   {submitError && (
-                    <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                      <p className="text-sm text-red-600">{submitError}</p>
+                    <div className="p-3 sm:p-4 bg-red-50 border border-red-200 rounded-lg">
+                      <p className="text-2xs sm:text-sm text-red-600">{submitError}</p>
                     </div>
                   )}
 
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full md:w-auto bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-4 px-12 rounded-xl text-base shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full md:w-auto bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-3 sm:py-4 px-6 sm:px-12 rounded-lg sm:rounded-xl text-xs sm:text-base shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <span className="flex items-center justify-center gap-2">
                       <span>{isSubmitting ? t('contact_sending') : t('contact_send')}</span>
-                      <Send className="w-5 h-5" />
+                      <Send className="w-4 sm:w-5 h-4 sm:h-5" />
                     </span>
                   </Button>
                 </form>
@@ -315,12 +315,12 @@ export default function ContactUsClient() {
             </div>
           </div>
 
-          <div className={`mt-16 text-center transform transition-all duration-1000 delay-1000 ${
+          <div className={`mt-12 sm:mt-16 text-center transform transition-all duration-1000 delay-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <div className="inline-flex items-center gap-2 px-6 py-3 bg-blue-50 border border-blue-200 rounded-full">
-              <Clock className="w-5 h-5 text-blue-600" />
-              <span className="text-sm font-semibold text-blue-900">
+            <div className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-blue-50 border border-blue-200 rounded-full">
+              <Clock className="w-4 sm:w-5 h-4 sm:h-5 text-blue-600" />
+              <span className="text-2xs sm:text-sm font-semibold text-blue-900">
                 Average response time: 2-4 hours during business hours
               </span>
             </div>

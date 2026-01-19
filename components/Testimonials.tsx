@@ -97,10 +97,10 @@ export default function Testimonials() {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-4 leading-[1.3]">
             {t('testimonials_title')}
           </h2>
-          <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-6">
+          <p className="text-xs sm:text-sm md:text-lg lg:text-xl text-gray-700 max-w-3xl mx-auto mb-6 leading-[1.6]">
             {t('testimonials_subtitle')}
           </p>
           <Button
@@ -116,19 +116,20 @@ export default function Testimonials() {
             isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
           }`}
         >
-          <Image
-            src="https://images.pexels.com/photos/3802508/pexels-photo-3802508.jpeg?auto=compress&cs=tinysrgb&w=1200"
-            alt="Happy car buyer"
-            fill
-            className="object-cover"
+          <video
+            src="/accidental.mp4"
+            autoPlay
+            muted
+            loop
+            className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/70 to-transparent flex items-center">
             <div className="max-w-7xl mx-auto px-12">
               <div className="max-w-xl">
-                <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
                   {t('testimonials_trusted_title')}
                 </h3>
-                <p className="text-lg text-white/90 mb-6">
+                <p className="text-xs sm:text-sm md:text-lg text-white/90 mb-6">
                   {t('testimonials_trusted_subtitle')}
                 </p>
                 <div className="flex items-center gap-6">
@@ -143,8 +144,8 @@ export default function Testimonials() {
                     ))}
                   </div>
                   <div className="text-white">
-                    <p className="font-bold text-xl">5M+</p>
-                    <p className="text-sm text-white/80">{t('testimonials_reports_generated')}</p>
+                    <p className="font-bold text-lg sm:text-xl md:text-2xl">0M</p>
+                    <p className="text-xs sm:text-sm text-white/80">{t('testimonials_reports_generated')}</p>
                   </div>
                 </div>
               </div>
@@ -158,7 +159,7 @@ export default function Testimonials() {
           </div>
         ) : reviews.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-600 text-lg">{t('testimonials_no_reviews')}</p>
+            <p className="text-xs sm:text-sm md:text-lg text-gray-600">{t('testimonials_no_reviews')}</p>
           </div>
         ) : (
           <div className="relative">
@@ -199,7 +200,7 @@ export default function Testimonials() {
 
                       {renderStars(review.rating)}
 
-                      <p className="text-gray-700 text-base leading-relaxed min-h-[140px]">
+                      <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed min-h-[140px]">
                         {review.comment}
                       </p>
 
@@ -210,10 +211,10 @@ export default function Testimonials() {
                           </div>
 
                           <div>
-                            <p className="font-semibold text-gray-900">{review.name}</p>
+                            <p className="font-semibold text-xs sm:text-sm md:text-base text-gray-900">{review.name}</p>
                             <div className="flex items-center space-x-1 text-green-600">
                               <CheckCircle className="w-4 h-4" strokeWidth={2} />
-                              <span className="text-sm font-medium">{t('testimonials_verified_review')}</span>
+                              <span className="text-2xs sm:text-xs font-medium">{t('testimonials_verified_review')}</span>
                             </div>
                           </div>
                         </div>

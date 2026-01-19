@@ -1,7 +1,15 @@
 "use client"
 
 import { useState, useEffect, useRef } from 'react'
+import Link from 'next/link'
 import { Megaphone, Clock, Mail } from 'lucide-react'
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import SwiperCore from "swiper";
+import { Navigation, Autoplay } from "swiper/modules";
+SwiperCore.use([Navigation, Autoplay]);
 
 const supportStats = [
   {
@@ -36,6 +44,41 @@ const avatarImages = [
   'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=200',
   'https://images.pexels.com/photos/1438072/pexels-photo-1438072.jpeg?auto=compress&cs=tinysrgb&w=200',
   'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=200',
+]
+
+const dummyReviews = [
+  {
+    id: 1,
+    name: 'Sarah Johnson',
+    rating: 5,
+    comment: 'Amazing service! The VIN report was detailed and accurate. Saved me from buying a problematic vehicle. Highly recommend!',
+    created_at: '2024-12-20',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
+  },
+  {
+    id: 2,
+    name: 'Michael Chen',
+    rating: 5,
+    comment: 'Fast, reliable, and comprehensive. Got my report in minutes. The information was exactly what I needed to make a confident purchase.',
+    created_at: '2024-12-18',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
+  },
+  {
+    id: 3,
+    name: 'Emily Rodriguez',
+    rating: 5,
+    comment: 'Best VIN decoder I\'ve used. Customer support was responsive and helpful. Worth every penny!',
+    created_at: '2024-12-15',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop',
+  },
+  {
+    id: 4,
+    name: 'David Wilson',
+    rating: 5,
+    comment: 'Trusted by professionals. The detailed history report gave me complete peace of mind before my vehicle purchase.',
+    created_at: '2024-12-12',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop',
+  },
 ]
 
 export default function Support() {
@@ -103,24 +146,24 @@ export default function Support() {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.3]">
               Got questions?
               <br />
-              <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent block text-2xl sm:text-3xl md:text-5xl lg:text-5xl">
                 We&apos;re here to help 24/7
               </span>
             </h2>
-            <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">
+            <p className="text-sm sm:text-base md:text-xl lg:text-2xl text-gray-700 max-w-3xl mx-auto leading-[1.6]">
               Get the answers you need – whenever you need them.{' '}
-              <a href="#" className="text-blue-600 hover:text-blue-700 font-semibold underline decoration-2 underline-offset-4 hover:decoration-blue-700 transition-colors duration-300">
+              <Link href="/contact-us" className="text-blue-600 hover:text-blue-700 font-semibold underline decoration-2 underline-offset-4 hover:decoration-blue-700 transition-colors duration-300">
                 Drop us a message
-              </a>{' '}
+              </Link>{' '}
               and we&apos;ll get back to you.
             </p>
           </div>
 
           <div
-            className={`grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 pt-8 transform transition-all duration-1000 delay-500 ${
+            className={`hidden md:grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 pt-8 transform transition-all duration-1000 delay-500 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
             }`}
           >
@@ -140,10 +183,10 @@ export default function Support() {
                     </div>
 
                     <div className="space-y-2">
-                      <div className={`text-5xl font-bold bg-gradient-to-br ${stat.color} bg-clip-text text-transparent`}>
+                      <div className={`text-4xl sm:text-5xl font-bold bg-gradient-to-br ${stat.color} bg-clip-text text-transparent`}>
                         {stat.value}
                       </div>
-                      <p className="text-gray-600 font-medium text-lg">
+                      <p className="text-xs sm:text-sm md:text-lg text-gray-600 font-medium">
                         {stat.label}
                       </p>
                     </div>
@@ -154,8 +197,181 @@ export default function Support() {
               </div>
             ))}
           </div>
+
+          {/* Mobile Slider */}
+          <div className="block md:hidden pt-8">
+            <Swiper
+              spaceBetween={16}
+              slidesPerView={1}
+              navigation
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 4000, disableOnInteraction: false }}
+              loop={true}
+              className="support-stats-swiper"
+            >
+              {supportStats.map((stat, index) => (
+                <SwiperSlide key={index}>
+                  <div className="relative bg-white rounded-2xl p-8 shadow-lg min-h-64 flex flex-col justify-center">
+                    <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 rounded-2xl transition-opacity duration-500`}></div>
+
+                    <div className="relative space-y-4">
+                      <div className={`inline-flex p-4 rounded-xl ${stat.bgColor} transform transition-all duration-500`}>
+                        <stat.icon className={`w-8 h-8 ${stat.iconColor}`} strokeWidth={2} />
+                      </div>
+
+                      <div className="space-y-2">
+                        <div className={`text-4xl sm:text-5xl font-bold bg-gradient-to-br ${stat.color} bg-clip-text text-transparent`}>
+                          {stat.value}
+                        </div>
+                        <p className="text-sm sm:text-base md:text-lg text-gray-600 font-medium">
+                          {stat.label}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
       </div>
+
+      <style>{`
+        :global(.support-stats-swiper .swiper-button-next),
+        :global(.support-stats-swiper .swiper-button-prev) {
+          width: 48px;
+          height: 48px;
+          background: linear-gradient(135deg, #06b6d4 0%, #0284c7 100%);
+          border-radius: 14px;
+          box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+          transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+          top: 50%;
+          transform: translateY(-50%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        :global(.support-stats-swiper .swiper-button-next:hover),
+        :global(.support-stats-swiper .swiper-button-prev:hover) {
+          background: linear-gradient(135deg, #0891b2 0%, #0369a1 100%);
+          box-shadow: 0 8px 25px rgba(6, 182, 212, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+          transform: translateY(-50%) scale(1.15);
+          border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        :global(.support-stats-swiper .swiper-button-next:active),
+        :global(.support-stats-swiper .swiper-button-prev:active) {
+          transform: translateY(-50%) scale(0.92);
+        }
+
+        :global(.support-stats-swiper .swiper-button-next::after),
+        :global(.support-stats-swiper .swiper-button-prev::after) {
+          font-size: 28px;
+          font-weight: 900;
+          color: white;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+          letter-spacing: 0.5px;
+        }
+
+        :global(.support-stats-swiper .swiper-button-next) {
+          right: 16px;
+        }
+
+        :global(.support-stats-swiper .swiper-button-prev) {
+          left: 16px;
+        }
+
+        :global(.support-stats-swiper .swiper-pagination-bullet) {
+          width: 10px;
+          height: 10px;
+          background-color: rgba(209, 213, 219, 0.6);
+          opacity: 1;
+          margin: 0 6px;
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+
+        :global(.support-stats-swiper .swiper-pagination-bullet:hover) {
+          background-color: rgba(209, 213, 219, 0.8);
+        }
+
+        :global(.support-stats-swiper .swiper-pagination-bullet-active) {
+          background: linear-gradient(135deg, #06b6d4 0%, #0284c7 100%);
+          width: 28px;
+          border-radius: 5px;
+          box-shadow: 0 2px 8px rgba(6, 182, 212, 0.4);
+        }
+
+        /* Reviews Swiper Styles */
+        :global(.reviews-swiper .swiper-button-next),
+        :global(.reviews-swiper .swiper-button-prev) {
+          width: 48px;
+          height: 48px;
+          background: linear-gradient(135deg, #06b6d4 0%, #0284c7 100%);
+          border-radius: 14px;
+          box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+          transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+          top: 50%;
+          transform: translateY(-50%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        :global(.reviews-swiper .swiper-button-next:hover),
+        :global(.reviews-swiper .swiper-button-prev:hover) {
+          background: linear-gradient(135deg, #0891b2 0%, #0369a1 100%);
+          box-shadow: 0 8px 25px rgba(6, 182, 212, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+          transform: translateY(-50%) scale(1.15);
+          border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        :global(.reviews-swiper .swiper-button-next:active),
+        :global(.reviews-swiper .swiper-button-prev:active) {
+          transform: translateY(-50%) scale(0.92);
+        }
+
+        :global(.reviews-swiper .swiper-button-next::after),
+        :global(.reviews-swiper .swiper-button-prev::after) {
+          font-size: 28px;
+          font-weight: 900;
+          color: white;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+          letter-spacing: 0.5px;
+        }
+
+        :global(.reviews-swiper .swiper-button-next) {
+          right: 16px;
+        }
+
+        :global(.reviews-swiper .swiper-button-prev) {
+          left: 16px;
+        }
+
+        :global(.reviews-swiper .swiper-pagination-bullet) {
+          width: 10px;
+          height: 10px;
+          background-color: rgba(209, 213, 219, 0.6);
+          opacity: 1;
+          margin: 0 6px;
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+
+        :global(.reviews-swiper .swiper-pagination-bullet:hover) {
+          background-color: rgba(209, 213, 219, 0.8);
+        }
+
+        :global(.reviews-swiper .swiper-pagination-bullet-active) {
+          background: linear-gradient(135deg, #06b6d4 0%, #0284c7 100%);
+          width: 28px;
+          border-radius: 5px;
+          box-shadow: 0 2px 8px rgba(6, 182, 212, 0.4);
+        }
+      `}</style>
     </section>
   )
 }
