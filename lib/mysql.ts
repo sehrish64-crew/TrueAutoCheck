@@ -1,7 +1,7 @@
 import mysql from 'mysql2/promise'
 
 const {
-  DB_HOST = 'localhost',
+  DB_HOST = 'mysql.u319625572.hostinger.com',
   DB_PORT = '3306',
   DB_USER = 'u319625572_trueautocheck',
   DB_PASSWORD = 'Trueautocheck321@',
