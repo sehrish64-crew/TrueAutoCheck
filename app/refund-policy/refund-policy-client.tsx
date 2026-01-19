@@ -31,10 +31,10 @@ export default function RefundPolicyPageClient() {
             </ul>
           </section>
 
-          <section className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
+          {/* <section className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
             <h2 className="text-xl font-semibold text-gray-900">Important Notice for Digital Content</h2>
             <p className="mt-3 font-semibold text-gray-900">WHERE A PRODUCT IS DIGITAL CONTENT AND IS MADE AVAILABLE IMMEDIATELY, BY DOWNLOADING OR ACCESSING THE PRODUCT, YOU EXPRESSLY CONSENT TO IMMEDIATE PERFORMANCE OF THIS AGREEMENT AND ACKNOWLEDGE THAT YOU WILL LOSE YOUR RIGHT OF WITHDRAWAL ONCE ACCESS OR DOWNLOAD HAS BEGUN.</p>
-          </section>
+          </section> */}
 
           <section>
             <h2 className="text-2xl font-semibold text-gray-900">Consumer Rights</h2>
@@ -88,7 +88,6 @@ export default function RefundPolicyPageClient() {
 
           <section>
             <h2 className="text-2xl font-semibold text-gray-900">Refund Policy</h2>
-            
             <div className="mt-4 ml-4">
               <h3 className="text-xl font-semibold text-gray-900">Digital Product Refunds</h3>
               <p className="mt-2">Due to the nature of digital vehicle reports:</p>
@@ -213,7 +212,7 @@ export default function RefundPolicyPageClient() {
             <div className="mt-4 bg-blue-50 p-4 rounded-lg border border-blue-200 space-y-2">
               <p className="text-gray-700"><strong>Supplier:</strong> Grace Globals LTD</p>
               <p className="text-gray-700"><strong>Website:</strong> <a href="https://trueautocheck.com" className="text-blue-600 hover:underline">https://trueautocheck.com</a></p>
-              <p className="text-gray-700"><strong>Support:</strong> <a href="mailto:support@trueautocheck.com" className="text-blue-600 hover:underline">support@trueautocheck.com</a></p>
+              <p className="text-gray-700"><strong>Support:</strong> <a href="mailto:info@trueautocheck.com" className="text-blue-600 hover:underline">info@trueautocheck.com</a></p>
               <p className="text-gray-700">We aim to respond within 24-48 hours during business days</p>
             </div>
           </section>

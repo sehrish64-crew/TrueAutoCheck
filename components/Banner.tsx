@@ -39,12 +39,17 @@ export default function Banner() {
     setVinError('')
 
     try {
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 15000) // 15 second timeout
+
       const response = await fetch('/api/vin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ vin: vin.trim() }),
+        signal: controller.signal,
       })
 
+      clearTimeout(timeoutId)
       const data = await response.json()
       setIsLoadingReport(false)
 
@@ -54,14 +59,27 @@ export default function Banner() {
         setIsBasicReportOpen(true)
       } else {
         // If no data found or error, show Get Your Report form
-        console.log('VIN data not found, opening Get Your Report form')
+        const errorMsg = data.error || 'VIN not found'
+        console.log(`VIN lookup error: ${errorMsg}`)
         setIsFormOpen(true)
       }
-    } catch (error) {
-      console.error('Error decoding VIN:', error)
+    } catch (error: any) {
       setIsLoadingReport(false)
-      // On error, show Get Your Report form
-      setIsFormOpen(true)
+      
+      // Handle timeout
+      if (error.name === 'AbortError') {
+        setVinError('VIN lookup service is currently unavailable. Please try again or proceed with your order.')
+        console.error('VIN API timeout')
+      } else {
+        // Handle other network errors
+        console.error('Error decoding VIN:', error)
+        setVinError('Unable to connect to VIN service. Please proceed with your order.')
+      }
+      
+      // Show form as fallback
+      setTimeout(() => {
+        setIsFormOpen(true)
+      }, 2000)
     }
   }
 

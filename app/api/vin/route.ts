@@ -54,8 +54,56 @@ async function fetchUSVINData(vin: string) {
     const apiUrl = `${US_API_BASE_URL}/${vin}?apiKey=${apiKey}`;
     console.log(`[VIN API] Fetching from: ${US_API_BASE_URL}/${vin}?apiKey=***`);
 
-    const response = await fetch(apiUrl);
-    const data = await response.json();
+    // Create an AbortController with a 10-second timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => {
+      controller.abort();
+      console.error(`[VIN API] Request timeout for VIN: ${vin}`);
+    }, 10000);
+
+    let response;
+    let data;
+    
+    try {
+      response = await fetch(apiUrl, {
+        signal: controller.signal,
+        headers: {
+          'User-Agent': 'TrueAutoCheck/1.0',
+          'Accept': 'application/json',
+        },
+      });
+      clearTimeout(timeoutId);
+      
+      data = await response.json();
+    } catch (fetchError: any) {
+      clearTimeout(timeoutId);
+      
+      // Handle abort error (timeout)
+      if (fetchError.name === 'AbortError') {
+        console.error(`[VIN API] Request timeout for VIN: ${vin}`);
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'External API request timeout',
+            details: 'The VIN lookup service is currently unavailable. Please try again later.',
+            code: 'API_TIMEOUT',
+          },
+          { status: 504 }
+        );
+      }
+      
+      // Handle other network errors
+      console.error(`[VIN API] Network error: ${fetchError.message}`);
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Network error while fetching VIN data',
+          details: fetchError.message,
+          code: 'NETWORK_ERROR',
+        },
+        { status: 503 }
+      );
+    }
 
     if (!response.ok) {
       console.warn(`[VIN API] API returned status ${response.status} for VIN: ${vin}`);
