@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Car, Truck, Bus, Ship, CheckCircle2, HelpCircle, Key, Hash, X, Loader } from 'lucide-react'
+import { Car, Truck, Bus, Ship, CheckCircle2, HelpCircle, Key, Hash, X, Loader, Bike } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import GetReportForm from './GetReportForm'
@@ -217,6 +217,7 @@ export default function Banner() {
                   <Truck className="w-4 sm:w-5 h-4 sm:h-5 drop-shadow" />
                   <Bus className="w-4 sm:w-5 h-4 sm:h-5 drop-shadow" />
                   <Ship className="w-4 sm:w-5 h-4 sm:h-5 drop-shadow" />
+                  <Bike className="w-4 sm:w-5 h-4 sm:h-5 drop-shadow" />
                 </div>
               </div>
 

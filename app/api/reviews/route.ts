@@ -4,7 +4,7 @@ import { insertReview, getAllReviews } from '@/lib/database';
 export async function GET() {
   try {
     const reviews = await getAllReviews();
-    return NextResponse.json({ reviews, success: true });
+    return NextResponse.json(reviews);
   } catch (error) {
     console.error('Error fetching reviews:', error);
     const errorMessage = error instanceof Error ? error.message : 'Failed to fetch reviews';

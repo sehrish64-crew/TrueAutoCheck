@@ -15,7 +15,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "test:update-status": "node scripts/test-update-status.js",
-    "setup:hostinger": "bash hostinger-build.sh"
+    "setup:hostinger": "bash hostinger-build.sh",
+    "db:init": "node scripts/init-database.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

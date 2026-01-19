@@ -35,12 +35,6 @@ const values = [
   }
 ]
 
-const timeline = [
-  { year: '2017', title: 'Foundation', description: 'TrueAutoCheck was founded with a vision to bring transparency to the automotive market.' },
-  { year: '2018', title: 'Blockchain Integration', description: 'Pioneered blockchain technology to ensure tamper-proof vehicle history records.' },
-  { year: '2020', title: 'Global Expansion', description: 'Expanded our database network to cover over 50 countries across multiple continents.' },
-  { year: '2023', title: 'Industry Leader', description: 'Became a trusted partner for millions of car buyers and sellers worldwide.' }
-]
 
 export default function AboutUsClient() {
   const [isVisible, setIsVisible] = useState(false)
@@ -79,9 +73,8 @@ export default function AboutUsClient() {
       <div className="relative bg-gradient-to-b from-slate-50 to-white overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
         <div className="relative container mx-auto px-4 sm:px-6 py-12 sm:py-20 md:py-32">
-          <div className={`max-w-4xl mx-auto text-center space-y-6 sm:space-y-8 transform transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}>
+          <div className={`max-w-4xl mx-auto text-center space-y-6 sm:space-y-8 transform transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
             <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-1.5 sm:py-2 bg-blue-50 border border-blue-200 rounded-full">
               <Building2 className="w-3 sm:w-4 h-3 sm:h-4 text-blue-600" />
               <span className="text-2xs sm:text-sm font-semibold text-blue-900">About TrueAutoCheck</span>
@@ -99,9 +92,8 @@ export default function AboutUsClient() {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16">
-        <div className={`grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 max-w-5xl mx-auto transform transition-all duration-1000 delay-200 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
+        <div className={`grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 max-w-5xl mx-auto transform transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
           {stats.map((stat, index) => (
             <div
               key={index}
@@ -123,9 +115,8 @@ export default function AboutUsClient() {
 
       <div className="bg-gradient-to-b from-white to-slate-50 py-12 sm:py-16 md:py-20">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className={`max-w-6xl mx-auto transform transition-all duration-1000 delay-300 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}>
+          <div className={`max-w-6xl mx-auto transform transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
             <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center">
               <div className="space-y-4 sm:space-y-5 md:space-y-6">
                 <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-2 bg-blue-50 rounded-full">
@@ -139,14 +130,12 @@ export default function AboutUsClient() {
 
                 <div className="space-y-4 sm:space-y-5 text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed">
                   <p>
-                    Founded in 2026, TrueAutoCheck emerged from a simple yet powerful vision: to eliminate information asymmetry in the used car market. We recognized that buyers were making one of their most significant purchases without access to complete vehicle histories.
+                   Founded in January 2026, we are a digital automotive verification platform dedicated to bringing transparency and trust to the vehicle marketplace. Our website was created with a clear purpose: to help buyers make informed decisions by providing reliable and verified vehicle history reports online.
                   </p>
                   <p>
-                    Today, we've built the world's most comprehensive vehicle history platform, aggregating data from over 900 sources including national registries, insurance databases, and service records. Our blockchain-based approach ensures data integrity while protecting user privacy.
+                    We specialize in delivering detailed digital vehicle reports that include essential history data, helping customers identify potential risks before purchasing a vehicle. By using verified data sources and modern technology, we aim to reduce uncertainty, prevent fraud, and build confidence in every car transaction.
                   </p>
-                  <p>
-                    With over 5 million reports generated and operations spanning 50+ countries, we've become the trusted partner for individuals, dealerships, and automotive professionals worldwide who demand accuracy and transparency.
-                  </p>
+               
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
@@ -168,7 +157,7 @@ export default function AboutUsClient() {
                     <div className="space-y-3 sm:space-y-4">
                       <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Our Mission</h3>
                       <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">
-                        To create a transparent automotive marketplace where every buyer has access to complete, verified vehicle history information before making a purchase decision.
+                        To create a transparent automotive marketplace where every buyer has access to complete and verified vehicle history information before making a purchase decision.
                       </p>
                     </div>
 
@@ -187,9 +176,8 @@ export default function AboutUsClient() {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20">
-        <div className={`max-w-6xl mx-auto space-y-8 sm:space-y-10 md:space-y-12 transform transition-all duration-1000 delay-400 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
+        <div className={`max-w-6xl mx-auto space-y-8 sm:space-y-10 md:space-y-12 transform transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
           <div className="text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">Our Core Values</h2>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600">
@@ -222,9 +210,8 @@ export default function AboutUsClient() {
 
       <div className="bg-slate-50 py-12 sm:py-16 md:py-20">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className={`max-w-5xl mx-auto space-y-8 sm:space-y-10 md:space-y-12 transform transition-all duration-1000 delay-500 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}>
+          <div className={`max-w-5xl mx-auto space-y-8 sm:space-y-10 md:space-y-12 transform transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
             <div className="text-center space-y-3 sm:space-y-4">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">Our Journey</h2>
               <p className="text-sm sm:text-base md:text-lg text-gray-600">Key milestones in our growth</p>
@@ -261,36 +248,15 @@ export default function AboutUsClient() {
               </div>
             </div>
 
-            <div className="relative">
-              <div className="absolute left-4 sm:left-8 top-8 bottom-8 w-0.5 bg-gradient-to-b from-blue-600 via-cyan-500 to-blue-600 hidden md:block"></div>
-              <div className="space-y-5 sm:space-y-6 md:space-y-8">
-                {timeline.map((item, index) => (
-                  <div
-                    key={index}
-                    className="relative md:pl-20 bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 lg:p-8 border border-gray-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300"
-                  >
-                    <div className="absolute left-3 sm:left-5 top-6 sm:top-8 w-6 sm:w-7 h-6 sm:h-7 rounded-full bg-blue-600 border-4 border-white shadow-lg hidden md:flex items-center justify-center">
-                      <div className="w-2 h-2 rounded-full bg-white"></div>
-                    </div>
 
-                    <div className="space-y-1.5 sm:space-y-2">
-                      <div className="text-2xs sm:text-xs md:text-sm font-bold text-blue-600 uppercase tracking-wider">{item.year}</div>
-                      <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900">{item.title}</h3>
-                      <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </div>
 
       <div className="relative bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 py-12 sm:py-16 md:py-20">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-        <div className={`relative container mx-auto px-4 sm:px-6 transform transition-all duration-1000 delay-600 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
+        <div className={`relative container mx-auto px-4 sm:px-6 transform transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
           <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">
               Ready to Make an Informed Decision?

@@ -17,13 +17,30 @@ export async function POST(request: NextRequest) {
       paymentProvider,
     } = body
 
+    console.log('\n📝 Creating order with data:', { 
+      customer_email, 
+      vehicle_type, 
+      package_type,
+      amount,
+      currency 
+    })
+
     if (!customer_email || !vehicle_type || !identification_type || !identification_value || !package_type || !amount) {
+      console.error('❌ Missing required fields:', { 
+        customer_email: !!customer_email,
+        vehicle_type: !!vehicle_type,
+        identification_type: !!identification_type,
+        identification_value: !!identification_value,
+        package_type: !!package_type,
+        amount: !!amount,
+      })
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
       )
     }
 
+    console.log('✓ All required fields present, inserting order...')
     const order = await insertOrder({
       customer_email,
       vehicle_type,
@@ -36,6 +53,8 @@ export async function POST(request: NextRequest) {
       amount,
       payment_provider: paymentProvider || undefined,
     })
+
+    console.log('✅ Order created successfully:', { orderId: order.id, orderNumber: order.order_number })
 
     // Notify admin about the new order (payment pending) and send confirmation to customer
     try {
@@ -62,14 +81,16 @@ export async function POST(request: NextRequest) {
       try {
         const bothJson = await bothResp.json()
         if (!bothResp.ok || bothJson?.success === false) {
-          console.error('Order email (both) failed:', bothResp.status, bothJson)
+          console.warn('⚠️ Order email notification failed (non-critical):', bothResp.status)
+        } else {
+          console.log('✓ Order emails sent successfully')
         }
       } catch (e) {
         const text = await bothResp.text().catch(() => null)
-        console.error('Failed to parse send-email response for order_both:', bothResp.status, text)
+        console.warn('⚠️ Failed to parse send-email response (non-critical):', bothResp.status)
       }
     } catch (err) {
-      console.error('Error while sending new order notification/confirmation emails:', err)
+      console.warn('⚠️ Error sending order emails (non-critical):', err instanceof Error ? err.message : String(err))
     }
 
     return NextResponse.json({
@@ -78,9 +99,11 @@ export async function POST(request: NextRequest) {
       orderNumber: order.order_number,
     })
   } catch (error) {
-    console.error('Error creating order:', error)
+    const errorMsg = error instanceof Error ? error.message : String(error)
+    console.error('❌ Error creating order:', errorMsg)
+    console.error('Full error:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Failed to create order: ' + errorMsg },
       { status: 500 }
     )
   }

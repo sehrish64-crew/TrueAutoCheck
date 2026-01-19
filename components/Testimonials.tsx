@@ -144,7 +144,7 @@ export default function Testimonials() {
                     ))}
                   </div>
                   <div className="text-white">
-                    <p className="font-bold text-lg sm:text-xl md:text-2xl">0M</p>
+                    <p className="font-bold text-lg sm:text-xl md:text-2xl">5M+</p>
                     <p className="text-xs sm:text-sm text-white/80">{t('testimonials_reports_generated')}</p>
                   </div>
                 </div>

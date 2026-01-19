@@ -448,7 +448,19 @@ export async function updateOrderReportStatus(
 }
 
 export async function deleteOrder(id: number) {
-  await pool.execute('DELETE FROM orders WHERE id = ?', [id]);
+  console.log(`📝 deleteOrder: Deleting order ${id}`)
+  const conn = await pool.getConnection();
+  try {
+    const [result]: any = await conn.execute('DELETE FROM orders WHERE id = ?', [id])
+    const affected = typeof result?.affectedRows === 'number' ? result.affectedRows : 0
+    console.log(`🗑️ deleteOrder: Deleted ${affected} order(s)`)
+    if (!affected) {
+      throw new Error(`Failed to delete order ${id}: no rows affected`)
+    }
+    return affected
+  } finally {
+    conn.release();
+  }
 }
 
 export async function updateOrderDetails(id: number, fields: Partial<{

@@ -78,7 +78,7 @@ export default function AdminDashboard() {
           window.location.href = '/admin/login'
           return
         }
-        console.error('Failed to load order stats', data.error || 'Unknown error')
+        console.error('Failed to load order stats', data.error || 'Unknown error', data.details)
         setOrderStats([])
         return
       }
@@ -233,70 +233,77 @@ export default function AdminDashboard() {
   const closeReview = () => setSelectedReview(null)
 
   return (
-    <div>
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Reviews Management</h1>
-        <p className="text-gray-600">Review and approve customer feedback</p>
+    <div className="px-4 md:px-6 py-4 md:py-8">
+      <div className="mb-6 md:mb-8">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Reviews Management</h1>
+        <p className="text-sm md:text-base text-gray-600">Review and approve customer feedback</p>
       </div>
 
-      <div className="mb-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="p-6 bg-white">
-          <div className="flex items-center justify-between">
+      <div className="mb-6 grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+        <Card className="p-4 md:p-6 bg-white">
+          <div className="flex items-center justify-between flex-col md:flex-row gap-2">
             <div>
-              <h3 className="text-lg font-semibold text-gray-900">Orders (last 30 days)</h3>
-              <p className="text-sm text-gray-600">Total orders by day</p>
+              <h3 className="text-base md:text-lg font-semibold text-gray-900">Orders (last 30 days)</h3>
+              <p className="text-xs md:text-sm text-gray-600">Total orders by day</p>
             </div>
-            <div className="text-sm text-gray-600">{orderStats.length} days</div>
+            <div className="text-xs md:text-sm text-gray-600">{orderStats.length} days</div>
           </div>
 
-          <div className="mt-4">
-          <ChartContainer config={{ orders: { color: '#2563eb' }, sales: { color: '#16a34a' } }} className="w-full h-64">
+          <div className="mt-4 overflow-x-auto">
+          <div className="min-w-full">
+            <ChartContainer config={{ orders: { color: '#2563eb' }, sales: { color: '#16a34a' } }} className="w-full h-64">
             <LineChart data={orderStats.map((d) => ({ date: d.day, count: Number(d.count), totalAmount: Number(d.totalAmount) }))}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" />
-              <YAxis yAxisId="left" />
-              <YAxis yAxisId="right" orientation="right" />
+              <XAxis dataKey="date" style={{ fontSize: '12px' }} />
+              <YAxis yAxisId="left" style={{ fontSize: '12px' }} />
+              <YAxis yAxisId="right" orientation="right" style={{ fontSize: '12px' }} />
               <Tooltip />
               <Line type="monotone" dataKey="count" stroke="#2563eb" strokeWidth={2} dot={{ r: 3 }} yAxisId="left" />
               <Line type="monotone" dataKey="totalAmount" stroke="#16a34a" strokeWidth={2} dot={{ r: 3 }} yAxisId="right" />
               </LineChart>
             </ChartContainer>
           </div>
+          </div>
         </Card>
 
-        <Card className="p-6 bg-white">
-          <div className="flex items-center justify-between">
+        <Card className="p-4 md:p-6 bg-white">
+          <div className="flex items-start md:items-center justify-between gap-2 mb-4 flex-col md:flex-row">
             <div>
-              <h3 className="text-lg font-semibold text-gray-900">Sales</h3>
-              <p className="text-sm text-gray-600">Recent sales and totals</p>
+              <h3 className="text-base md:text-lg font-semibold text-gray-900">Sales</h3>
+              <p className="text-xs md:text-sm text-gray-600">Recent sales and totals</p>
             </div>
-            <div className="flex items-center gap-2">
-              <input type="date" value={startDate || ''} onChange={(e) => setStartDate(e.target.value || undefined)} className="border rounded-md p-2" />
-              <input type="date" value={endDate || ''} onChange={(e) => setEndDate(e.target.value || undefined)} className="border rounded-md p-2" />
-              <select value={statusFilter || ''} onChange={(e) => setStatusFilter(e.target.value || undefined)} className="border rounded-md p-2">
-                <option value="">All</option>
+          </div>
+
+          <div className="flex flex-col gap-2 mb-4">
+            <div className="flex flex-col md:flex-row gap-2">
+              <input type="date" value={startDate || ''} onChange={(e) => setStartDate(e.target.value || undefined)} className="border rounded-md p-2 text-xs md:text-sm flex-1" />
+              <input type="date" value={endDate || ''} onChange={(e) => setEndDate(e.target.value || undefined)} className="border rounded-md p-2 text-xs md:text-sm flex-1" />
+            </div>
+            <div className="flex flex-col md:flex-row gap-2">
+              <select value={statusFilter || ''} onChange={(e) => setStatusFilter(e.target.value || undefined)} className="border rounded-md p-2 text-xs md:text-sm flex-1">
+                <option value="">All Status</option>
                 <option value="pending">Pending</option>
                 <option value="processing">Processing</option>
                 <option value="completed">Completed</option>
               </select>
-              <select value={currency || ''} onChange={(e) => setCurrency(e.target.value || undefined)} className="border rounded-md p-2">
-                <option value="">Any</option>
+              <select value={currency || ''} onChange={(e) => setCurrency(e.target.value || undefined)} className="border rounded-md p-2 text-xs md:text-sm flex-1">
+                <option value="">Any Currency</option>
                 <option value="USD">USD</option>
                 <option value="EUR">EUR</option>
               </select>
-              <Button onClick={loadSales} className="h-10">Filter</Button>
+              <Button onClick={loadSales} className="h-10 text-xs md:text-sm">Filter</Button>
             </div>
           </div>
 
           <div className="mt-4 overflow-x-auto">
-            <table className="min-w-full text-sm">
+            <table className="min-w-full text-xs md:text-sm">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-4 py-2 text-left font-medium text-gray-600">Order #</th>
-                  <th className="px-4 py-2 text-left font-medium text-gray-600">Customer</th>
-                  <th className="px-4 py-2 text-left font-medium text-gray-600">Amount</th>
-                  <th className="px-4 py-2 text-left font-medium text-gray-600">Status</th>
-                  <th className="px-4 py-2 text-left font-medium text-gray-600">Date</th>
+                  <th className="px-2 md:px-4 py-2 text-left font-medium text-gray-600">Order #</th>
+                  <th className="px-2 md:px-4 py-2 text-left font-medium text-gray-600 hidden sm:table-cell">Customer</th>
+                  <th className="px-2 md:px-4 py-2 text-left font-medium text-gray-600">Amount</th>
+                  <th className="px-2 md:px-4 py-2 text-left font-medium text-gray-600 hidden md:table-cell">Status</th>
+                  <th className="px-2 md:px-4 py-2 text-left font-medium text-gray-600 hidden lg:table-cell">Date</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
@@ -307,11 +314,11 @@ export default function AdminDashboard() {
                 ) : (
                   sales.map((s) => (
                     <tr key={s.id} className="hover:bg-gray-50">
-                      <td className="px-4 py-3">{s.order_number}</td>
-                      <td className="px-4 py-3">{s.customer_email}</td>
-                      <td className="px-4 py-3 font-semibold">{s.currency} {Number(s.amount).toFixed(2)}</td>
-                      <td className="px-4 py-3">{getStatusBadge(s.status)}</td>
-                      <td className="px-4 py-3">{new Date(s.created_at).toLocaleDateString()}</td>
+                      <td className="px-2 md:px-4 py-3 text-xs md:text-sm">{s.order_number}</td>
+                      <td className="px-2 md:px-4 py-3 text-xs md:text-sm hidden sm:table-cell">{s.customer_email}</td>
+                      <td className="px-2 md:px-4 py-3 font-semibold text-xs md:text-sm">{s.currency} {Number(s.amount).toFixed(2)}</td>
+                      <td className="px-2 md:px-4 py-3 text-xs md:text-sm hidden md:table-cell">{getStatusBadge(s.status)}</td>
+                      <td className="px-2 md:px-4 py-3 text-xs md:text-sm hidden lg:table-cell">{new Date(s.created_at).toLocaleDateString()}</td>
                     </tr>
                   ))
                 )}
@@ -335,16 +342,16 @@ export default function AdminDashboard() {
         </Card>
       ) : (
         <div>
-          <div className="mb-6 flex items-center justify-between">
-            <div className="flex items-center gap-3">
+          <div className="mb-6 flex items-center justify-between flex-col md:flex-row gap-2">
+            <div className="flex items-center gap-2 md:gap-3">
               <button
-                className={`px-4 py-2 rounded ${/* @ts-ignore */ pendingTab ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'}`}
+                className={`px-3 md:px-4 py-2 text-xs md:text-sm rounded ${/* @ts-ignore */ pendingTab ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'}`}
                 onClick={() => setPendingTab(true)}
               >
                 Pending
               </button>
               <button
-                className={`px-4 py-2 rounded ${/* @ts-ignore */ !pendingTab ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'}`}
+                className={`px-3 md:px-4 py-2 text-xs md:text-sm rounded ${/* @ts-ignore */ !pendingTab ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'}`}
                 onClick={() => setPendingTab(false)}
               >
                 Rejected
@@ -353,34 +360,34 @@ export default function AdminDashboard() {
           </div>
 
           <div className="overflow-x-auto bg-white rounded-lg shadow">
-            <table className="min-w-full text-sm">
+            <table className="min-w-full text-xs md:text-sm">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-4 py-3 text-left font-medium text-gray-600">Name</th>
-                  <th className="px-4 py-3 text-left font-medium text-gray-600">Email</th>
-                  <th className="px-4 py-3 text-left font-medium text-gray-600">Rating</th>
-                  <th className="px-4 py-3 text-left font-medium text-gray-600">Comment</th>
-                  <th className="px-4 py-3 text-left font-medium text-gray-600">Date</th>
-                  <th className="px-4 py-3 text-left font-medium text-gray-600">Actions</th>
+                  <th className="px-2 md:px-4 py-3 text-left font-medium text-gray-600">Name</th>
+                  <th className="px-2 md:px-4 py-3 text-left font-medium text-gray-600 hidden sm:table-cell">Email</th>
+                  <th className="px-2 md:px-4 py-3 text-left font-medium text-gray-600">Rating</th>
+                  <th className="px-2 md:px-4 py-3 text-left font-medium text-gray-600 hidden md:table-cell">Comment</th>
+                  <th className="px-2 md:px-4 py-3 text-left font-medium text-gray-600 hidden lg:table-cell">Date</th>
+                  <th className="px-2 md:px-4 py-3 text-left font-medium text-gray-600">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {reviews.map((review) => (
                   <tr key={review.id} className="hover:bg-gray-50">
-                    <td className="px-4 py-3">{review.name}</td>
-                    <td className="px-4 py-3 text-gray-600">{review.email}</td>
-                    <td className="px-4 py-3">{renderStars(review.rating)}</td>
-                    <td className="px-4 py-3">{review.comment.length > 120 ? review.comment.slice(0, 120) + '...' : review.comment}</td>
-                    <td className="px-4 py-3">{new Date(review.created_at).toLocaleDateString()}</td>
-                    <td className="px-4 py-3">
-                      <div className="flex gap-2">
+                    <td className="px-2 md:px-4 py-3 text-xs md:text-sm">{review.name}</td>
+                    <td className="px-2 md:px-4 py-3 text-gray-600 text-xs md:text-sm hidden sm:table-cell">{review.email}</td>
+                    <td className="px-2 md:px-4 py-3 text-xs md:text-sm">{renderStars(review.rating)}</td>
+                    <td className="px-2 md:px-4 py-3 text-xs md:text-sm hidden md:table-cell">{review.comment.length > 120 ? review.comment.slice(0, 120) + '...' : review.comment}</td>
+                    <td className="px-2 md:px-4 py-3 text-xs md:text-sm hidden lg:table-cell">{new Date(review.created_at).toLocaleDateString()}</td>
+                    <td className="px-2 md:px-4 py-3">
+                      <div className="flex gap-1 md:gap-2 flex-wrap">
                         {pendingTab ? (
                           <>
-                            <Button onClick={() => handleApprove(review.id)} className="bg-green-600 hover:bg-green-700 text-white" size="sm"><Check className="w-4 h-4 mr-2" />Approve</Button>
-                            <Button onClick={() => handleReject(review.id)} variant="outline" className="text-yellow-600 border-yellow-200 hover:bg-yellow-50" size="sm">Reject</Button>
+                            <Button onClick={() => handleApprove(review.id)} className="bg-green-600 hover:bg-green-700 text-white" size="sm"><Check className="w-3 md:w-4 h-3 md:h-4 mr-1" /><span className="hidden md:inline">Approve</span></Button>
+                            <Button onClick={() => handleReject(review.id)} variant="outline" className="text-yellow-600 border-yellow-200 hover:bg-yellow-50" size="sm"><span className="hidden md:inline">Reject</span></Button>
                           </>
                         ) : (
-                          <Button onClick={() => handleDelete(review.id)} variant="outline" className="text-red-600 border-red-200 hover:bg-red-50" size="sm"><Trash2 className="w-4 h-4 mr-2" />Delete</Button>
+                          <Button onClick={() => handleDelete(review.id)} variant="outline" className="text-red-600 border-red-200 hover:bg-red-50" size="sm"><Trash2 className="w-3 md:w-4 h-3 md:h-4 mr-1" /><span className="hidden md:inline">Delete</span></Button>
                         )}
                       </div>
                     </td>

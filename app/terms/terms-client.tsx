@@ -15,71 +15,124 @@ export default function TermsPageClient() {
       <div className="container mx-auto px-6 py-20">
         <div className="max-w-3xl mx-auto text-center space-y-6">
           <h1 className="text-4xl font-bold text-gray-900">Terms and Conditions</h1>
-          <p className="text-gray-600 text-lg">These Terms and Conditions explain the rules and responsibilities for using our services. By accessing or using the site, you agree to these terms.</p>
+          <p className="text-gray-600 text-lg">Last Updated: January 1st, 2026</p>
         </div>
 
         <div className="mt-10 space-y-8 max-w-3xl mx-auto text-gray-700">
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900">1. Introduction</h2>
-            <p className="mt-3">Welcome to TrueAutoCheck, a service operated by Allied Timber ("we", "our", or "us"). By accessing our website www.trueautocheck.com and using our services, you agree to comply with and be bound by these Terms and Conditions. If you do not agree with any part of these terms, please discontinue use of our website and services immediately.</p>
+            <h2 className="text-2xl font-semibold text-gray-900">1. Acceptance of Terms</h2>
+            <p className="mt-3">Welcome to trueautocheck.com, operated by Grace Global Ltd. By accessing and using our website and services, you agree to comply with and be bound by the following terms and conditions. If you do not agree with any part of these terms, please do not use our services.</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900">2. Services</h2>
-            <p className="mt-3">TrueAutoCheck provides digital vehicle history reports sourced from verified third-party data providers. While we strive to ensure the information is accurate and current at the time of request, data is obtained from multiple external sources. Therefore, Allied Timber and TrueAutoCheck do not guarantee that all records are complete, error-free, or fully comprehensive.</p>
+            <h2 className="text-2xl font-semibold text-gray-900">2. About Grace Global Ltd</h2>
+            <p className="mt-3">Grace Global Ltd provides vehicle history reports and VIN check services through trueautocheck.com. Our services include access to vehicle history information, accident records, title information, odometer readings, and other vehicle-related data.</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900">3. User Responsibilities</h2>
-            <p className="mt-3">By using our services, you agree that:</p>
+            <h2 className="text-2xl font-semibold text-gray-900">3. Services Provided</h2>
+            <p className="mt-3">Grace Global Ltd offers the following services:</p>
             <ul className="mt-3 space-y-2 list-disc list-inside">
-              <li>You will use TrueAutoCheck only for lawful and legitimate purposes.</li>
-              <li>All information provided by you during ordering or usage is accurate and truthful.</li>
-              <li>You are responsible for maintaining the confidentiality of your order details and preventing unauthorized access.</li>
+              <li>Vehicle history reports</li>
+              <li>VIN (Vehicle Identification Number) decoder</li>
+              <li>License plate lookup</li>
+              <li>Vehicle damage and accident history</li>
+              <li>Title and ownership records</li>
+              <li>Odometer readings verification</li>
+              <li>Recall information</li>
+              <li>Market value estimates</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900">4. Payments and Refund Policy</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">4. User Responsibilities</h2>
+            <p className="mt-3">When using our services, you agree to:</p>
             <ul className="mt-3 space-y-2 list-disc list-inside">
-              <li>All payments are securely processed through TrueAutoCheck, the authorized reseller and payment processor for services operated by Allied Timber.</li>
-              <li>Your receipt and transaction confirmation will list TrueAutoCheck as the merchant of record.</li>
-              <li>TrueAutoCheck operates on a one-time purchase model only. There are no subscriptions or recurring charges.</li>
-              <li>Vehicle reports are typically delivered via email within 2 to 6 hours after successful payment. In rare cases, delivery may take up to 12 hours due to data availability or system load.</li>
-              <li>If a delivery delay occurs beyond the standard timeframe, our support team will notify you via email.</li>
+              <li>Provide accurate and complete information</li>
+              <li>Use the services for lawful purposes only</li>
+              <li>Not attempt to gain unauthorized access to our systems</li>
+              <li>Not resell or redistribute our reports without authorization</li>
+              <li>Comply with all applicable laws and regulations</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900">5. Limitation of Liability</h2>
-            <p className="mt-3">To the maximum extent permitted by law, Allied Timber and TrueAutoCheck shall not be liable for any direct, indirect, incidental, or consequential damages arising from the use of our services or reports. All reports are provided "as is", based on data available at the time of request.</p>
+            <h2 className="text-2xl font-semibold text-gray-900">5. Report Accuracy and Disclaimer</h2>
+            <p className="mt-3">While Grace Global Ltd strives to provide accurate and up-to-date information, we compile data from various sources including government agencies, insurance companies, and other data providers. We cannot guarantee the completeness or accuracy of all information. Users should verify critical information independently before making purchasing decisions.</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900">6. Intellectual Property</h2>
-            <p className="mt-3">All website content, including text, graphics, logos, and data, is the exclusive property of trueautocheck.com and/or Allied Timber and is protected by applicable copyright and intellectual property laws. Unauthorized reproduction, distribution, or use is strictly prohibited.</p>
+            <h2 className="text-2xl font-semibold text-gray-900">6. Pricing and Payment</h2>
+            <p className="mt-3">Pricing for our services is displayed on our website. All prices are in USD and are subject to change without notice. Payment is processed securely through our authorized payment processor, PayPal. By purchasing a report, you agree to pay the stated price and authorize the charge to your payment method.</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900">7. Privacy Policy</h2>
-            <p className="mt-3">Allied Timber respects your privacy. Personal data is collected and processed in accordance with our Privacy Policy. By using our services, you consent to such processing.</p>
+            <h2 className="text-2xl font-semibold text-gray-900">7. Intellectual Property</h2>
+            <p className="mt-3">All content on trueautocheck.com, including but not limited to text, graphics, logos, images, and software, is the property of Grace Global Ltd or its licensors and is protected by copyright, trademark, and other intellectual property laws.</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900">8. Changes to Terms and Conditions</h2>
-            <p className="mt-3">Allied Timber reserves the right to update or modify these Terms and Conditions at any time without prior notice. Continued use of the website or services constitutes acceptance of the revised terms.</p>
+            <h2 className="text-2xl font-semibold text-gray-900">8. Privacy and Data Protection</h2>
+            <p className="mt-3">Your privacy is important to us. Please review our Privacy Policy to understand how we collect, use, and protect your personal information.</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900">9. Contact Information</h2>
-            <p className="mt-3">For support, billing, or refund inquiries, please contact us at:</p>
-            <div className="mt-4 bg-blue-50 p-4 rounded-lg border border-blue-200">
+            <h2 className="text-2xl font-semibold text-gray-900">9. Refund Policy</h2>
+            <p className="mt-3">Please refer to our Refund Policy for information about refunds and cancellations.</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-gray-900">10. Limitation of Liability</h2>
+            <p className="mt-3">Grace Global Ltd and trueautocheck.com shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use our services. Our total liability shall not exceed the amount paid by you for the specific service in question.</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-gray-900">11. Indemnification</h2>
+            <p className="mt-3">You agree to indemnify and hold harmless Grace Global Ltd, its officers, directors, employees, and agents from any claims, damages, losses, liabilities, and expenses arising from your use of our services or violation of these terms.</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-gray-900">12. Third-Party Links</h2>
+            <p className="mt-3">Our website may contain links to third-party websites. Grace Global Ltd is not responsible for the content, accuracy, or practices of these external sites. Accessing third-party links is at your own risk.</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-gray-900">13. Modifications to Terms</h2>
+            <p className="mt-3">Grace Global Ltd reserves the right to modify these Terms and Conditions at any time. Changes will be effective immediately upon posting to the website. Your continued use of our services after changes are posted constitutes acceptance of the modified terms.</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-gray-900">14. Termination</h2>
+            <p className="mt-3">Grace Global Ltd reserves the right to terminate or suspend access to our services at any time, without notice, for conduct that we believe violates these Terms and Conditions or is harmful to other users, us, or third parties, or for any other reason.</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-gray-900">15. Governing Law</h2>
+            <p className="mt-3">These Terms and Conditions shall be governed by and construed in accordance with the laws of the United States and the State of Florida, without regard to its conflict of law provisions.</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-gray-900">16. Dispute Resolution</h2>
+            <p className="mt-3">Any disputes arising from these terms or your use of our services shall be resolved through binding arbitration in accordance with the rules of the American Arbitration Association, rather than in court.</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-gray-900">17. Severability</h2>
+            <p className="mt-3">If any provision of these Terms and Conditions is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary so that the remaining terms remain in full force and effect.</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-gray-900">18. Contact Information</h2>
+            <p className="mt-3">If you have any questions about these Terms and Conditions, please contact us:</p>
+            <div className="mt-4 bg-blue-50 p-4 rounded-lg border border-blue-200 space-y-2">
+              <p className="text-gray-700"><strong>Grace Global Ltd</strong></p>
               <p className="text-gray-700"><strong>Email:</strong> <a href="mailto:info@trueautocheck.com" className="text-blue-600 hover:underline">info@trueautocheck.com</a></p>
+              <p className="text-gray-700"><strong>Website:</strong> <a href="https://trueautocheck.com" className="text-blue-600 hover:underline">https://trueautocheck.com</a></p>
             </div>
           </section>
 
           <section className="bg-gray-50 p-6 rounded-lg border border-gray-200 mt-8">
-            <p className="text-sm text-gray-700">By using TrueAutoCheck or placing an order, you acknowledge that you have read, understood, and agreed to these Terms and Conditions.</p>
+            <p className="text-sm text-gray-700">By accessing and using trueautocheck.com, you acknowledge that you have read, understood, and agreed to these Terms and Conditions.</p>
           </section>
         </div>
       </div>

@@ -14,14 +14,16 @@ export async function GET(request: NextRequest) {
     const status = url.searchParams.get('status') || undefined
     const startDate = url.searchParams.get('startDate') || undefined
     const endDate = url.searchParams.get('endDate') || undefined
-    const search = url.searchParams.get('search') || undefined
+    const search = url.searchParams.get('q') || url.searchParams.get('search') || undefined
     const currency = url.searchParams.get('currency') || undefined
     const limit = url.searchParams.get('limit') ? Number(url.searchParams.get('limit')) : undefined
 
     const orders = await getOrders({ status, startDate, endDate, search, currency, limit })
     return NextResponse.json({ success: true, orders })
   } catch (err) {
-    console.error('Failed to fetch orders:', err)
-    return NextResponse.json({ success: false, error: 'Failed to fetch orders' }, { status: 500 })
+    const errorMessage = err instanceof Error ? err.message : String(err)
+    console.error('Failed to fetch orders:', errorMessage)
+    console.error('Full error:', err)
+    return NextResponse.json({ success: false, error: 'Failed to fetch orders', details: errorMessage }, { status: 500 })
   }
 }

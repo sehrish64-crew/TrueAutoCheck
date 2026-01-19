@@ -16,16 +16,11 @@ const contactInfo = [
     details: ['info@trueautocheck.com', 'info@trueautocheck.com'],
     gradient: 'from-blue-500 to-cyan-500'
   },
-  {
-    icon: Phone,
-    title: 'Phone',
-    details: ['+923232824232', 'Mon-Sun 24 Hours'],
-    gradient: 'from-cyan-500 to-blue-500'
-  },
+
   {
     icon: MapPin,
     title: 'Office',
-    details: ['Nakhlath 286,', 'Mangopir Road, Karachi'],
+    details: ['351A GREEN STREET LONDON ENGLAND E13 9AR'],
     gradient: 'from-blue-600 to-blue-500'
   }
 ]
@@ -169,7 +164,7 @@ export default function ContactUsClient() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 mb-12 sm:mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-5 md:gap-6 mb-12 sm:mb-16">
             {contactInfo.map((info, index) => (
               <div
                 key={index}

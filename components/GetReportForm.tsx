@@ -132,16 +132,20 @@ export default function GetReportForm({ isOpen, onClose, preselectedPackage, pre
       try {
         data = await parseJsonSafe(response)
       } catch (err) {
-        console.error('Failed to parse create order response:', err)
-        throw new Error('Failed to create order (invalid response)')
+        console.error('❌ Failed to parse create order response:', err)
+        throw new Error('Failed to create order (invalid response from server)')
       }
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to create order')
+        const errorMsg = data?.error || 'Failed to create order'
+        console.error('❌ Order creation failed:', errorMsg)
+        throw new Error(errorMsg)
       }
 
+      console.log('✅ Order created successfully:', data)
       if (data.success && data.orderId) {
         setOrderId(data.orderId)
+        console.log('🔄 Redirecting to checkout...')
         // Redirect to a dedicated checkout page for this order
         if (typeof window !== 'undefined') {
           window.location.href = `/checkout/${data.orderId}`
@@ -149,8 +153,9 @@ export default function GetReportForm({ isOpen, onClose, preselectedPackage, pre
         }
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to create order. Please try again.')
-      console.error('Error creating order:', err)
+      const errorMessage = err instanceof Error ? err.message : 'Failed to create order. Please try again.'
+      setError(errorMessage)
+      console.error('❌ Error in handleSubmit:', errorMessage)
     } finally {
       setIsSubmitting(false)
     }

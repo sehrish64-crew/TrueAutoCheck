@@ -15,7 +15,9 @@ export async function GET(req: NextRequest) {
     const stats = await getOrdersStats(days)
     return NextResponse.json({ success: true, stats })
   } catch (err) {
-    console.error('Failed to fetch order stats', err)
-    return NextResponse.json({ success: false, error: 'Failed to fetch stats' }, { status: 500 })
+    const errorMessage = err instanceof Error ? err.message : String(err)
+    console.error('Failed to fetch order stats', errorMessage)
+    console.error('Full error:', err)
+    return NextResponse.json({ success: false, error: 'Failed to fetch stats', details: errorMessage }, { status: 500 })
   }
 }
