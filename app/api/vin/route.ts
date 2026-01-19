@@ -90,7 +90,7 @@ async function fetchUSVINData(vin: string) {
     if (data.years && Array.isArray(data.years) && data.years.length > 0) {
       // If year is N/A, use the most recent year from the array
       if (yearValue === 'N/A') {
-        yearValue = Math.max(...data.years.filter(y => typeof y === 'number'));
+        yearValue = Math.max(...data.years.filter((y: any) => typeof y === 'number'));
       }
     }
     
