@@ -56,7 +56,11 @@ export async function generateMetadata(): Promise<Metadata> {
     authors: [{ name: 'TrueAutoCheck' }],
     creator: 'TrueAutoCheck',
     icons: {
-      icon: '/favicon.png',
+      icon: [
+        { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
+        { url: '/favicon.png', sizes: '192x192', type: 'image/png' },
+      ],
+      apple: '/favicon.png',
     },
     openGraph: {
       type: 'website',
@@ -94,6 +98,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaMarkup) }}
         />
         <link rel="canonical" href="https://trueautocheck.com" />
+        <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon" />
+        <link rel="icon" href="/favicon.png" sizes="192x192" type="image/png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#1e40af" />
       </head>
       <body suppressHydrationWarning className={inter.className} style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
         <LayoutWrapper>
