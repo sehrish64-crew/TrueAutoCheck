@@ -302,15 +302,16 @@ export default function PricingClient() {
               <div>
                 <ul>
                   <li>
-                    <p className='font-normal text-1xl text-gray-600'>
-                      All services are delivered digitally and processed automatically. No physical goods or manual services are included.
-                    </p>
-                  </li>
-                  <li>
-                    <p className='font-normal text-1xl text-gray-600'>
+                    <p className='font-bold text-1xl text-gray-600'>
                       We offer a 14-day money-back guarantee on all purchases. See our Refund Policy for details.
                     </p>
                   </li>
+                  <li>
+                    <p className='font-bold text-1xl text-gray-600'>
+                      All services are delivered digitally and processed automatically. No physical goods or manual services are included.
+                    </p>
+                  </li>
+
                 </ul>
               </div>
             </div>

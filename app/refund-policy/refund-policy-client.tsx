@@ -125,14 +125,15 @@ export default function RefundPolicyPageClient() {
 
             <div className="mt-6 ml-4">
               <h3 className="text-xl font-semibold text-gray-900">How to Request a Refund</h3>
-              <p className="mt-2">To request a refund, please contact our customer support team:</p>
-              <ul className="mt-2 space-y-2 list-disc list-inside">
+              <p className="mt-2">Provide the VIN or license plate number
+Include your order number or transaction ID. Providing additional context is optional but can help us process your request faster.</p>
+              {/* <ul className="mt-2 space-y-2 list-disc list-inside">
                 <li>Email: <a href="mailto:info@trueautocheck.com" className="text-blue-600 hover:underline">info@trueautocheck.com</a></li>
                 <li>Include your order number or transaction ID</li>
                 <li>Provide the VIN or license plate number used</li>
                 <li>Explain the reason for your refund request</li>
                 <li>Include relevant screenshots or documentation</li>
-              </ul>
+              </ul> */}
             </div>
 
             {/* <div className="mt-6 ml-4">
