@@ -4,41 +4,43 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
-
-const steps = [
-  {
-    number: '1',
-    title: "Enter the car's VIN number",
-    description: "Every car has a unique 17-digit VIN code that lets us track its entire history. You'll find it in the V5C (logbook) or other registration documents, or directly on the vehicle.",
-    link: "Where can I find the VIN?",
-    color: 'from-blue-400 to-blue-600',
-  },
-  {
-    number: '2',
-    title: "We'll check verified data worldwide",
-    description: "We scan 900+ data sources across 45+ countries – including insurance, police, and registration data – to reveal any hidden problems.",
-    link: "Where does the data come from?",
-    color: 'from-cyan-400 to-cyan-600',
-  },
-  {
-    number: '3',
-    title: "Pay and unlock your full vehicle history report",
-    description: "After payment, use your credits to see the car's history – your full report will be ready in just 2 Hours.",
-    link: "How can I buy and use credits?",
-    color: 'from-indigo-400 to-indigo-600',
-  },
-  {
-    number: '4',
-    title: "Let data guide your decision",
-    description: "Use the car history report to decide whether to buy the car, negotiate a better price, or keep looking.",
-    link: "View sample report",
-    color: 'from-purple-400 to-purple-600',
-  },
-]
+import { useTranslations } from '@/lib/translations'
 
 export default function HowItWorks() {
+  const { t } = useTranslations()
   const [visibleSteps, setVisibleSteps] = useState<number[]>([])
   const sectionRef = useRef<HTMLDivElement>(null)
+
+  const steps = [
+    {
+      number: '1',
+      titleKey: 'howitworks_step1_title',
+      descKey: 'howitworks_step1_desc',
+      linkKey: 'howitworks_step1_link',
+      color: 'from-blue-400 to-blue-600',
+    },
+    {
+      number: '2',
+      titleKey: 'howitworks_step2_title',
+      descKey: 'howitworks_step2_desc',
+      linkKey: 'howitworks_step2_link',
+      color: 'from-cyan-400 to-cyan-600',
+    },
+    {
+      number: '3',
+      titleKey: 'howitworks_step3_title',
+      descKey: 'howitworks_step3_desc',
+      linkKey: 'howitworks_step3_link',
+      color: 'from-indigo-400 to-indigo-600',
+    },
+    {
+      number: '4',
+      titleKey: 'howitworks_step4_title',
+      descKey: 'howitworks_step4_desc',
+      linkKey: 'howitworks_step4_link',
+      color: 'from-purple-400 to-purple-600',
+    },
+  ]
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -71,10 +73,10 @@ export default function HowItWorks() {
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="text-center max-w-4xl mx-auto mb-10 sm:mb-12 px-0">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-3 sm:mb-4 leading-[1.3]">
-            How it works
+            {t('howitworks_title')}
           </h2>
           <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-700 leading-[1.6] px-2">
-            Learn what we check, how fast it happens, and what you get in return:
+            {t('howitworks_subtitle')}
           </p>
         </div>
 
@@ -130,16 +132,16 @@ export default function HowItWorks() {
 
                   <div className="flex-1 pt-0">
                     <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-2 sm:mb-2.5 md:mb-3 group-hover:text-blue-600 transition-colors leading-[1.35]">
-                      {step.title}
+                      {t(step.titleKey)}
                     </h3>
                     <p className="text-xs sm:text-xs md:text-sm lg:text-base text-gray-600 leading-relaxed mb-2.5 sm:mb-3 md:mb-4">
-                      {step.description}
+                      {t(step.descKey)}
                     </p>
                     <a
                       href="#"
                       className="inline-flex items-center gap-0.5 sm:gap-1 md:gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors group/link text-xs sm:text-xs md:text-sm"
                     >
-                      {step.link}
+                      {t(step.linkKey)}
                       <ArrowRight className="w-2.5 sm:w-3 md:w-4 h-2.5 sm:h-3 md:h-4 group-hover/link:translate-x-1 transition-transform" />
                     </a>
                   </div>
@@ -158,7 +160,7 @@ export default function HowItWorks() {
         }`}>
           <Link href="/pricing" className="group relative inline-flex w-full sm:w-auto justify-center px-4 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold text-sm sm:text-base rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden">
             <span className="relative z-10 flex items-center gap-1 sm:gap-2">
-              Get Your Vehicle Report Now
+              {t('howitworks_cta')}
               <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </span>
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
