@@ -146,7 +146,7 @@ export default function RefundPolicyPageClient() {
               <h3 className="text-xl font-semibold text-gray-900">Chargebacks</h3>
               <p className="mt-2">If you initiate a chargeback without contacting us first, we reserve the right to permanently ban your account and dispute the chargeback. Please contact us directly to resolve issues.</p>
             </div> */}
-
+{/* 
             <div className="mt-6 ml-4">
               <h3 className="text-xl font-semibold text-gray-900">Partial Refunds</h3>
               <p className="mt-2">In certain situations, Grace Globals LTD may offer partial refunds at its discretion when:</p>
@@ -155,7 +155,7 @@ export default function RefundPolicyPageClient() {
                 <li>There was a minor technical issue causing inconvenience</li>
                 <li>Other circumstances deemed appropriate by our support team</li>
               </ul>
-            </div>
+            </div> */}
           </section>
 
           {/* <section>

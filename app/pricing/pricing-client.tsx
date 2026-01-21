@@ -282,7 +282,7 @@ export default function PricingClient() {
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
+              {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
                 {trustBadges.map((badge, index) => (
                   <div
                     key={index}
@@ -297,14 +297,14 @@ export default function PricingClient() {
                     </div>
                   </div>
                 ))}
-              </div>
+              </div> */}
 
-              <p className="text-xs sm:text-sm md:text-base text-gray-700">
+              {/* <p className="text-xs sm:text-sm md:text-base text-gray-700">
                 {t('pricing_need_custom')}{' '}
                 <a href="/contact-us" className="text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200">
                   {t('pricing_contact_cta')}
                 </a>
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
