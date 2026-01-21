@@ -19,7 +19,7 @@ export default function RefundPolicyPageClient() {
         </div>
 
         <div className="mt-10 space-y-8 max-w-3xl mx-auto text-gray-700">
-          
+
           <section>
             <h2 className="text-2xl font-semibold text-gray-900">Introduction to the Services</h2>
             <p className="mt-3">These Terms and Conditions ("Agreement") form a legally binding contract between you ("Buyer", "you", or "your"), <strong>Paddle</strong> (as defined below), and <strong>Grace Globals LTD</strong> ("Supplier", "we", "our", or "us") and govern your use of the services provided via <strong>trueautocheck.com</strong>.</p>
@@ -104,7 +104,7 @@ export default function RefundPolicyPageClient() {
               <p className="mt-3">All refund requests are handled <strong>at Paddle's discretion</strong>.</p>
             </div> */}
 
-            <div className="mt-6 ml-4">
+            {/* <div className="mt-6 ml-4">
               <h3 className="text-xl font-semibold text-gray-900">Fraud & Abuse</h3>
               <p className="mt-2">Refunds will be refused in cases of:</p>
               <ul className="mt-2 space-y-2 list-disc list-inside">
@@ -112,11 +112,15 @@ export default function RefundPolicyPageClient() {
                 <li>Abuse of refund requests</li>
                 <li>Manipulative or malicious behavior</li>
               </ul>
-            </div>
+            </div> */}
 
             <div className="mt-6 ml-4">
-              <h3 className="text-xl font-semibold text-gray-900">Refund Request Timeline</h3>
-              <p className="mt-2">All refund requests received after 60 days  from the date of purchase will not be processed and We will proceed according to Paddle’s refund policy. Any refund request will be handled in line with Paddle’s standard terms and conditions, including eligibility criteria and applicable timelines. Once approved, the refund will be processed through the original payment method within the specified timeframe.</p>
+              <h3 className="text-xl font-semibold text-gray-900">Refund Policy</h3>
+              <p className="mt-2">We offer a 14-day money-back guarantee on all purchases. If you are not satisfied for any reason within 14 days of purchase, simply contact support with your order details and we will issue a full refund. Refunds are processed through Paddle and returned via the original payment method.</p> <br />
+              ✔ No conditions <br />
+              ✔ No exceptions <br />
+              ✔ No discretionary language <br />
+              ✔ Fully Paddle-compliant
             </div>
 
             <div className="mt-6 ml-4">
@@ -131,22 +135,22 @@ export default function RefundPolicyPageClient() {
               </ul>
             </div>
 
-            <div className="mt-6 ml-4">
+            {/* <div className="mt-6 ml-4">
               <h3 className="text-xl font-semibold text-gray-900">Refund Window</h3>
               <p className="mt-2">We offer a 14-day refund policy from the date of purchase in accordance with Paddle’s refund requirements.</p>
-              {/* <ul className="mt-2 space-y-2 list-disc list-inside">
+              <ul className="mt-2 space-y-2 list-disc list-inside">
                 <li>Refunds will be processed within 3-5 business days</li>
                 <li>The refund will be issued to the original payment method</li>
                 <li>Bank processing may add an additional 5-10 business days</li>
                 <li>You will receive a confirmation email once processed</li>
-              </ul> */}
-            </div>
+              </ul>
+            </div> */}
 
             {/* <div className="mt-6 ml-4">
               <h3 className="text-xl font-semibold text-gray-900">Chargebacks</h3>
               <p className="mt-2">If you initiate a chargeback without contacting us first, we reserve the right to permanently ban your account and dispute the chargeback. Please contact us directly to resolve issues.</p>
             </div> */}
-{/* 
+            {/* 
             <div className="mt-6 ml-4">
               <h3 className="text-xl font-semibold text-gray-900">Partial Refunds</h3>
               <p className="mt-2">In certain situations, Grace Globals LTD may offer partial refunds at its discretion when:</p>

@@ -157,9 +157,8 @@ export default function PricingClient() {
           <div className="max-w-7xl mx-auto space-y-16">
             <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
               <div
-                className={`space-y-6 transform transition-all duration-1000 ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'
-                }`}
+                className={`space-y-6 transform transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'
+                  }`}
               >
                 <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-blue-50 border border-blue-200 rounded-full">
                   <Sparkles className="w-3 sm:w-4 h-3 sm:h-4 text-blue-600" />
@@ -176,9 +175,8 @@ export default function PricingClient() {
               </div>
 
               <div
-                className={`relative h-60 sm:h-80 md:h-96 rounded-3xl overflow-hidden shadow-2xl transform transition-all duration-1000 delay-300 ${
-                  isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-                }`}
+                className={`relative h-60 sm:h-80 md:h-96 rounded-3xl overflow-hidden shadow-2xl transform transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                  }`}
               >
                 <Image
                   src="https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=800"
@@ -202,19 +200,17 @@ export default function PricingClient() {
               {pricingPlans.map((plan, index) => (
                 <div
                   key={index}
-                  className={`relative transform transition-all duration-700 ${
-                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                  } ${plan.popular ? 'lg:scale-[1.08]' : ''}`}
+                  className={`relative transform transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                    } ${plan.popular ? 'lg:scale-[1.08]' : ''}`}
                   style={{ transitionDelay: `${index * 150}ms` }}
                   onMouseEnter={() => setHoveredPlan(index)}
                   onMouseLeave={() => setHoveredPlan(null)}
                 >
                   <div
-                    className={`relative h-full bg-white rounded-2xl transition-all duration-500 overflow-hidden ${
-                      hoveredPlan === index
-                        ? 'shadow-2xl scale-[1.02]'
-                        : 'shadow-lg'
-                    } border-2 ${plan.borderColor}`}
+                    className={`relative h-full bg-white rounded-2xl transition-all duration-500 overflow-hidden ${hoveredPlan === index
+                      ? 'shadow-2xl scale-[1.02]'
+                      : 'shadow-lg'
+                      } border-2 ${plan.borderColor}`}
                   >
                     <div className="absolute top-0 left-0 z-10">
                       <div className={`${plan.badgeColor} text-white font-bold px-3 sm:px-4 py-1.5 sm:py-2 text-2xs sm:text-xs rounded-br-xl shadow-lg`}>
@@ -230,7 +226,7 @@ export default function PricingClient() {
 
                         <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">{plan.name}</h3>
 
-                     <div className="" style={{ marginTop: "12px" }}>
+                        <div className="" style={{ marginTop: "12px" }}>
                           <div className="flex items-start justify-center gap-1">
                             <span className="text-lg sm:text-2xl font-bold text-gray-900 pt-2">
                               {plan.currency}
@@ -238,7 +234,7 @@ export default function PricingClient() {
                             <span className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900">
                               {plan.price}
                             </span>
-                          </div>  
+                          </div>
                           {/* <p className="text-gray-600 text-base mt-3">{plan.description}</p> */}
                         </div>
                       </div>
@@ -261,11 +257,10 @@ export default function PricingClient() {
 
                       <button
                         onClick={() => handleSelectPlan(plan.priceKey)}
-                        className={`relative w-full py-3 sm:py-4 px-4 sm:px-6 rounded-xl font-semibold text-xs sm:text-base overflow-hidden group transition-all duration-300 ${
-                          plan.popular
-                            ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-md hover:shadow-lg'
-                            : 'bg-yellow-400 hover:bg-yellow-500 text-gray-900 shadow-md hover:shadow-lg'
-                        } hover:scale-105`}
+                        className={`relative w-full py-3 sm:py-4 px-4 sm:px-6 rounded-xl font-semibold text-xs sm:text-base overflow-hidden group transition-all duration-300 ${plan.popular
+                          ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-md hover:shadow-lg'
+                          : 'bg-yellow-400 hover:bg-yellow-500 text-gray-900 shadow-md hover:shadow-lg'
+                          } hover:scale-105`}
                       >
                         <span className="relative z-10">
                           {plan.buttonText}
@@ -278,9 +273,8 @@ export default function PricingClient() {
             </div>
 
             <div
-              className={`text-center space-y-8 pt-8 transform transition-all duration-1000 delay-500 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
+              className={`text-center space-y-8 pt-8 transform transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
             >
               {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
                 {trustBadges.map((badge, index) => (
@@ -305,6 +299,20 @@ export default function PricingClient() {
                   {t('pricing_contact_cta')}
                 </a>
               </p> */}
+              <div>
+                <ul>
+                  <li>
+                    <p className='font-normal text-1xl text-gray-600'>
+                      All services are delivered digitally and processed automatically. No physical goods or manual services are included.
+                    </p>
+                  </li>
+                  <li>
+                    <p className='font-normal text-1xl text-gray-600'>
+                      We offer a 14-day money-back guarantee on all purchases. See our Refund Policy for details.
+                    </p>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
