@@ -123,11 +123,11 @@ export default function Header() {
                 </Link>
 
                 <Link 
-                  href="/register-vehicle" 
-                  className="block text-lg text-white bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 transition-all font-semibold py-3 px-4 rounded-lg"
+                  href="/visual-damage" 
+                  className="block text-lg text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all font-semibold py-3 px-4 rounded-lg"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Register Vehicle
+                  Damage Detection
                 </Link>
 
                 <Link 
@@ -155,7 +155,7 @@ export default function Header() {
                 </Link>
               </nav>
 
-              <div className="border-t border-gray-200 pt-6">
+              <div className="border-t border-gray-200 pt-6 space-y-3">
                 <button
                   suppressHydrationWarning
                   onClick={() => {
@@ -171,6 +171,17 @@ export default function Header() {
                   />
                   <span className="font-semibold text-lg">{selectedCountry?.name}</span>
                 </button>
+
+                <Link 
+                  href="/visual-damage" 
+                  className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-3 px-4 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                  Damage Detection
+                </Link>
               </div>
             </div>
           </div>
