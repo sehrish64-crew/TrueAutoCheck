@@ -238,6 +238,7 @@ export default function PricingClient() {
                               {plan.price}
                             </span>
                           </div>
+                          <p className="text-gray-600 text-sm font-semibold mt-2">One Time Payment</p>
                           {/* <p className="text-gray-600 text-base mt-3">{plan.description}</p> */}
                         </div>
                       </div>
