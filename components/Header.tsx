@@ -52,17 +52,6 @@ export default function Header() {
             </nav>
 
             <div className="flex items-center gap-2 md:gap-4">
-              {/* Visual Damage Detection Button */}
-              <Link 
-                href="/visual-damage" 
-                className="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold px-4 py-2 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg text-xs md:text-sm whitespace-nowrap"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12 7V6" />
-                </svg>
-                Damage Detection
-              </Link>
-
               <button
                 suppressHydrationWarning
                 onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
@@ -122,13 +111,13 @@ export default function Header() {
                   {t('nav_home')}
                 </Link>
 
-                <Link 
+                {/* <Link 
                   href="/visual-damage" 
                   className="block text-lg text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all font-semibold py-3 px-4 rounded-lg"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Damage Detection
-                </Link>
+                </Link> */}
 
                 <Link 
                   href="/pricing" 
