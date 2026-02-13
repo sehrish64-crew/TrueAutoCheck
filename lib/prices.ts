@@ -41,6 +41,65 @@ export function getPrice(packageId: 'basic' | 'standard' | 'premium', currency =
   return pricing[packageId]
 }
 
+// Map of external price/product IDs (e.g. Stripe price IDs) for specific packages.
+// Add your provider-specific price ids here. The user provided `pri_01kg4gy97s9knjqxs7nw1t7dyy` for Basic.
+export const EXTERNAL_PRICE_IDS: Record<string, string | undefined> = {
+  basic: 'pri_01kg4gy97s9knjqxs7nw1t7dyy',
+  standard: 'pri_01kg4hffc22yaemyz1yj5vkkjs',
+  premium: 'pri_01kg4hge9f1nf3ec8qvyxkwg7j',
+}
+
+export function getExternalPriceId(packageId: 'basic' | 'standard' | 'premium') {
+  return EXTERNAL_PRICE_IDS[packageId]
+}
+
+// Paddle product IDs (placeholders) — replace with real Paddle product IDs
+export const PADDLE_PRODUCT_IDS: Record<string, number | undefined> = {
+  basic: undefined, // product ids (pro_...) are stored in PADDLE_TEST_PRODUCT_IDS below
+  standard: undefined,
+  premium: undefined,
+}
+
+
+// Paddle price IDs from your sandbox account
+export const PADDLE_PRICE_IDS: Record<'basic' | 'standard' | 'premium', string> = {
+  // Use Paddle price IDs (pri_...) provided by the user
+  basic: 'pri_01kg4gy97s9knjqxs7nw1t7dyy',
+  standard: 'pri_01kg4hffc22yaemyz1yj5vkkjs',
+  premium: 'pri_01kg4hge9f1nf3ec8qvyxkwg7j',
+}
+
+// Test fallback: if the above don't work, try these or create products in Paddle sandbox
+export const PADDLE_TEST_PRICE_IDS: Record<'basic' | 'standard' | 'premium', string> = {
+  // Fallback to product ids (pro_...) if needed
+  basic: 'pro_01kg4gwwqwat23jbyfp1hqezc8',
+  standard: 'pro_01kg4hewfsmt1p09898afbs1k2',
+  premium: 'pro_01kg4hfxjt8b6gv1yx14xkxb9k',
+}
+
+// Paddle product IDs (pro_...)
+export const PADDLE_TEST_PRODUCT_IDS: Record<'basic' | 'standard' | 'premium', string> = {
+  basic: 'pro_01kg4gwwqwat23jbyfp1hqezc8',
+  standard: 'pro_01kg4hewfsmt1p09898afbs1k2',
+  premium: 'pro_01kg4hfxjt8b6gv1yx14xkxb9k',
+}
+
+// Unified package mapping for convenience
+export const PACKAGES: Record<'basic' | 'standard' | 'premium', { priceId: string; productId: string }> = {
+  basic: { priceId: PADDLE_PRICE_IDS.basic, productId: PADDLE_TEST_PRODUCT_IDS.basic },
+  standard: { priceId: PADDLE_PRICE_IDS.standard, productId: PADDLE_TEST_PRODUCT_IDS.standard },
+  premium: { priceId: PADDLE_PRICE_IDS.premium, productId: PADDLE_TEST_PRODUCT_IDS.premium },
+}
+
+export function getPaddlePriceId(packageId: 'basic' | 'standard' | 'premium') {
+  // Prefer configured pri_ price IDs, fall back to our test/prod product ids if needed
+  return PADDLE_PRICE_IDS[packageId] || PADDLE_TEST_PRICE_IDS[packageId]
+}
+
+export function getPaddleProductId(packageId: 'basic' | 'standard' | 'premium') {
+  return PACKAGES[packageId]?.productId || PADDLE_TEST_PRODUCT_IDS[packageId]
+}
+
 export function getCurrencySymbol(currency = 'USD') {
   return CURRENCY_SYMBOLS[currency] || '$'
 }

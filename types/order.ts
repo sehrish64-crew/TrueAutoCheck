@@ -8,6 +8,7 @@ export type Order = {
   vin_number?: string | null
   package_type: string
   country_code: string
+  state?: string | null
   currency: string
   amount: number
   payment_status: 'pending' | 'completed' | 'failed'

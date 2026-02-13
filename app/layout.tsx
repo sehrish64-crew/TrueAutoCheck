@@ -1,7 +1,11 @@
+export const dynamic = 'force-dynamic'
+
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import LayoutWrapper from '@/components/LayoutWrapper';
+import Script from 'next/script';
+import PaddleInit from '@/components/PaddleInit';
 import { getOrganizationSchema } from '@/lib/schema';
 
 const inter = Inter({
@@ -93,6 +97,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Load Paddle v2 client script with Next.js Script (no inline scripts) */}
+        <Script src="https://cdn.paddle.com/paddle/v2/paddle.js" strategy="afterInteractive" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaMarkup) }}
@@ -106,6 +112,8 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning className={inter.className} style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
         <LayoutWrapper>
+          {/* PaddleInit is a client component that calls Paddle.Setup using NEXT_PUBLIC_PADDLE_CLIENT_TOKEN */}
+          <PaddleInit />
           <main>{children}</main>
         </LayoutWrapper>
       </body>

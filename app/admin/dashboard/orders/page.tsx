@@ -549,40 +549,40 @@ export default function OrdersPage() {
   }
 
   return (
-    <div className="px-3 md:px-4 lg:px-6 py-4 md:py-6">
-      <div className="mb-6 md:mb-8 flex items-start justify-between flex-col md:flex-row gap-2">
+    <div className="px-2 sm:px-3 md:px-4 lg:px-6 py-4 md:py-6">
+      <div className="mb-6 md:mb-8 flex items-start justify-between flex-col sm:flex-row gap-3 sm:gap-4">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Orders</h1>
-          <p className="text-xs md:text-base text-gray-600">Manage vehicle report orders and payment status</p>
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Orders</h1>
+          <p className="text-xs sm:text-sm md:text-base text-gray-600">Manage vehicle report orders and payment status</p>
         </div>
-        <div className="flex gap-2">
-          <a href="/admin/settings?section=orders" className="inline-block"><button className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-2 md:px-3 py-2 text-xs md:text-sm rounded">Settings</button></a>
+        <div className="flex gap-2 w-full sm:w-auto">
+          <a href="/admin/settings?section=orders" className="flex-1 sm:flex-none inline-block"><button className="w-full sm:w-auto bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 sm:px-4 py-2 text-xs sm:text-sm rounded">Settings</button></a>
         </div>
       </div>
 
-      <Card className="p-4 md:p-6 mb-6">
+      <Card className="p-2 sm:p-4 md:p-6 mb-6">
         <div className="relative mb-4">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 md:w-5 h-4 md:h-5 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 text-gray-400" />
           <Input
             type="text"
             placeholder="Search orders..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 h-10 md:h-12 text-xs md:text-sm"
+            className="pl-9 h-9 sm:h-10 md:h-12 text-xs sm:text-sm"
           />
         </div>
 
-        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3">
-          <input type="date" value={startDate || ''} onChange={(e) => setStartDate(e.target.value || undefined)} className="border rounded-md p-2 text-xs md:text-sm w-full" placeholder="Start date" />
-          <input type="date" value={endDate || ''} onChange={(e) => setEndDate(e.target.value || undefined)} className="border rounded-md p-2 text-xs md:text-sm w-full" placeholder="End date" />
-          <select value={statusFilter || ''} onChange={(e) => setStatusFilter(e.target.value || undefined)} className="border rounded-md p-2 text-xs md:text-sm w-full">
+        <div className="mt-4 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+          <input type="date" value={startDate || ''} onChange={(e) => setStartDate(e.target.value || undefined)} className="border rounded-md p-2 text-xs sm:text-sm w-full" placeholder="Start date" />
+          <input type="date" value={endDate || ''} onChange={(e) => setEndDate(e.target.value || undefined)} className="border rounded-md p-2 text-xs sm:text-sm w-full" placeholder="End date" />
+          <select value={statusFilter || ''} onChange={(e) => setStatusFilter(e.target.value || undefined)} className="border rounded-md p-2 text-xs sm:text-sm w-full">
             <option value="">Any status</option>
             <option value="pending">Pending</option>
             <option value="processing">Processing</option>
             <option value="completed">Completed</option>
             <option value="cancelled">Cancelled</option>
           </select>
-          <select value={currencyFilter || ''} onChange={(e) => setCurrencyFilter(e.target.value || undefined)} className="border rounded-md p-2 text-xs md:text-sm w-full">
+          <select value={currencyFilter || ''} onChange={(e) => setCurrencyFilter(e.target.value || undefined)} className="border rounded-md p-2 text-xs sm:text-sm w-full">
             <option value="">Any currency</option>
             <option value="USD">USD</option>
             <option value="EUR">EUR</option>
@@ -591,9 +591,9 @@ export default function OrdersPage() {
         <Button onClick={loadOrders} className="mt-3 w-full sm:w-auto text-xs md:text-sm px-4 md:px-6">Apply Filters</Button>
       </Card>
 
-      <Card className="p-2 md:p-4 overflow-x-auto">
+      <Card className="p-2 sm:p-4 overflow-x-auto">
         {filteredOrders.length === 0 ? (
-          <div className="p-8 md:p-12 text-center text-gray-500 text-sm md:text-base">No orders found</div>
+          <div className="p-6 sm:p-8 md:p-12 text-center text-gray-500 text-xs sm:text-sm md:text-base">No orders found</div>
         ) : (
           <>
             {/* Mobile Card List */}
@@ -679,6 +679,10 @@ export default function OrdersPage() {
                   <div>
                     <label className="text-xs md:text-sm font-semibold text-gray-500">Country</label>
                     <p className="text-gray-900">{selectedOrder.country_code}</p>
+                  </div>
+                  <div>
+                    <label className="text-xs md:text-sm font-semibold text-gray-500">State / Region</label>
+                    <p className="text-gray-900">{selectedOrder.state || 'N/A'}</p>
                   </div>
                   <div>
                     <label className="text-sm font-semibold text-gray-500">Payment Status</label>

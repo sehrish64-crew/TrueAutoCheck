@@ -116,6 +116,7 @@ export default function RefundPolicyPageClient() {
 
             <div className="mt-6 ml-4">
               <h3 className="text-xl font-semibold text-gray-900">Refund Policy</h3>
+              <p className="mt-2 font-semibold text-gray-900">All plans are charged as a one-time payment. No monthly or recurring fees.</p>
               <p className="mt-2">We offer a 14-day money-back guarantee on all purchases. If you are not satisfied for any reason within 14 days of purchase, simply contact support with your order details and we will issue a full refund. Refunds are processed through Paddle and returned via the original payment method.</p> <br />
               ✔ No conditions <br />
               ✔ No exceptions <br />

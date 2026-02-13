@@ -14,8 +14,8 @@ console.log(`  Port: ${DB_PORT}`)
 console.log(`  Database: ${DB_NAME}`)
 
 const pool = mysql.createPool({
-  host: '127.0.0.1',
   port: Number(DB_PORT),
+  host: DB_HOST,
   user: DB_USER,
   password: DB_PASSWORD,
   database: DB_NAME,

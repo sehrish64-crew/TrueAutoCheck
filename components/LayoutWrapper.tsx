@@ -5,6 +5,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { CountryProvider } from '@/contexts/CountryContext'
 import ChatWidget from '@/components/ChatWidget'
+import LocationPopup from '@/components/LocationPopup'
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
@@ -21,6 +22,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
 
   return (
     <CountryProvider>
+      <LocationPopup />
       <Header />
       {children}
       <ChatWidget position="right" />

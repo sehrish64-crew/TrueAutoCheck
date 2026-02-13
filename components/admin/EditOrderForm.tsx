@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Input } from '@/components/ui/input'
+import countriesList from '@/lib/countries'
+import { getStatesForCountry } from '@/lib/countryStates'
 import { Button } from '@/components/ui/button'
 import { Order } from '@/types/order'
 
@@ -10,6 +12,7 @@ export default function EditOrderForm({ order, onClose, onUpdated }: { order: Or
     vin_number: order.vin_number || '',
     package_type: order.package_type || '',
     country_code: order.country_code || 'US',
+    state: order.state || '',
     currency: order.currency || 'USD',
     amount: String(order.amount || ''),
     payment_status: order.payment_status || 'pending',
@@ -25,6 +28,7 @@ export default function EditOrderForm({ order, onClose, onUpdated }: { order: Or
       vin_number: order.vin_number || '',
       package_type: order.package_type || '',
       country_code: order.country_code || 'US',
+      state: order.state || '',
       currency: order.currency || 'USD',
       amount: String(order.amount || ''),
       payment_status: order.payment_status || 'pending',
@@ -52,6 +56,7 @@ export default function EditOrderForm({ order, onClose, onUpdated }: { order: Or
         package_type: form.package_type,
         vin_number: form.vin_number || null,
         country_code: form.country_code,
+        state: form.state || null,
         currency: form.currency,
         amount: Number(form.amount) || 0,
         report_url: form.report_url || null,
@@ -138,6 +143,23 @@ export default function EditOrderForm({ order, onClose, onUpdated }: { order: Or
           <select value={form.currency} onChange={(e) => handleChange('currency', e.target.value)} className="border rounded-md p-2 w-full">
             <option value="USD">USD</option>
             <option value="EUR">EUR</option>
+          </select>
+        </div>
+        <div>
+          <label className="text-sm font-semibold text-gray-500">Country</label>
+          <select value={form.country_code} onChange={(e) => handleChange('country_code', e.target.value)} className="border rounded-md p-2 w-full">
+            {countriesList.map(c => (
+              <option key={c.code} value={c.code}>{c.name}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label className="text-sm font-semibold text-gray-500">State / Region</label>
+          <select value={form.state || ''} onChange={(e) => handleChange('state', e.target.value)} className="border rounded-md p-2 w-full">
+            <option value="">—</option>
+            {getStatesForCountry(form.country_code).map(s => (
+              <option key={s.code} value={s.code}>{s.name}</option>
+            ))}
           </select>
         </div>
         <div>

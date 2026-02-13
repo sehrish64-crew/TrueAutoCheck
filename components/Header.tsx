@@ -51,7 +51,18 @@ export default function Header() {
               </Link>
             </nav>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 md:gap-4">
+              {/* Visual Damage Detection Button */}
+              <Link 
+                href="/visual-damage" 
+                className="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold px-4 py-2 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg text-xs md:text-sm whitespace-nowrap"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12 7V6" />
+                </svg>
+                Damage Detection
+              </Link>
+
               <button
                 suppressHydrationWarning
                 onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
@@ -109,6 +120,14 @@ export default function Header() {
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {t('nav_home')}
+                </Link>
+
+                <Link 
+                  href="/register-vehicle" 
+                  className="block text-lg text-white bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 transition-all font-semibold py-3 px-4 rounded-lg"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Register Vehicle
                 </Link>
 
                 <Link 

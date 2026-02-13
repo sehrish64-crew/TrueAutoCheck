@@ -59,7 +59,7 @@ export async function PATCH(request: NextRequest, context: any) {
     
     // Only allow specific fields to be updated
     const allowed: any = {}
-    const keys = ['customer_email','vehicle_type','package_type','vin_number','country_code','currency','amount','report_url','payment_status']
+    const keys = ['customer_email','vehicle_type','package_type','vin_number','country_code','state','currency','amount','report_url','payment_status']
     for (const k of keys) {
       if (Object.prototype.hasOwnProperty.call(body, k)) {
         allowed[k] = body[k]

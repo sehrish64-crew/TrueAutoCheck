@@ -1,9 +1,11 @@
 'use client'
 
+export const dynamic = 'force-dynamic'
+
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, ShoppingCart, Settings, LogOut, Menu, X, Star, MessageSquare } from 'lucide-react'
+import { LayoutDashboard, ShoppingCart, Settings, LogOut, Menu, X, Star, MessageSquare, Car } from 'lucide-react'
 
 import { useTranslations } from '@/lib/translations'
 
@@ -19,7 +21,7 @@ export default function AdminLayout({
   // Hide the sidebar on the login page to prevent it staying visible after logout
   const isLoginRoute = pathname === '/admin/login'
 
-  const [counts, setCounts] = useState({ orders: 0, reviews: 0, contacts: 0 })
+  const [counts, setCounts] = useState({ orders: 0, reviews: 0, contacts: 0, registrations: 0 })
 
   const isActive = (path: string) => {
     return pathname?.startsWith(path)
@@ -40,7 +42,7 @@ export default function AdminLayout({
         return
       }
       const data = await res.json()
-      setCounts({ orders: data.orders || 0, reviews: data.reviews || 0, contacts: data.contacts || 0 })
+      setCounts({ orders: data.orders || 0, reviews: data.reviews || 0, contacts: data.contacts || 0, registrations: data.registrations || 0 })
     } catch (err) {
       console.error('Failed to load admin counts', err)
     }
@@ -79,10 +81,10 @@ export default function AdminLayout({
   return (
     <div className="flex min-h-screen bg-gray-50 overflow-x-hidden">
       {/* Mobile Header */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-30 bg-white border-b border-gray-200 px-4 h-16 flex items-center justify-between">
-        <span className="font-bold text-lg">{t('admin_panel')}</span>
-        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="p-2 text-gray-600">
-          <Menu className="w-6 h-6" />
+      <div className="md:hidden fixed top-0 left-0 right-0 z-30 bg-white border-b border-gray-200 px-4 h-14 sm:h-16 flex items-center justify-between">
+        <span className="font-bold text-base sm:text-lg">{t('admin_panel')}</span>
+        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="p-2 text-gray-600 hover:bg-gray-100 rounded-md">
+          <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
       </div>
 
@@ -108,46 +110,46 @@ export default function AdminLayout({
           </button>
         </div>
 
-        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
+        <nav className="flex-1 p-3 sm:p-4 space-y-1 overflow-y-auto">
           <Link
             href="/admin/dashboard"
             onClick={handleLinkClick}
-            className={`flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
+            className={`flex items-center gap-3 px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium rounded-lg transition-colors ${
               pathname === '/admin/dashboard'
                 ? 'bg-blue-50 text-blue-700'
                 : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
             }`}
           >
-            <LayoutDashboard className="w-5 h-5" />
-            {t('admin_dashboard')}
+            <LayoutDashboard className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+            <span className="truncate">{t('admin_dashboard')}</span>
           </Link>
 
           <Link
             href="/admin/dashboard/orders"
             onClick={handleLinkClick}
-            className={`flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
+            className={`flex items-center gap-3 px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium rounded-lg transition-colors ${
               isActive('/admin/dashboard/orders')
                 ? 'bg-blue-50 text-blue-700'
                 : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
             }`}
           >
-            <ShoppingCart className="w-5 h-5" />
-            {t('admin_orders')}
+            <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+            <span className="truncate flex-1">{t('admin_orders')}</span>
             {counts.orders > 0 && (
-              <span className="ml-auto inline-flex items-center justify-center px-2 py-0.5 rounded-full bg-red-600 text-white text-xs font-semibold">{counts.orders}</span>
+              <span className="ml-auto inline-flex items-center justify-center px-2 py-0.5 rounded-full bg-red-600 text-white text-xs font-semibold flex-shrink-0">{counts.orders}</span>
             )}
           </Link>
 
           <Link
             href="/admin/dashboard/reviews"
             onClick={handleLinkClick}
-            className={`flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
+            className={`flex items-center gap-3 px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium rounded-lg transition-colors ${
               isActive('/admin/dashboard/reviews')
                 ? 'bg-blue-50 text-blue-700'
                 : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
             }`}
           >
-            <Star className="w-5 h-5" />
+            <Star className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
             {t('admin_reviews')}
             {counts.reviews > 0 && (
               <span className="ml-auto inline-flex items-center justify-center px-2 py-0.5 rounded-full bg-red-600 text-white text-xs font-semibold">{counts.reviews}</span>
@@ -165,6 +167,22 @@ export default function AdminLayout({
             {t('nav_contact')}
             {counts.contacts > 0 && (
               <span className="ml-auto inline-flex items-center justify-center px-2 py-0.5 rounded-full bg-red-600 text-white text-xs font-semibold">{counts.contacts}</span>
+            )}
+          </Link>
+
+          <Link
+            href="/admin/dashboard/registrations"
+            onClick={handleLinkClick}
+            className={`flex items-center gap-3 px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium rounded-lg transition-colors ${
+              isActive('/admin/dashboard/registrations')
+                ? 'bg-blue-50 text-blue-700'
+                : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+            }`}
+          >
+            <Car className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+            <span className="truncate flex-1">Vehicle Registrations</span>
+            {counts.registrations > 0 && (
+              <span className="ml-auto inline-flex items-center justify-center px-2 py-0.5 rounded-full bg-red-600 text-white text-xs font-semibold flex-shrink-0">{counts.registrations}</span>
             )}
           </Link>
 

@@ -1,10 +1,10 @@
 "use client"
 
-import React from 'react'
+import React, { Suspense } from 'react'
 import { useCountry } from '@/contexts/CountryContext'
 import { useTranslations, getAllKeys, getTranslationsForLang } from '@/lib/translations'
 
-export default function I18nDebugPage() {
+function I18nDebugContent() {
   const { selectedCountry } = useCountry()
   const { t } = useTranslations()
   const lang = selectedCountry?.language || 'en'
@@ -49,5 +49,13 @@ export default function I18nDebugPage() {
         <p className="mt-2">{t('nav_home')} / {t('nav_pricing')} / {t('form_title')}</p>
       </div>
     </div>
+  )
+}
+
+export default function I18nDebugPage() {
+  return (
+    <Suspense fallback={<div className="p-8">Loading...</div>}>
+      <I18nDebugContent />
+    </Suspense>
   )
 }

@@ -40,9 +40,10 @@ export async function validateToken(token: string): Promise<boolean> {
     const decoded = Buffer.from(token, 'base64').toString('utf-8');
     const [email] = decoded.split(':');
     
-    // First, check if this is a test admin token
+    // First, check if this is an admin token based on environment variables
     const testAdminEmail = process.env.TEST_ADMIN_EMAIL;
-    if (testAdminEmail && email === testAdminEmail) {
+    const envAdminEmail = process.env.ADMIN_EMAIL;
+    if ((testAdminEmail && email === testAdminEmail) || (envAdminEmail && email === envAdminEmail)) {
       return true;
     }
     

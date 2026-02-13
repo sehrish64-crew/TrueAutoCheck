@@ -50,7 +50,7 @@ export default function ChatWidget({ position = 'right' as 'left' | 'right' }) {
   const send = async (messageText?: string) => {
     const userMsg = messageText || input.trim()
     if (!userMsg) return
-    
+
     setMessages(prev => [...prev, { from: 'user', text: userMsg }])
     setInput('')
 
@@ -99,7 +99,7 @@ export default function ChatWidget({ position = 'right' as 'left' | 'right' }) {
   }, [messages])
 
   return (
-    <div className="fixed bottom-6 right-6 z-[9999]"> 
+    <div className="fixed bottom-6 right-6 z-[9999]">
       <div className="w-72 md:w-96 flex flex-col items-end">
         {open && (
           <div className="mb-2 bg-white shadow-xl rounded-xl overflow-hidden border ring-1 ring-black/5 transform transition-all duration-300 origin-bottom-right">

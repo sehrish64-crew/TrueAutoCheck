@@ -7,9 +7,11 @@ import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useCountry } from '@/contexts/CountryContext'
+import countriesList from '@/lib/countries'
+import { Input as TextInput } from '@/components/ui/input'
 import { useTranslations } from '@/lib/translations'
 import { parseJsonSafe } from '@/lib/utils'
-import { getPrice, formatCurrency } from '@/lib/prices'
+import { getPrice, formatCurrency, getExternalPriceId } from '@/lib/prices'
 
 interface GetReportFormProps {
   isOpen: boolean
@@ -29,6 +31,7 @@ const packages = [
 
 export default function GetReportForm({ isOpen, onClose, preselectedPackage, prefilledIdentType, prefilledIdentValue }: GetReportFormProps) {
   const { selectedCountry } = useCountry()
+  const { setSelectedCountry } = useCountry()
   const { t } = useTranslations()
   const [vehicleIdType, setVehicleIdType] = useState<'vin' | 'plate'>('vin')
   const [vehicleType, setVehicleType] = useState('')
@@ -36,6 +39,9 @@ export default function GetReportForm({ isOpen, onClose, preselectedPackage, pre
   const [plateNumber, setPlateNumber] = useState('')
   const [customerEmail, setCustomerEmail] = useState('')
   const [selectedPackage, setSelectedPackage] = useState(preselectedPackage || '')
+  const [selectedCountryCode, setSelectedCountryCode] = useState<string>(selectedCountry?.code || 'US')
+  // search filter for country dropdown
+  const [countryFilter, setCountryFilter] = useState<string>('')
   const [error, setError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const paddleAvailable = Boolean(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID)
@@ -47,6 +53,13 @@ export default function GetReportForm({ isOpen, onClose, preselectedPackage, pre
       setSelectedPackage(preselectedPackage)
     }
   }, [preselectedPackage])
+
+  useEffect(() => {
+    // sync local country code with context when context changes
+    if (selectedCountry && selectedCountry.code !== selectedCountryCode) {
+      setSelectedCountryCode(selectedCountry.code)
+    }
+  }, [selectedCountry])
 
   useEffect(() => {
     if (prefilledIdentType && prefilledIdentValue) {
@@ -122,9 +135,11 @@ export default function GetReportForm({ isOpen, onClose, preselectedPackage, pre
           identification_type: vehicleIdType,
           identification_value: identificationValue,
           package_type: selectedPackage,
-          country_code: selectedCountry.code,
+          country_code: selectedCountryCode || selectedCountry.code,
           currency: selectedCountry.currency,
           amount: packageData ? getPrice(packageData.id as any, selectedCountry.currency) : 19.99,
+          // If an external price id exists (e.g. Stripe price), include it so it can be recorded with the order.
+          paymentProvider: packageData ? (getExternalPriceId(packageData.id as any) ? `stripe:${getExternalPriceId(packageData.id as any)}` : undefined) : undefined,
         }),
       })
 
@@ -324,6 +339,36 @@ export default function GetReportForm({ isOpen, onClose, preselectedPackage, pre
                 className="h-12"
               />
             </div>
+
+            {/* Country & State */}
+            <div>
+              <Label className="block text-sm font-semibold text-gray-900 mb-2">Country</Label>
+              <Select value={selectedCountryCode} onValueChange={(v) => {
+                setSelectedCountryCode(v)
+                const found = countriesList.find(c => c.code === v)
+                if (found) setSelectedCountry(found)
+              }}>
+                <SelectTrigger className="h-12">
+                  <SelectValue placeholder="Select country" />
+                </SelectTrigger>
+                <SelectContent className="z-[10000] max-h-60 overflow-auto">
+                  <div className="p-2">
+                    <TextInput
+                      value={countryFilter}
+                      onChange={(e) => setCountryFilter(e.target.value)}
+                      placeholder="Search countries"
+                      className="mb-2 h-9"
+                    />
+                  </div>
+                  {countriesList
+                    .filter(c => c.name.toLowerCase().includes(countryFilter.toLowerCase()) || c.code.toLowerCase().includes(countryFilter.toLowerCase()))
+                    .map((c) => (
+                      <SelectItem key={c.code} value={c.code}>{c.name}</SelectItem>
+                    ))}
+                </SelectContent>
+              </Select>
+            </div>
+            
 
             <div>
               <Label className="block text-sm font-semibold text-gray-900 mb-2">Package</Label>

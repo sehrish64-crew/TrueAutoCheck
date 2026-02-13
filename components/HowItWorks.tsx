@@ -79,38 +79,6 @@ export default function HowItWorks() {
             {t('howitworks_subtitle')}
           </p>
         </div>
-
-        {/* <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
-          <div className="relative h-80 rounded-2xl overflow-hidden shadow-xl">
-            <Image
-              src="https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=800"
-              alt="Vehicle inspection"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-white mb-2">Professional Verification</h3>
-                <p className="text-white/90">Trusted data from 900+ global sources</p>
-              </div>
-            </div>
-          </div>
-          <div className="relative h-80 rounded-2xl overflow-hidden shadow-xl">
-            <Image
-              src="https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=800"
-              alt="Modern vehicle"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-white mb-2">Instant Reports</h3>
-                <p className="text-white/90">Comprehensive history in 55 seconds</p>
-              </div>
-            </div>
-          </div>
-        </div> */}
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 max-w-6xl mx-auto">
           {steps.map((step, index) => {
             const isVisible = visibleSteps.includes(index)

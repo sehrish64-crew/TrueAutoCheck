@@ -43,16 +43,26 @@ async function initializeDatabase() {
     });
     console.log('✅ Connected to MySQL server!\n');
 
-    // Step 2: Create database if it doesn't exist
-    console.log(`📝 Creating database: ${dbConfig.database}...`);
+    // Step 2: Drop existing database and create fresh
+    console.log(`📝 Setting up database: ${dbConfig.database}...`);
+    await connection.execute(`DROP DATABASE IF EXISTS \`${dbConfig.database}\``);
     await connection.execute(
-      `CREATE DATABASE IF NOT EXISTS \`${dbConfig.database}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`
+      `CREATE DATABASE \`${dbConfig.database}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`
     );
-    console.log(`✅ Database created or already exists!\n`);
+    console.log(`✅ Database created!\n`);
 
     // Step 3: Switch to the database
     await connection.changeUser({ database: dbConfig.database });
     console.log(`✅ Switched to database: ${dbConfig.database}\n`);
+
+    // Step 3.5: Set max_allowed_packet for large image uploads
+    console.log('⚙️  Configuring MySQL for large file uploads...');
+    try {
+      await connection.execute('SET GLOBAL max_allowed_packet = 268435456'); // 256MB
+      console.log('✅ max_allowed_packet set to 256MB\n');
+    } catch (err) {
+      console.log('⚠️  Could not set max_allowed_packet globally (may require root config file)\n');
+    }
 
     // Step 4: Read and execute schema
     const schemaPath = path.join(__dirname, '..', 'sql', 'schema-mysql.sql');
@@ -76,6 +86,9 @@ async function initializeDatabase() {
       } catch (err) {
         // Ignore "table already exists" errors
         if (!err.message.includes('already exists')) {
+          console.error('\n❌ SQL Error in statement:');
+          console.error(statement.substring(0, 100) + '...');
+          console.error(`Error: ${err.message}\n`);
           throw err;
         }
       }
@@ -97,7 +110,8 @@ async function initializeDatabase() {
       'orders',
       'payments',
       'reviews',
-      'users',
+      'settings',
+      'users',      'vehicle_registration_images',      'vehicle_registrations',
     ];
 
     console.log('\n📊 Database Tables:');

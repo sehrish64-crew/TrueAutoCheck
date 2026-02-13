@@ -1,5 +1,17 @@
 import pool from '@/lib/mysql';
 
+// Generic query function for executing SQL - returns both rows and metadata
+export async function query(sql: string, params?: any[]): Promise<any> {
+  const [rows, fields] = await pool.execute(sql, params || [])
+  return { rows, fields, insertId: (rows as any)?.insertId }
+}
+
+// Backwards compatibility helper - just returns rows
+export async function queryRows(sql: string, params?: any[]): Promise<any[]> {
+  const result = await query(sql, params)
+  return result.rows || []
+}
+
 export interface Review {
   id: number;
   name: string;
@@ -210,6 +222,7 @@ export interface Order {
   vin_number?: string | null;
   package_type: string;
   country_code: string;
+  state?: string | null;
   currency: string;
   amount: number;
   payment_status: 'pending' | 'completed' | 'failed';
@@ -234,6 +247,7 @@ function normalizeOrder(row: any): Order {
     vin_number: row.vin_number || null,
     package_type: row.package_type,
     country_code: row.country_code,
+    state: row.state || null,
     currency: row.currency,
     amount: typeof row.amount === 'string' ? parseFloat(row.amount) : Number(row.amount),
     payment_status: row.payment_status,
@@ -253,6 +267,7 @@ export async function insertOrder(order: {
   vin_number?: string;
   package_type: string;
   country_code: string;
+  state?: string | null;
   currency: string;
   amount: number;
   identification_type: string;
@@ -262,24 +277,60 @@ export async function insertOrder(order: {
   const conn = await pool.getConnection();
   try {
     const provider = order.payment_provider || 'paypal'
-    const [result]: any = await conn.execute(
-      `INSERT INTO orders (customer_email, vehicle_type, identification_type, identification_value, vin_number, package_type, country_code, currency, amount, payment_status, payment_provider, status, created_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())`,
-      [
-        order.customer_email,
-        order.vehicle_type,
-        order.identification_type,
-        order.identification_value,
-        order.vin_number || null,
-        order.package_type,
-        order.country_code || 'US',
-        order.currency || 'USD',
-        order.amount,
-        'pending',
-        provider,
-        'pending',
-      ]
-    );
+    // Try to insert including `state` column. If the database schema hasn't
+    // been migrated yet (older installs), MySQL will throw an error for the
+    // unknown column; in that case fall back to inserting without `state` so
+    // the app continues to work without requiring an immediate migration.
+    let result: any
+    try {
+      [result] = await conn.execute(
+        `INSERT INTO orders (customer_email, vehicle_type, identification_type, identification_value, vin_number, package_type, country_code, state, currency, amount, payment_status, payment_provider, status, created_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())`,
+        [
+          order.customer_email,
+          order.vehicle_type,
+          order.identification_type,
+          order.identification_value,
+          order.vin_number || null,
+          order.package_type,
+          order.country_code || 'US',
+          order.state || null,
+          order.currency || 'USD',
+          order.amount,
+          'pending',
+          provider,
+          'pending',
+        ]
+      )
+    } catch (err: any) {
+      const msg = String(err?.message || err)
+      // MySQL error number for unknown column is 1054 (ER_BAD_FIELD_ERROR).
+      if (err?.errno === 1054 || /Unknown column .* in 'field list'/.test(msg)) {
+        // Fallback: insert without state column for older schemas
+        console.warn('insertOrder: state column not present in DB, falling back to insert without state')
+        const [fallbackResult]: any = await conn.execute(
+          `INSERT INTO orders (customer_email, vehicle_type, identification_type, identification_value, vin_number, package_type, country_code, currency, amount, payment_status, payment_provider, status, created_at)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())`,
+          [
+            order.customer_email,
+            order.vehicle_type,
+            order.identification_type,
+            order.identification_value,
+            order.vin_number || null,
+            order.package_type,
+            order.country_code || 'US',
+            order.currency || 'USD',
+            order.amount,
+            'pending',
+            provider,
+            'pending',
+          ]
+        )
+        result = fallbackResult
+      } else {
+        throw err
+      }
+    }
 
     const insertId = result.insertId;
     // Generate order number based on date and id
@@ -339,7 +390,12 @@ export async function getOrderById(id: number): Promise<Order | null> {
   return rows[0] ? normalizeOrder(rows[0]) : null;
 }
 
-export async function getAdminCounts(): Promise<{ orders: number; reviews: number; contacts: number }> {
+export async function getOrderByNumber(orderNumber: string): Promise<Order | null> {
+  const [rows]: any = await pool.execute('SELECT * FROM orders WHERE order_number = ?', [orderNumber]);
+  return rows[0] ? normalizeOrder(rows[0]) : null;
+}
+
+export async function getAdminCounts(): Promise<{ orders: number; reviews: number; contacts: number; registrations: number }> {
   // Count orders that are not completed (only decrease when status becomes 'completed')
   const [[orderCount]]: any = await pool.execute(
     "SELECT COUNT(*) as cnt FROM orders WHERE status <> 'completed'"
@@ -350,10 +406,14 @@ export async function getAdminCounts(): Promise<{ orders: number; reviews: numbe
   const [[contactCount]]: any = await pool.execute(
     "SELECT COUNT(*) as cnt FROM contact_submissions WHERE status = 'new'"
   );
+  const [[registrationCount]]: any = await pool.execute(
+    "SELECT COUNT(*) as cnt FROM vehicle_registrations WHERE approval_status = 'pending'"
+  );
   return {
     orders: Number(orderCount?.cnt || 0),
     reviews: Number(reviewCount?.cnt || 0),
     contacts: Number(contactCount?.cnt || 0),
+    registrations: Number(registrationCount?.cnt || 0),
   }
 }
 
@@ -475,6 +535,8 @@ export async function updateOrderDetails(id: number, fields: Partial<{
   payment_status: 'pending' | 'completed' | 'failed'
 }>) {
   const allowedKeys = ['customer_email','vehicle_type','package_type','vin_number','country_code','currency','amount','report_url','payment_status']
+  // include state as updatable
+  if (!allowedKeys.includes('state')) allowedKeys.push('state')
   const updates: string[] = []
   const params: any[] = []
   for (const key of allowedKeys) {
