@@ -15,8 +15,6 @@
     Deny from all
   </Files>
 </IfModule>
-
-# Prevent directory listing
 Options -Indexes
 
 # Ensure a sensible directory index (fallback for static sites)
