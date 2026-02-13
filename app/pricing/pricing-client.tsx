@@ -396,4 +396,4 @@ export default function PricingClient() {
       <Testimonials />
     </>
   )
-} is code mai one time add krdein oricing p
+}

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { detectDamageFromRoboflow, getDetectionDebugInfo } from '@/lib/roboflow'
+import { detectDamageFromRoboflow } from '@/lib/roboflow'
 
 /**
  * POST /api/visual-damage/detect
