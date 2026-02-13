@@ -28,6 +28,9 @@ yarn-error.log*
 .env
 .env*.local
 
+# Ensure we don't accidentally commit the real .env file
+.env
+
 # vercel
 .vercel
 
