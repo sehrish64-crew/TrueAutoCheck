@@ -192,6 +192,9 @@ export default function PricingClient() {
                   <p className="text-2xs sm:text-xs md:text-sm text-white/90">
                     {t('pricing_protect_desc')}
                   </p>
+                  <p className="text-center text-sm text-gray-600">
+  All plans are charged as a one-time payment. No monthly or recurring fees.
+</p>
                 </div>
               </div>
             </div>
