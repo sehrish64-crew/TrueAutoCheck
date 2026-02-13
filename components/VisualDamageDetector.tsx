@@ -157,8 +157,8 @@ export default function VisualDamageDetector(): JSX.Element {
           <div className="relative z-10">
             <div className="flex items-start justify-between mb-6">
               <div>
-                <h1 className="text-4xl md:text-5xl font-black mb-3 leading-tight">🔍 Visual Damage Detection</h1>
-                <p className="text-blue-100 text-lg md:text-xl max-w-3xl leading-relaxed">
+                <h1 className="text-2xl sm:text-3xl md:text-5xl font-black mb-3 leading-tight">🔍 Visual Damage Detection</h1>
+                <p className="text-blue-100 text-sm sm:text-base md:text-xl max-w-3xl leading-relaxed">
                   Upload a photo of your vehicle to instantly detect and analyze damage using advanced AI technology. Get detailed reports on scratches, dents, and impact marks.
                 </p>
               </div>
@@ -179,7 +179,7 @@ export default function VisualDamageDetector(): JSX.Element {
               <button
                 type="button"
                 onClick={openImagePicker}
-                className="inline-flex items-center justify-center gap-2 bg-blue-500/20 text-white font-semibold px-7 py-4 rounded-xl border-2 border-white/40 hover:border-white/60 hover:bg-blue-500/30 transition-all text-base md:text-lg"
+                className="inline-flex items-center justify-center gap-2 bg-blue-500/20 text-white font-semibold px-7 py-4 rounded-xl border-2 border-white/40 hover:border-white/60 hover:bg-blue-500/30 transition-all text-sm sm:text-base md:text-lg"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -305,7 +305,7 @@ export default function VisualDamageDetector(): JSX.Element {
             }`}>
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className={`text-2xl font-black ${
+                  <h2 className={`text-lg sm:text-2xl font-black ${
                     result.overallAssessment === 'None' ? 'text-green-700' : result.overallAssessment === 'Severe' ? 'text-red-700' : 'text-orange-700'
                   }`}>
                     {result.totalDetected === 0 
@@ -331,7 +331,7 @@ export default function VisualDamageDetector(): JSX.Element {
             {/* Individual Damages */}
             {result.damages.length > 0 && (
               <div className="space-y-4">
-                <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 flex items-center gap-2">
                   <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -358,13 +358,13 @@ export default function VisualDamageDetector(): JSX.Element {
 
                         <div>
                           <p
-                            className={`font-bold text-lg ${
+                            className={`font-bold text-sm sm:text-base md:text-lg ${
                               damage.type === 'Dent' ? 'text-pink-700' : 'text-cyan-700'
                             }`}
                           >
                             {damage.type === 'Dent' ? '🔨' : '💨'} {damage.type}
                           </p>
-                          <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide">{damage.severity}</p>
+                          <p className="text-2xs sm:text-xs font-semibold text-gray-600 uppercase tracking-wide">{damage.severity}</p>
                         </div>
                       </div>
 
@@ -430,7 +430,7 @@ ${i + 1}. ${d.type} (${d.severity})
                   document.body.removeChild(a)
                   URL.revokeObjectURL(url)
                 }}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl font-bold hover:shadow-lg transition-all text-base md:text-lg"
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl font-bold hover:shadow-lg transition-all text-sm sm:text-base md:text-lg"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
