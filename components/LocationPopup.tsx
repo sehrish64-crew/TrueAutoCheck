@@ -5,17 +5,23 @@ import { useCountry } from '@/contexts/CountryContext'
 import { MapPin } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 
-export default function LocationSelector() {
-  const { selectedCountry } = useCountry()
-  const [showPopup, setShowPopup] = useState(false)
+export default function LocationPopup() {
+  const { selectedCountry, setSelectedCountry } = useCountry()
+  const [searchQuery, setSearchQuery] = useState('')
+  const { countries } = require('@/contexts/CountryContext')
+
+  const [filteredCountries, setFilteredCountries] = useState(countries)
+  const [isOpen, setIsOpen] = useState(false)
 
   const searchParams = useSearchParams()
+
+  // run on mount / when search params change
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const hasShown = localStorage.getItem('locationPopupShown')
       const forceShow = searchParams?.get('showLocationPopup') === 'true'
       if (!hasShown || forceShow) {
-        setShowPopup(true)
+        setIsOpen(true)
         if (!forceShow) {
           localStorage.setItem('locationPopupShown', 'true')
         }
@@ -23,31 +29,7 @@ export default function LocationSelector() {
     }
   }, [searchParams])
 
-  return (
-    <>
-      <button
-        onClick={() => setShowPopup(true)}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition text-sm font-medium text-gray-700"
-        title="Change location and currency"
-      >
-        <MapPin className="w-4 h-4" />
-        <span className="hidden sm:inline">{selectedCountry.code}</span>
-        <span className="sm:hidden">📍</span>
-      </button>
-      {showPopup && <LocationPopupModal onClose={() => setShowPopup(false)} />}
-    </>
-  )
-}
-
-// Separate modal component that can be triggered manually
-function LocationPopupModal({ onClose }: { onClose: () => void }) {
-  const { selectedCountry, setSelectedCountry } = useCountry()
-  const [searchQuery, setSearchQuery] = useState('')
-  const { countries } = require('@/contexts/CountryContext')
-
-  const [filteredCountries, setFilteredCountries] = useState(countries)
-
-  // Filter countries based on search query
+  // Filter helper
   const handleSearch = (query: string) => {
     setSearchQuery(query)
     if (query.trim() === '') {
@@ -66,8 +48,10 @@ function LocationPopupModal({ onClose }: { onClose: () => void }) {
 
   const handleSelectCountry = (country: any) => {
     setSelectedCountry(country)
-    onClose()
+    setIsOpen(false)
   }
+
+  if (!isOpen) return null
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
@@ -82,7 +66,7 @@ function LocationPopupModal({ onClose }: { onClose: () => void }) {
             </div>
           </div>
           <button
-            onClick={onClose}
+            onClick={() => setIsOpen(false)}
             className="p-1 hover:bg-blue-600 rounded-lg transition text-white"
             aria-label="Close"
           >
@@ -141,7 +125,7 @@ function LocationPopupModal({ onClose }: { onClose: () => void }) {
             Currently selected: <span className="font-semibold">{selectedCountry.name}</span>
           </p>
           <button
-            onClick={onClose}
+            onClick={() => setIsOpen(false)}
             className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-semibold"
           >
             Done

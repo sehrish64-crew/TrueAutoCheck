@@ -14,6 +14,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
 
+
   const filteredCountries = countries.filter(country =>
     country.name.toLowerCase().includes(searchQuery.toLowerCase())
   )

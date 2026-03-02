@@ -41,6 +41,31 @@ export function CountryProvider({ children }: { children: ReactNode }) {
         if (found) setSelectedCountryState(found)
       }
 
+      // If no saved selection, try to auto-detect country from visitor IP
+      if (!savedCode && typeof window !== 'undefined') {
+        // Use a free IP geolocation endpoint. This is best-effort and falls back silently.
+        fetch('https://ipapi.co/json/')
+          .then(res => res.json())
+          .then((data: any) => {
+            const code = (data && (data.country || data.country_code)) ? String((data.country || data.country_code)).toUpperCase() : null
+            if (code) {
+              const found = countries.find(c => c.code === code)
+              if (found) {
+                setSelectedCountryState(found)
+                try {
+                  localStorage.setItem('selectedCountryCode', found.code)
+                  document.cookie = `cv_locale=${found.language}; path=/; max-age=${60 * 60 * 24 * 365}`
+                } catch (e) {
+                  // ignore localStorage / cookie errors
+                }
+              }
+            }
+          })
+          .catch(() => {
+            // ignore network/geolocation errors
+          })
+      }
+
       // Ensure the server can read the current language via cookie
       const lang = (savedCode && countries.find(c => c.code === savedCode)?.language) || selectedCountry.language
       document.cookie = `cv_locale=${lang}; path=/; max-age=${60 * 60 * 24 * 365}`
