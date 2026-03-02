@@ -195,9 +195,5 @@
   "howitworks_step4_title": "Lassen Sie Daten Ihre Entscheidung leiten",
   "howitworks_step4_desc": "Nutzen Sie den Fahrzeughistoriebericht, um zu entscheiden, ob Sie das Auto kaufen, einen besseren Preis auszuhandeln oder weiter zu suchen.",
   "howitworks_step4_link": "Beispielbericht anzeigen",
-  "howitworks_cta": "Holen Sie sich jetzt Ihren Fahrzeugbericht",
-  "chat_welcome": "Hallo – Ich kann bei Fragen zu Inspektionsberichten helfen. Stellen Sie mir eine Frage.",
-  "chat_input_placeholder": "Fragen Sie nach Preisen, Bestellungen, Berichten...",
-  "chat_error_generic": "Entschuldigung, etwas ist schiefgelaufen.",
-  "chat_error_network": "Nachricht konnte nicht gesendet werden. Überprüfen Sie Ihre Verbindung."
+  "howitworks_cta": "Holen Sie sich jetzt Ihren Fahrzeugbericht"
 }

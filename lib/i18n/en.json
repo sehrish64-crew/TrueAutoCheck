@@ -218,10 +218,5 @@
   "howitworks_step4_title": "Let data guide your decision",
   "howitworks_step4_desc": "Use the car history report to decide whether to buy the car, negotiate a better price, or keep looking.",
   "howitworks_step4_link": "View sample report",
-  "howitworks_cta": "Get Your Vehicle Report Now",
-
-  "chat_welcome": "Hi — I can help with inspection report questions. Ask me anything.",
-  "chat_input_placeholder": "Ask about pricing, orders, reports...",
-  "chat_error_generic": "Sorry, something went wrong.",
-  "chat_error_network": "Failed to send message. Check your connection."
+  "howitworks_cta": "Get Your Vehicle Report Now"
 } 

@@ -5,7 +5,6 @@ import HowItWorks from '@/components/HowItWorks'
 import Testimonials from '@/components/Testimonials'
 import VinChecker from '@/components/VinChecker'
 import Support from '@/components/Support'
-import ChatWidget from '@/components/ChatWidget'
 
 export default function Home() {
   return (
@@ -17,7 +16,6 @@ export default function Home() {
       <VinChecker />
       <Support />
       <WhyTrueAutoCheck />
-      <ChatWidget position="right" />
     </>
   );
 }

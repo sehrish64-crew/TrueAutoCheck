@@ -4,7 +4,6 @@ import { usePathname } from 'next/navigation'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { CountryProvider } from '@/contexts/CountryContext'
-import ChatWidget from '@/components/ChatWidget'
 import LocationPopup from '@/components/LocationPopup'
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
@@ -25,7 +24,6 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
       <LocationPopup />
       <Header />
       {children}
-      <ChatWidget position="right" />
       <Footer />
     </CountryProvider>
   )
