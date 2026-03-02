@@ -1,0 +1,23 @@
+import Banner from '@/components/Banner'
+import WhyTrueAutoCheck from '@/components/WhyTrueAutoCheck'
+import FeaturesGrid from '@/components/FeaturesGrid'
+import HowItWorks from '@/components/HowItWorks'
+import Testimonials from '@/components/Testimonials'
+import VinChecker from '@/components/VinChecker'
+import Support from '@/components/Support'
+import ChatWidget from '@/components/ChatWidget'
+
+export default function Home() {
+  return (
+    <>
+      <Banner />
+      <FeaturesGrid />
+      <HowItWorks />
+      <Testimonials />
+      <VinChecker />
+      <Support />
+      <WhyTrueAutoCheck />
+      <ChatWidget position="right" />
+    </>
+  );
+}
