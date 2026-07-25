@@ -12,12 +12,12 @@ export default function FeaturesGrid() {
   const [isAutoPlay, setIsAutoPlay] = useState(true)
 
   const tabs = [
-    { id: 'odometer', label: 'Odometer Check' },
-    { id: 'ownership', label: 'Ownership History' },
-    { id: 'photos', label: 'Photos on Sale' },
-    { id: 'damage', label: 'Damage Check' },
-    { id: 'technical', label: 'Technical Data' },
-    { id: 'stolen', label: 'Stolen VIN Check' },
+    { id: 'odometer', labelKey: 'features_tab_odometer' },
+    { id: 'ownership', labelKey: 'features_tab_ownership' },
+    { id: 'photos', labelKey: 'features_tab_photos' },
+    { id: 'damage', labelKey: 'features_tab_damage' },
+    { id: 'technical', labelKey: 'features_tab_technical' },
+    { id: 'stolen', labelKey: 'features_tab_stolen' },
   ]
 
   // Auto-cycle through tabs
@@ -41,10 +41,10 @@ export default function FeaturesGrid() {
         {/* Section Header */}
         <div className="text-center max-w-4xl mx-auto mb-8 sm:mb-12 md:mb-16 animate-fade-in px-2 sm:px-4">
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4 leading-[1.2]">
-            Always Check the History of a Car Before Buying It
+            {t('features_section_heading')}
           </h2>
           <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-600 leading-relaxed">
-            Uncover comprehensive insights with a TrueAutoCheck Vehicle History Report
+            {t('features_section_subtitle')}
           </p>
         </div>
 
@@ -68,7 +68,7 @@ export default function FeaturesGrid() {
                     : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
-                {tab.label}
+                {t(tab.labelKey)}
               </button>
               
               {/* Loader Bar */}
@@ -98,7 +98,7 @@ export default function FeaturesGrid() {
              <div className="relative w-full h-60 sm:h-72 md:h-80 lg:h-96 rounded-xl sm:rounded-2xl overflow-hidden">
               <Image
                 src="/odometer-check-en@1x.webp"
-                alt="Odometer Check"
+                alt={t('features_odometer_title')}
                 fill
                 className="object-contain"
                 priority
@@ -114,10 +114,10 @@ export default function FeaturesGrid() {
 
               <div>
                 <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-gray-900 mb-2 sm:mb-2.5 md:mb-3">
-                  Past Odometer Readings
+                  {t('features_odometer_title')}
                 </h3>
                 <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
-                  Has the odometer ever been rolled back? Detect potential odometer fraud with our comprehensive mileage history analysis. Compare recorded mileage across all data sources and identify inconsistencies that may indicate fraud.
+                  {t('features_odometer_desc')}
                 </p>
               </div>
 
@@ -168,7 +168,7 @@ export default function FeaturesGrid() {
 
               {/* CTA Button */}
               <Link href="/pricing" className="inline-flex items-center gap-1 sm:gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-full transition-all duration-300 hover:gap-3 shadow-lg hover:shadow-xl text-sm sm:text-base">
-                Check Your Car
+                {t('features_check_your_car_cta')}
                 <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5" />
               </Link>
             </div>
@@ -180,7 +180,7 @@ export default function FeaturesGrid() {
             <div className="relative w-full h-60 sm:h-72 md:h-80 lg:h-96 rounded-xl sm:rounded-2xl overflow-hidden">
               <Image
                 src="/ownership.webp"
-                alt="Ownership History"
+                alt={t('features_ownership_title')}
                 fill
                 className="object-contain"
                 priority
@@ -192,14 +192,14 @@ export default function FeaturesGrid() {
               </div>
               <div>
                 <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-gray-900 mb-2 sm:mb-2.5 md:mb-3">
-                  Ownership History
+                  {t('features_ownership_title')}
                 </h3>
                 <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
-                  Complete ownership timeline and vehicle history. Track how many previous owners, lease vs. personal use, and detailed ownership timeline information.
+                  {t('features_ownership_desc')}
                 </p>
               </div>
               <Link href="/pricing" className="inline-flex items-center gap-1 sm:gap-2 bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-full transition-all duration-300 hover:gap-3 shadow-lg hover:shadow-xl text-sm sm:text-base">
-                Check Ownership
+                {t('features_check_ownership_cta')}
                 <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5" />
               </Link>
             </div>
@@ -211,7 +211,7 @@ export default function FeaturesGrid() {
            <div className="relative w-full h-60 sm:h-72 md:h-80 lg:h-96 rounded-xl sm:rounded-2xl overflow-hidden">
               <Image
                 src="/photos-sale.webp"
-                alt="Photos on Sale"
+                alt={t('features_photos_title')}
                 fill
                 className="object-contain"
                 priority
@@ -223,14 +223,14 @@ export default function FeaturesGrid() {
               </div>
               <div>
                 <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-gray-900 mb-2 sm:mb-2.5 md:mb-3">
-                  Photos on Sale
+                  {t('features_photos_title')}
                 </h3>
                 <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
-                  Compare vehicle conditions across different time periods. View high-quality photos and track cosmetic changes to identify potential damage indicators.
+                  {t('features_photos_desc')}
                 </p>
               </div>
               <Link href="/pricing" className="inline-flex items-center gap-1 sm:gap-2 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-full transition-all duration-300 hover:gap-3 shadow-lg hover:shadow-xl text-sm sm:text-base">
-                View Photos
+                {t('features_view_photos_cta')}
                 <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5" />
               </Link>
             </div>
@@ -242,7 +242,7 @@ export default function FeaturesGrid() {
             <div className="relative w-full h-60 sm:h-72 md:h-80 lg:h-96 rounded-xl sm:rounded-2xl overflow-hidden">
               <Image
                 src="/damage.webp"
-                alt="Damage Check"
+                alt={t('features_damage_title')}
                 fill
                 className="object-contain"
                 priority
@@ -254,14 +254,14 @@ export default function FeaturesGrid() {
               </div>
               <div>
                 <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-gray-900 mb-2 sm:mb-2.5 md:mb-3">
-                  Damage Check
+                  {t('features_damage_title')}
                 </h3>
                 <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
-                  Uncover accident history with comprehensive damage assessment. Includes accidents, collisions, flood damage, fire damage, and structural issues reported to insurance.
+                  {t('features_damage_desc')}
                 </p>
               </div>
               <Link href="/pricing" className="inline-flex items-center gap-1 sm:gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-full transition-all duration-300 hover:gap-3 shadow-lg hover:shadow-xl text-sm sm:text-base">
-                Check Damage
+                {t('features_check_damage_cta')}
                 <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5" />
               </Link>
             </div>
@@ -273,7 +273,7 @@ export default function FeaturesGrid() {
             <div className="relative w-full h-60 sm:h-72 md:h-80 lg:h-96 rounded-xl sm:rounded-2xl overflow-hidden">
               <Image
                 src="/specification.webp"
-                alt="Technical Data"
+                alt={t('features_technical_title')}
                 fill
                 className="object-contain"
                 priority
@@ -285,14 +285,14 @@ export default function FeaturesGrid() {
               </div>
               <div>
                 <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-gray-900 mb-2 sm:mb-2.5 md:mb-3">
-                  Technical Data
+                  {t('features_technical_title')}
                 </h3>
                 <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
-                  Complete specifications including engine type, transmission, fuel type, GVWR, and all manufacturer details for accurate vehicle identification.
+                  {t('features_technical_desc')}
                 </p>
               </div>
               <button className="inline-flex items-center gap-1 sm:gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-full transition-all duration-300 hover:gap-3 shadow-lg hover:shadow-xl text-sm sm:text-base">
-                View Specs
+                {t('features_view_specs_cta')}
                 <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5" />
               </button>
             </div>
@@ -304,7 +304,7 @@ export default function FeaturesGrid() {
              <div className="relative w-full h-60 sm:h-72 md:h-80 lg:h-96 rounded-xl sm:rounded-2xl overflow-hidden">
               <Image
                 src="/stolen.webp"
-                alt="Stolen VIN Check"
+                alt={t('features_stolen_title')}
                 fill
                 className="object-contain"
                 priority
@@ -316,14 +316,14 @@ export default function FeaturesGrid() {
               </div>
               <div>
                 <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-gray-900 mb-2 sm:mb-2.5 md:mb-3">
-                  Stolen VIN Check
+                  {t('features_stolen_title')}
                 </h3>
                 <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
-                  Verify vehicle status against national stolen vehicle databases. Ensure the vehicle is not reported stolen, salvaged, or listed as a lemon law buyback.
+                  {t('features_stolen_desc')}
                 </p>
               </div>
               <Link href="/pricing" className="inline-flex items-center gap-1 sm:gap-2 bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-full transition-all duration-300 hover:gap-3 shadow-lg hover:shadow-xl text-sm sm:text-base">
-                Verify Status
+                {t('features_verify_status_cta')}
                 <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5" />
               </Link>
             </div>
@@ -332,17 +332,17 @@ export default function FeaturesGrid() {
         </div>
 
         {/* NMVTIS Badge */}
-        <div className="mt-8 sm:mt-12 md:mt-16 p-4 sm:p-6 bg-blue-50 border border-blue-200 rounded-xl sm:rounded-2xl flex items-start gap-3 sm:gap-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+        {/* <div className="mt-8 sm:mt-12 md:mt-16 p-4 sm:p-6 bg-blue-50 border border-blue-200 rounded-xl sm:rounded-2xl flex items-start gap-3 sm:gap-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
           <div className="inline-flex items-center justify-center w-10 sm:w-12 h-10 sm:h-12 bg-blue-100 rounded-full flex-shrink-0">
             <span className="text-lg sm:text-xl">✓</span>
           </div>
           <div>
-            <h4 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">Official NMVTIS Source</h4>
+            <h4 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">{t('features_badge_title')}</h4>
             <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-              TrueAutoCheck is an approved NMVTIS data provider. NMVTIS is a national database designed to protect consumers from fraud and unsafe vehicles, to prevent stolen vehicles from being resold, and to provide users with accurate and complete vehicle information.
+              {t('features_badge_desc')}
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <style jsx>{`

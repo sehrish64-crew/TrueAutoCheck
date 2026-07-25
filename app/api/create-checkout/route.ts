@@ -3,16 +3,16 @@ import { NextResponse } from 'next/server'
 /**
  * POST /api/create-checkout
  * 
- * Paddle v2 Sandbox JWT Generation
+ * Generic checkout helper route.
  * 
- * This route generates a JWT token for Paddle v2 Sandbox checkout.
- * API KEY is kept secure server-side and never exposed to the frontend.
+ * This route accepts a product identifier and returns the identifier back
+ * to the client for subsequent checkout/payment handling.
  * 
  * Request body:
  *   { productId: string }
  * 
  * Response:
- *   { jwt: string } - Valid Paddle JWT for checkout
+ *   { priceId: string } - Resolved checkout price identifier
  *   { error: string } - Error message if failed
  */
 
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Missing or invalid productId' }, { status: 400 })
     }
 
-    // Return the priceId for the client; no need to call Paddle API server-side
+    // Return the resolved checkout price identifier for the client.
     return NextResponse.json({ priceId: productId })
   } catch (err: any) {
     console.error('[create-checkout] ❌', err)

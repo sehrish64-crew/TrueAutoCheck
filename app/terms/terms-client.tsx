@@ -21,19 +21,19 @@ export default function TermsPageClient() {
         <div className="mt-10 space-y-8 max-w-3xl mx-auto text-gray-700">
           <section>
             <h2 className="text-2xl font-semibold text-gray-900">1. Acceptance of Terms</h2>
-            <p className="mt-3">Welcome to trueautocheck.com, operated by Grace Globals LTD. By accessing and using our website and services, you agree to comply with and be bound by the following terms and conditions. If you do not agree with any part of these terms, please do not use our services.</p>
+            <p className="mt-3">Welcome to trueautocheck.com, operated by Grace Global. By accessing and using our website and services, you agree to comply with and be bound by the following terms and conditions. If you do not agree with any part of these terms, please do not use our services.</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900">2. About Grace Globals LTD</h2>
-            <p className="mt-3">Grace Globals LTD provides vehicle history reports and VIN check services through trueautocheck.com. Our services include access to vehicle history information, accident records, title information, odometer readings, and other vehicle-related data.</p>
+            <h2 className="text-2xl font-semibold text-gray-900">2. About Grace Global</h2>
+            <p className="mt-3">Grace Global provides Digital pdf reports and VIN check services through trueautocheck.com. Our services include access to vehicle history information, accident records, title information, odometer readings, and other vehicle-related data.</p>
           </section>
 
           <section>
             <h2 className="text-2xl font-semibold text-gray-900">3. Services Provided</h2>
-            <p className="mt-3">Grace Globals LTD offers the following services:</p>
+            <p className="mt-3">Grace Global offers the following services:</p>
             <ul className="mt-3 space-y-2 list-disc list-inside">
-              <li>Vehicle history reports</li>
+              <li>Digital pdf reports</li>
               <li>VIN (Vehicle Identification Number) decoder</li>
               <li>License plate lookup</li>
               <li>Vehicle damage and accident history</li>
@@ -58,17 +58,17 @@ export default function TermsPageClient() {
 
           <section>
             <h2 className="text-2xl font-semibold text-gray-900">5. Report Accuracy and Disclaimer</h2>
-            <p className="mt-3">While Grace Globals LTD strives to provide accurate and up-to-date information, we compile data from various sources including government agencies, insurance companies, and other data providers. We cannot guarantee the completeness or accuracy of all information. Users should verify critical information independently before making purchasing decisions.</p>
+            <p className="mt-3">While Grace Global strives to provide accurate and up-to-date information, we compile data from various sources including government agencies, insurance companies, and other data providers. We cannot guarantee the completeness or accuracy of all information. Users should verify critical information independently before making purchasing decisions.</p>
           </section>
 
           <section>
             <h2 className="text-2xl font-semibold text-gray-900">6. Pricing and Payment</h2>
-            <p className="mt-3">Pricing for our services is displayed on our website. All prices are in USD and are subject to change without notice. Payment is processed securely through our authorized payment processor, paddle. By purchasing a report, you agree to pay the stated price and authorize the charge to your payment method.</p>
+            <p className="mt-3">Pricing for our services is displayed on our website. All prices are in EUR and are subject to change without notice. Payment is processed securely through our authorized payment processor. By purchasing a report, you agree to pay the stated price and authorize the charge to your payment method.</p>
           </section>
 
           <section>
             <h2 className="text-2xl font-semibold text-gray-900">7. Intellectual Property</h2>
-            <p className="mt-3">All content on trueautocheck.com, including but not limited to text, graphics, logos, images, and software, is the property of Grace Globals LTD or its licensors and is protected by copyright, trademark, and other intellectual property laws.</p>
+            <p className="mt-3">All content on trueautocheck.com, including but not limited to text, graphics, logos, images, and software, is the property of Grace Global or its licensors and is protected by copyright, trademark, and other intellectual property laws.</p>
           </section>
 
           <section>
@@ -83,27 +83,27 @@ export default function TermsPageClient() {
 
           <section>
             <h2 className="text-2xl font-semibold text-gray-900">10. Limitation of Liability</h2>
-            <p className="mt-3">Grace Globals LTD and trueautocheck.com shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use our services. Our total liability shall not exceed the amount paid by you for the specific service in question.</p>
+            <p className="mt-3">Grace Global and trueautocheck.com shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use our services. Our total liability shall not exceed the amount paid by you for the specific service in question.</p>
           </section>
 
           <section>
             <h2 className="text-2xl font-semibold text-gray-900">11. Indemnification</h2>
-            <p className="mt-3">You agree to indemnify and hold harmless Grace Globals LTD, its officers, directors, employees, and agents from any claims, damages, losses, liabilities, and expenses arising from your use of our services or violation of these terms.</p>
+            <p className="mt-3">You agree to indemnify and hold harmless Grace Global, its officers, directors, employees, and agents from any claims, damages, losses, liabilities, and expenses arising from your use of our services or violation of these terms.</p>
           </section>
 
           <section>
             <h2 className="text-2xl font-semibold text-gray-900">12. Third-Party Links</h2>
-            <p className="mt-3">Our website may contain links to third-party websites. Grace Globals LTD is not responsible for the content, accuracy, or practices of these external sites. Accessing third-party links is at your own risk.</p>
+            <p className="mt-3">Our website may contain links to third-party websites. Grace Global is not responsible for the content, accuracy, or practices of these external sites. Accessing third-party links is at your own risk.</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900">13. Modifications to Terms</h2>
-            <p className="mt-3">Grace Globals LTD reserves the right to modify these Terms and Conditions at any time. Changes will be effective immediately upon posting to the website. Your continued use of our services after changes are posted constitutes acceptance of the modified terms.</p>
+            <h2 className="text-2xl font-semibold text-gray-900">13. Changes to Terms</h2>
+            <p className="mt-3">Grace Global reserves the right to modify these Terms and Conditions at any time. Changes will be effective immediately upon posting to the website. Your continued use of our services after changes are posted constitutes acceptance of the modified terms.</p>
           </section>
 
           <section>
             <h2 className="text-2xl font-semibold text-gray-900">14. Termination</h2>
-            <p className="mt-3">Grace Globals LTD reserves the right to terminate or suspend access to our services at any time, without notice, for conduct that we believe violates these Terms and Conditions or is harmful to other users, us, or third parties, or for any other reason.</p>
+            <p className="mt-3">Grace Global reserves the right to terminate or suspend access to our services at any time, without notice, for conduct that we believe violates these Terms and Conditions or is harmful to other users, us, or third parties, or for any other reason.</p>
           </section>
 
           <section>
@@ -125,8 +125,8 @@ export default function TermsPageClient() {
             <h2 className="text-2xl font-semibold text-gray-900">18. Contact Information</h2>
             <p className="mt-3">If you have any questions about these Terms and Conditions, please contact us:</p>
             <div className="mt-4 bg-blue-50 p-4 rounded-lg border border-blue-200 space-y-2">
-              <p className="text-gray-700"><strong>Grace Globals LTD</strong></p>
-              <p className="text-gray-700"><strong>Email:</strong> <a href="mailto:info@trueautocheck.com" className="text-blue-600 hover:underline">info@trueautocheck.com</a></p>
+              <p className="text-gray-700"><strong>Grace Global</strong></p>
+              <p className="text-gray-700"><strong>Email:</strong> <a href="mailto:Info@autofactscheck.com" className="text-blue-600 hover:underline">Info@autofactscheck.com</a></p>
               <p className="text-gray-700"><strong>Website:</strong> <a href="https://trueautocheck.com" className="text-blue-600 hover:underline">https://trueautocheck.com</a></p>
             </div>
           </section>

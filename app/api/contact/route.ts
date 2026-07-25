@@ -3,7 +3,16 @@ import pool from '@/lib/mysql'
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
+    let body: any
+    try {
+      body = await request.json()
+    } catch (error) {
+      return NextResponse.json(
+        { error: 'Invalid request body' },
+        { status: 400 }
+      )
+    }
+
     const { name, email, subject, message } = body
 
     if (!name || !email || !subject || !message) {
@@ -13,14 +22,23 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const conn = await pool.getConnection()
+    let persisted = false
+    let persistenceError: string | null = null
+
     try {
-      await conn.execute(
-        'INSERT INTO contact_submissions (name, email, subject, message, status, created_at) VALUES (?, ?, ?, ?, ?, NOW())',
-        [name, email, subject, message, 'new']
-      )
-    } finally {
-      conn.release()
+      const conn = await pool.getConnection()
+      try {
+        await conn.execute(
+          'INSERT INTO contact_submissions (name, email, subject, message, status, created_at) VALUES (?, ?, ?, ?, ?, NOW())',
+          [name, email, subject, message, 'new']
+        )
+        persisted = true
+      } finally {
+        conn.release()
+      }
+    } catch (error) {
+      persistenceError = error instanceof Error ? error.message : 'Unknown database error'
+      console.error('Failed to store contact form submission:', persistenceError)
     }
 
     // Send notification to admin
@@ -46,7 +64,11 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: 'Contact form submitted successfully',
+      message: persisted
+        ? 'Contact form submitted successfully'
+        : 'Contact form received and will be reviewed shortly',
+      persisted,
+      warning: persistenceError ? 'Your message was accepted, but storage was unavailable.' : undefined,
     })
   } catch (error) {
     console.error('Error processing contact form:', error)

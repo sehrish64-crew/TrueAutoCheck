@@ -288,7 +288,6 @@ export default function AdminDashboard() {
               </select>
               <select value={currency || ''} onChange={(e) => setCurrency(e.target.value || undefined)} className="border rounded-md p-2 text-xs md:text-sm flex-1">
                 <option value="">Any Currency</option>
-                <option value="USD">USD</option>
                 <option value="EUR">EUR</option>
               </select>
               <Button onClick={loadSales} className="h-10 text-xs md:text-sm">Filter</Button>

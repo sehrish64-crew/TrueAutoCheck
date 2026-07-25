@@ -23,56 +23,56 @@ interface CountryContextType {
 const CountryContext = createContext<CountryContextType | undefined>(undefined)
 
 export function CountryProvider({ children }: { children: ReactNode }) {
-  const [selectedCountry, setSelectedCountryState] = useState<Country>(
-    countries.find(c => c.code === 'US') || countries[0]
-  )
+  const defaultCountry = countries.find(c => c.code === 'IE') || countries[0]
+  const [selectedCountry, setSelectedCountryState] = useState<Country>(defaultCountry)
 
   if (process.env.NODE_ENV !== 'production') {
     // quick debug: how many countries are available
     console.log('[i18n] Loaded countries count:', countries.length)
   }
 
-  // Restore persisted country selection on mount
+  // Restore persisted country selection on mount, or auto-detect by browser locale
   useEffect(() => {
     try {
       const savedCode = typeof window !== 'undefined' ? localStorage.getItem('selectedCountryCode') : null
-      if (savedCode) {
-        const found = countries.find(c => c.code === savedCode)
-        if (found) setSelectedCountryState(found)
+      const savedCountry = savedCode ? countries.find(c => c.code === savedCode) : null
+      let activeCountry = savedCountry || defaultCountry
+
+      if (!savedCountry && typeof document !== 'undefined') {
+        const match = document.cookie.match(/(?:^|; )cv_locale=([^;]+)/)
+        if (match) {
+          const lang = decodeURIComponent(match[1])
+          const cookieCountry = countries.find(c => c.language === lang)
+          if (cookieCountry) {
+            activeCountry = cookieCountry
+          }
+        }
       }
 
-      // If no saved selection, try to auto-detect country from visitor IP
-      if (!savedCode && typeof window !== 'undefined') {
-        // Use a free IP geolocation endpoint. This is best-effort and falls back silently.
-        fetch('https://ipapi.co/json/')
-          .then(res => res.json())
-          .then((data: any) => {
-            const code = (data && (data.country || data.country_code)) ? String((data.country || data.country_code)).toUpperCase() : null
-            if (code) {
-              const found = countries.find(c => c.code === code)
-              if (found) {
-                setSelectedCountryState(found)
-                try {
-                  localStorage.setItem('selectedCountryCode', found.code)
-                  document.cookie = `cv_locale=${found.language}; path=/; max-age=${60 * 60 * 24 * 365}`
-                } catch (e) {
-                  // ignore localStorage / cookie errors
-                }
-              }
-            }
-          })
-          .catch(() => {
-            // ignore network/geolocation errors
-          })
+      if (!savedCountry && activeCountry === defaultCountry && typeof navigator !== 'undefined') {
+        const browserLang = navigator.language?.toLowerCase() || ''
+        if (browserLang.startsWith('fi') || browserLang.includes('-fi')) {
+          const fiCountry = countries.find(c => c.code === 'FI')
+          if (fiCountry) {
+            activeCountry = fiCountry
+          }
+        } else if (browserLang.startsWith('en-ie') || browserLang === 'en-ie' || browserLang.includes('-ie')) {
+          const ieCountry = countries.find(c => c.code === 'IE')
+          if (ieCountry) {
+            activeCountry = ieCountry
+          }
+        }
       }
 
-      // Ensure the server can read the current language via cookie
-      const lang = (savedCode && countries.find(c => c.code === savedCode)?.language) || selectedCountry.language
-      document.cookie = `cv_locale=${lang}; path=/; max-age=${60 * 60 * 24 * 365}`
+      setSelectedCountryState(activeCountry)
+      if (typeof document !== 'undefined') {
+        document.cookie = `cv_locale=${activeCountry.language}; path=/; max-age=${60 * 60 * 24 * 365}`
+        document.documentElement.lang = activeCountry.language
+      }
     } catch (e) {
       // ignore localStorage / cookie errors
     }
-  }, [])
+  }, [defaultCountry])
 
   const setSelectedCountry = (country: Country) => {
     setSelectedCountryState(country)
@@ -80,6 +80,7 @@ export function CountryProvider({ children }: { children: ReactNode }) {
       localStorage.setItem('selectedCountryCode', country.code)
       // Also write a cookie so server-rendered pages can pick up the selected language
       document.cookie = `cv_locale=${country.language}; path=/; max-age=${60 * 60 * 24 * 365}`
+      document.documentElement.lang = country.language
     } catch (e) {
       // ignore localStorage / cookie errors
     }

@@ -4,39 +4,40 @@ import { useState, useEffect } from 'react'
 import { Shield, Users, Globe2, TrendingUp, CheckCircle2, Database, Clock, Award, Building2, Heart, Zap, Eye } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
+import { useTranslations } from '@/lib/translations'
 
 const stats = [
-  { value: 900, suffix: '+', label: 'Global Databases', icon: Database },
-  { value: 5, suffix: 'M+', label: 'Reports Generated', icon: CheckCircle2 },
-  { value: 50, suffix: '+', label: 'Countries Covered', icon: Globe2 },
-  { value: 24, suffix: '/7', label: 'Support Available', icon: Clock }
+  { value: 900, suffix: '+', labelKey: 'about_stat_databases', icon: Database },
+  { value: 5, suffix: 'M+', labelKey: 'about_stat_reports', icon: CheckCircle2 },
+  { value: 50, suffix: '+', labelKey: 'about_stat_countries', icon: Globe2 },
+  { value: 24, suffix: '/7', labelKey: 'about_stat_support', icon: Clock }
 ]
 
 const values = [
   {
     icon: Shield,
-    title: 'Trust & Transparency',
-    description: 'Every report we generate is backed by data from verified sources across 900+ global databases, ensuring accuracy and reliability.'
+    titleKey: 'about_value_trust_title',
+    descriptionKey: 'about_value_trust_desc'
   },
   {
     icon: Users,
-    title: 'Customer Excellence',
-    description: 'We place your needs at the forefront, providing exceptional support and guidance throughout your vehicle history journey.'
+    titleKey: 'about_value_customer_title',
+    descriptionKey: 'about_value_customer_desc'
   },
   {
     icon: Eye,
-    title: 'Complete Visibility',
-    description: 'Comprehensive insights into vehicle history, from accident records to ownership changes, giving you the full picture.'
+    titleKey: 'about_value_visibility_title',
+    descriptionKey: 'about_value_visibility_desc'
   },
   {
     icon: Zap,
-    title: 'Innovation Driven',
-    description: 'Leveraging cutting-edge technology and blockchain to revolutionize how vehicle history information is accessed and verified.'
+    titleKey: 'about_value_innovation_title',
+    descriptionKey: 'about_value_innovation_desc'
   }
 ]
 
-
 export default function AboutUsClient() {
+  const { t } = useTranslations()
   const [isVisible, setIsVisible] = useState(false)
   const [counters, setCounters] = useState([0, 0, 0, 0])
 
@@ -77,15 +78,15 @@ export default function AboutUsClient() {
             }`}>
             <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-1.5 sm:py-2 bg-blue-50 border border-blue-200 rounded-full">
               <Building2 className="w-3 sm:w-4 h-3 sm:h-4 text-blue-600" />
-              <span className="text-2xs sm:text-sm font-semibold text-blue-900">About TrueAutoCheck</span>
+              <span className="text-2xs sm:text-sm font-semibold text-blue-900">{t('about_badge')}</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-tight">
-              Driving Transparency in the Automotive Industry
+              {t('about_hero_title')}
             </h1>
 
             <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              We empower millions of buyers and sellers with comprehensive vehicle history reports, making every transaction safer and more transparent.
+              {t('about_hero_desc')}
             </p>
           </div>
         </div>
@@ -107,7 +108,7 @@ export default function AboutUsClient() {
               <div className="text-3xl sm:text-4xl font-bold text-gray-900">
                 {counters[index]}{stat.suffix}
               </div>
-              <div className="text-xs sm:text-sm font-medium text-gray-600">{stat.label}</div>
+              <div className="text-xs sm:text-sm font-medium text-gray-600">{t(stat.labelKey)}</div>
             </div>
           ))}
         </div>
@@ -121,19 +122,19 @@ export default function AboutUsClient() {
               <div className="space-y-4 sm:space-y-5 md:space-y-6">
                 <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-2 bg-blue-50 rounded-full">
                   <div className="w-2 h-2 rounded-full bg-blue-600"></div>
-                  <span className="text-2xs sm:text-sm font-semibold text-blue-900">Our Story</span>
+                  <span className="text-2xs sm:text-sm font-semibold text-blue-900">{t('about_story_badge')}</span>
                 </div>
 
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-                  Building Trust Through Technology
+                  {t('about_story_title')}
                 </h2>
 
                 <div className="space-y-4 sm:space-y-5 text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed">
                   <p>
-                   Founded in January 2026, we are a digital automotive verification platform dedicated to bringing transparency and trust to the vehicle marketplace. Our website was created with a clear purpose: to help buyers make informed decisions by providing reliable and verified vehicle history reports online.
+                    {t('about_story_p1')}
                   </p>
                   <p>
-                    We specialize in delivering detailed digital vehicle reports that include essential history data, helping customers identify potential risks before purchasing a vehicle. By using verified data sources and modern technology, we aim to reduce uncertainty, prevent fraud, and build confidence in every car transaction.
+                    {t('about_story_p2')}
                   </p>
                
                 </div>
@@ -141,11 +142,11 @@ export default function AboutUsClient() {
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
                   <div className="flex items-center gap-2">
                     <Award className="w-4 sm:w-5 h-4 sm:h-5 text-blue-600" />
-                    <span className="text-2xs sm:text-sm font-medium text-gray-700">Industry Leader</span>
+                    <span className="text-2xs sm:text-sm font-medium text-gray-700">{t('about_story_badge2')}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Heart className="w-4 sm:w-5 h-4 sm:h-5 text-blue-600" />
-                    <span className="text-2xs sm:text-sm font-medium text-gray-700">Customer Trusted</span>
+                    <span className="text-2xs sm:text-sm font-medium text-gray-700">{t('about_story_badge3')}</span>
                   </div>
                 </div>
               </div>
@@ -155,16 +156,16 @@ export default function AboutUsClient() {
                 <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 border border-gray-200">
                   <div className="space-y-6 sm:space-y-8">
                     <div className="space-y-3 sm:space-y-4">
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Our Mission</h3>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">{t('about_mission_title')}</h3>
                       <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">
-                        To create a transparent automotive marketplace where every buyer has access to complete and verified vehicle history information before making a purchase decision.
+                        {t('about_mission_desc')}
                       </p>
                     </div>
 
                     <div className="border-t border-gray-200 pt-4 sm:pt-6 space-y-3 sm:space-y-4">
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Our Vision</h3>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">{t('about_vision_title')}</h3>
                       <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">
-                        A world where vehicle fraud is eliminated and every car transaction is built on trust, transparency, and verified data.
+                        {t('about_vision_desc')}
                       </p>
                     </div>
                   </div>
@@ -179,9 +180,9 @@ export default function AboutUsClient() {
         <div className={`max-w-6xl mx-auto space-y-8 sm:space-y-10 md:space-y-12 transform transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
           <div className="text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">Our Core Values</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">{t('about_values_title')}</h2>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600">
-              The principles that guide our work and define who we are
+              {t('about_values_subtitle')}
             </p>
           </div>
 
@@ -198,8 +199,8 @@ export default function AboutUsClient() {
                     </div>
                   </div>
                   <div className="space-y-2 sm:space-y-3">
-                    <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900">{value.title}</h3>
-                    <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">{value.description}</p>
+                    <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900">{t(value.titleKey)}</h3>
+                    <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">{t(value.descriptionKey)}</p>
                   </div>
                 </div>
               </div>
@@ -213,8 +214,8 @@ export default function AboutUsClient() {
           <div className={`max-w-5xl mx-auto space-y-8 sm:space-y-10 md:space-y-12 transform transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
             <div className="text-center space-y-3 sm:space-y-4">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">Our Journey</h2>
-              <p className="text-sm sm:text-base md:text-lg text-gray-600">Key milestones in our growth</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">{t('about_journey_title')}</h2>
+              <p className="text-sm sm:text-base md:text-lg text-gray-600">{t('about_journey_subtitle')}</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 md:gap-6 mb-8 sm:mb-10 md:mb-12">
@@ -227,8 +228,8 @@ export default function AboutUsClient() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
                   <div className="p-4 sm:p-5 md:p-6">
-                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-white">Innovation First</h3>
-                    <p className="text-xs sm:text-sm text-white/90">Blockchain-powered verification</p>
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-white">{t('about_journey_innovation_title')}</h3>
+                    <p className="text-xs sm:text-sm text-white/90">{t('about_journey_innovation_desc')}</p>
                   </div>
                 </div>
               </div>
@@ -241,8 +242,8 @@ export default function AboutUsClient() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
                   <div className="p-4 sm:p-5 md:p-6">
-                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-white">Global Coverage</h3>
-                    <p className="text-xs sm:text-sm text-white/90">50+ countries worldwide</p>
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-white">{t('about_journey_global_title')}</h3>
+                    <p className="text-xs sm:text-sm text-white/90">{t('about_journey_global_desc')}</p>
                   </div>
                 </div>
               </div>
@@ -259,16 +260,16 @@ export default function AboutUsClient() {
           }`}>
           <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">
-              Ready to Make an Informed Decision?
+              {t('about_cta_title')}
             </h2>
 
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              Join millions of satisfied customers who trust TrueAutoCheck for comprehensive vehicle history reports. Start your journey with confidence today.
+              {t('about_cta_desc')}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-4">
               <Button className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-6 sm:px-8 py-3 sm:py-4 md:py-6 text-sm sm:text-base md:text-lg rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300">
-                Get Your Report
+                {t('about_cta_button')}
               </Button>
               {/* <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-gray-900 font-semibold px-6 sm:px-8 py-3 sm:py-4 md:py-6 text-sm sm:text-base md:text-lg rounded-lg transition-all duration-300">
                 Contact Sales

@@ -60,10 +60,10 @@ export default function WhyTrueAutoCheck() {
                   }`}
               >
                 <div className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-1 sm:mb-2">
-                  Starting from
+                  {t('why_hero_starting_from')}
                 </div>
                 <div className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 animate-pulse">
-                  $40
+                  €40
                 </div>
               </div>
 
@@ -72,10 +72,10 @@ export default function WhyTrueAutoCheck() {
                   }`}
               >
                 <p className="text-xs sm:text-base md:text-xl lg:text-2xl font-semibold text-white mb-2 sm:mb-3 md:mb-4">
-                  for a vehicle history report
+                  {t('why_hero_report_text')}
                 </p>
                 <p className="text-2xs sm:text-xs md:text-base lg:text-lg text-white/90 leading-relaxed">
-                  Verify the VIN number and gain valuable insights before buying a used car. Get started today for peace of mind.
+                  {t('why_hero_desc')}
                 </p>
               </div>
 
@@ -88,7 +88,7 @@ export default function WhyTrueAutoCheck() {
                   className="w-full sm:w-auto px-6 sm:px-8 py-2 sm:py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-xs sm:text-sm md:text-base rounded-lg hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-105 active:scale-95 animate-bounce"
                   suppressHydrationWarning
                 >
-                  Check VIN Now
+                  {t('why_cta_button')}
                 </button>
               </div>
             </div>
@@ -98,8 +98,8 @@ export default function WhyTrueAutoCheck() {
         <div className="hidden md:grid md:grid-cols-1 gap-6">
           <div className="mt-20 pt-12 border-t border-gray-200 animate-fade-in">
             <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-              <h3 className="text-3xl md:text-4xl font-black text-gray-900 mb-2">Comprehensive VIN Analysis</h3>
-              <p className="text-gray-600 text-lg">Industry-leading data aggregation and verification</p>
+              <h3 className="text-3xl md:text-4xl font-black text-gray-900 mb-2">{t('why_stats_heading')}</h3>
+              <p className="text-gray-600 text-lg">{t('why_stats_subtitle')}</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -109,9 +109,9 @@ export default function WhyTrueAutoCheck() {
                   <div className="inline-flex w-12 h-12 bg-blue-100 rounded-xl items-center justify-center text-blue-600 font-bold text-xl mb-6 group-hover:bg-blue-500 group-hover:text-white group-hover:scale-110 transition-all duration-300">
                     ✓
                   </div>
-                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Verification Method</p>
-                  <p className="text-xl md:text-2xl font-black text-gray-900 leading-tight">By VIN & Plate</p>
-                  <p className="text-xs text-gray-500 mt-4">Multiple lookup options</p>
+                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">{t('why_card_verification_method_label')}</p>
+                  <p className="text-xl md:text-2xl font-black text-gray-900 leading-tight">{t('why_card_verification_method_title')}</p>
+                  <p className="text-xs text-gray-500 mt-4">{t('why_card_verification_method_desc')}</p>
                 </div>
               </div>
 
@@ -121,9 +121,9 @@ export default function WhyTrueAutoCheck() {
                   <div className="inline-flex w-12 h-12 bg-cyan-100 rounded-xl items-center justify-center text-cyan-600 font-bold text-xl mb-6 group-hover:bg-cyan-500 group-hover:text-white group-hover:scale-110 transition-all duration-300">
                     →
                   </div>
-                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Daily Searches</p>
-                  <p className="text-3xl md:text-4xl font-black text-gray-900 group-hover:text-cyan-600 transition-colors duration-300">45K+</p>
-                  <p className="text-xs text-gray-500 mt-4">Active verifications</p>
+                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">{t('why_card_daily_searches_label')}</p>
+                  <p className="text-3xl md:text-4xl font-black text-gray-900 group-hover:text-cyan-600 transition-colors duration-300">{t('why_card_daily_searches_value')}</p>
+                  <p className="text-xs text-gray-500 mt-4">{t('why_card_daily_searches_desc')}</p>
                 </div>
               </div>
 
@@ -133,9 +133,9 @@ export default function WhyTrueAutoCheck() {
                   <div className="inline-flex w-12 h-12 bg-purple-100 rounded-xl items-center justify-center text-purple-600 font-bold text-xl mb-6 group-hover:bg-purple-500 group-hover:text-white group-hover:scale-110 transition-all duration-300">
                     ⊕
                   </div>
-                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Data Sources</p>
-                  <p className="text-3xl md:text-4xl font-black text-gray-900 group-hover:text-purple-600 transition-colors duration-300">70+</p>
-                  <p className="text-xs text-gray-500 mt-4">Databases & sources</p>
+                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">{t('why_card_data_sources_label')}</p>
+                  <p className="text-3xl md:text-4xl font-black text-gray-900 group-hover:text-purple-600 transition-colors duration-300">{t('why_card_data_sources_value')}</p>
+                  <p className="text-xs text-gray-500 mt-4">{t('why_card_data_sources_desc')}</p>
                 </div>
               </div>
 
@@ -145,9 +145,9 @@ export default function WhyTrueAutoCheck() {
                   <div className="inline-flex w-12 h-12 bg-amber-100 rounded-xl items-center justify-center text-amber-600 font-bold text-xl mb-6 group-hover:bg-amber-500 group-hover:text-white group-hover:scale-110 transition-all duration-300">
                     ◆
                   </div>
-                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Report Scope</p>
-                  <p className="text-xl md:text-2xl font-black text-gray-900 leading-tight">Complete History</p>
-                  <p className="text-xs text-gray-500 mt-4">Ownership & service records</p>
+                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">{t('why_card_report_scope_label')}</p>
+                  <p className="text-xl md:text-2xl font-black text-gray-900 leading-tight">{t('why_card_report_scope_title')}</p>
+                  <p className="text-xs text-gray-500 mt-4">{t('why_card_report_scope_desc')}</p>
                 </div>
               </div>
             </div>
@@ -159,8 +159,8 @@ export default function WhyTrueAutoCheck() {
         {/* Mobile Slider */}
         <div className="block md:hidden mt-20 pt-12 border-t border-gray-200">
           <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-            <h3 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">Comprehensive VIN Analysis</h3>
-            <p className="text-gray-600 text-base sm:text-lg">Industry-leading data aggregation and verification</p>
+            <h3 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">{t('why_stats_heading')}</h3>
+            <p className="text-gray-600 text-base sm:text-lg">{t('why_stats_subtitle')}</p>
           </div>
           <Swiper
             spaceBetween={16}
@@ -178,10 +178,10 @@ export default function WhyTrueAutoCheck() {
                   <div className="inline-flex w-14 h-14 bg-blue-100 rounded-xl items-center justify-center text-blue-600 font-bold text-2xl mb-6 group-hover:bg-blue-500 group-hover:text-white group-hover:scale-110 transition-all duration-300">
                     ✓
                   </div>
-                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Verification Method</p>
-                  <p className="text-lg sm:text-xl font-black text-gray-900 leading-tight">By VIN & Plate</p>
+                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">{t('why_card_verification_method_label')}</p>
+                  <p className="text-lg sm:text-xl font-black text-gray-900 leading-tight">{t('why_card_verification_method_title')}</p>
                 </div>
-                <p className="text-xs text-gray-500">Multiple lookup options</p>
+                <p className="text-xs text-gray-500">{t('why_card_verification_method_desc')}</p>
               </div>
             </SwiperSlide>
 
@@ -192,10 +192,10 @@ export default function WhyTrueAutoCheck() {
                   <div className="inline-flex w-14 h-14 bg-cyan-100 rounded-xl items-center justify-center text-cyan-600 font-bold text-2xl mb-6 group-hover:bg-cyan-500 group-hover:text-white group-hover:scale-110 transition-all duration-300">
                     →
                   </div>
-                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Daily Searches</p>
-                  <p className="text-2xl sm:text-3xl font-black text-gray-900">45K+</p>
+                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">{t('why_card_daily_searches_label')}</p>
+                  <p className="text-2xl sm:text-3xl font-black text-gray-900">{t('why_card_daily_searches_value')}</p>
                 </div>
-                <p className="text-xs text-gray-500">Active verifications</p>
+                <p className="text-xs text-gray-500">{t('why_card_daily_searches_desc')}</p>
               </div>
             </SwiperSlide>
 
@@ -206,10 +206,10 @@ export default function WhyTrueAutoCheck() {
                   <div className="inline-flex w-14 h-14 bg-purple-100 rounded-xl items-center justify-center text-purple-600 font-bold text-2xl mb-6 group-hover:bg-purple-500 group-hover:text-white group-hover:scale-110 transition-all duration-300">
                     ⊕
                   </div>
-                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Data Sources</p>
-                  <p className="text-2xl sm:text-3xl font-black text-gray-900">70+</p>
+                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">{t('why_card_data_sources_label')}</p>
+                  <p className="text-2xl sm:text-3xl font-black text-gray-900">{t('why_card_data_sources_value')}</p>
                 </div>
-                <p className="text-xs text-gray-500">Databases & sources</p>
+                <p className="text-xs text-gray-500">{t('why_card_data_sources_desc')}</p>
               </div>
             </SwiperSlide>
 
@@ -220,10 +220,10 @@ export default function WhyTrueAutoCheck() {
                   <div className="inline-flex w-14 h-14 bg-amber-100 rounded-xl items-center justify-center text-amber-600 font-bold text-2xl mb-6 group-hover:bg-amber-500 group-hover:text-white group-hover:scale-110 transition-all duration-300">
                     ◆
                   </div>
-                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Report Scope</p>
-                  <p className="text-lg sm:text-xl font-black text-gray-900 leading-tight">Complete History</p>
+                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">{t('why_card_report_scope_label')}</p>
+                  <p className="text-lg sm:text-xl font-black text-gray-900 leading-tight">{t('why_card_report_scope_title')}</p>
                 </div>
-                <p className="text-xs text-gray-500">Ownership & service records</p>
+                <p className="text-xs text-gray-500">{t('why_card_report_scope_desc')}</p>
               </div>
             </SwiperSlide>
           </Swiper>
@@ -254,21 +254,21 @@ export default function WhyTrueAutoCheck() {
                     1,000,000+
                   </h3>
                   <p className="text-xl md:text-2xl font-bold text-white drop-shadow-md">
-                    Trusted Users Globally
+                    {t('why_trust_users_title')}
                   </p>
                   <p className="text-lg text-white/90 drop-shadow-md">
-                    Across 150+ nations
+                    {t('why_trust_users_subtitle')}
                   </p>
                 </div>
 
                 <div className="flex gap-4 pt-4">
                   <div className="flex-1 bg-white/20 backdrop-blur-sm rounded-xl p-4 border border-white/30">
                     <p className="text-2xl font-bold text-white">4.8★</p>
-                    <p className="text-xs text-white/80">Average Rating</p>
+                    <p className="text-xs text-white/80">{t('why_trust_rating')}</p>
                   </div>
                   <div className="flex-1 bg-white/20 backdrop-blur-sm rounded-xl p-4 border border-white/30">
                     <p className="text-2xl font-bold text-white">99.9%</p>
-                    <p className="text-xs text-white/80">Uptime</p>
+                    <p className="text-xs text-white/80">{t('why_trust_uptime')}</p>
                   </div>
                 </div>
               </div>
@@ -276,42 +276,24 @@ export default function WhyTrueAutoCheck() {
               {/* Right: Partner Logos with Enhanced Layout */}
               <div className="space-y-8">
                 <div className="text-center md:text-left">
-                  <p className="text-sm font-bold text-white/80 mb-6 uppercase tracking-wider">Trusted by millions worldwide By Industry Leaders</p>
+                  <p className="text-sm font-bold text-white/80 mb-6 uppercase tracking-wider">{t('why_trust_partner_label')}</p>
                   <div className="grid grid-cols-2 gap-6 bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
                     <div className="flex items-center justify-center md:justify-start">
                       <Image
-                        src="/forbes-logo.svg"
-                        alt="Forbes"
-                        width={100}
-                        height={50}
-                        className="h-10 w-auto object-contain drop-shadow-lg"
+                        src="/traf.png"
+                        alt="Traficom"
+                        width={120}
+                        height={60}
+                        className="h-12 w-auto object-contain drop-shadow-lg"
                       />
                     </div>
                     <div className="flex items-center justify-center md:justify-start">
                       <Image
-                        src="/copart-logo.svg"
-                        alt="Carfax"
-                        width={100}
-                        height={50}
-                        className="h-10 w-auto object-contain drop-shadow-lg"
-                      />
-                    </div>
-                    <div className="flex items-center justify-center md:justify-start">
-                      <Image
-                        src="/nmvtis-logo@1x.png"
-                        alt="NHTSA"
-                        width={100}
-                        height={50}
-                        className="h-10 w-auto object-contain drop-shadow-lg"
-                      />
-                    </div>
-                    <div className="flex items-center justify-center md:justify-start">
-                      <Image
-                        src="/nicb-logo.svg"
-                        alt="NICB"
-                        width={100}
-                        height={50}
-                        className="h-10 w-auto object-contain drop-shadow-lg"
+                        src="/logs.png"
+                        alt="Department of Transport"
+                        width={120}
+                        height={60}
+                        className="h-12 w-auto object-contain drop-shadow-lg"
                       />
                     </div>
                   </div>

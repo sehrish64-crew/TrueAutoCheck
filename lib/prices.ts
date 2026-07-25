@@ -1,6 +1,6 @@
 export const PRICING_MAP: Record<string, { basic: number; standard: number; premium: number }> = {
   'USD': { basic: 40, standard: 60, premium: 80 },
-  'EUR': { basic: 27.99, standard: 46.99, premium: 65.99 },
+  'EUR': { basic: 40, standard: 50, premium: 60 },
   'GBP': { basic: 24.99, standard: 41.99, premium: 58.99 },
   'AUD': { basic: 44.99, standard: 74.99, premium: 104.99 },
   'PLN': { basic: 119.99, standard: 199.99, premium: 279.99 },
@@ -10,7 +10,7 @@ export const PRICING_MAP: Record<string, { basic: number; standard: number; prem
   'BAM': { basic: 54.99, standard: 91.99, premium: 128.99 },
   'RON': { basic: 139.99, standard: 233.99, premium: 327.99 },
   'DKK': { basic: 209.99, standard: 349.99, premium: 489.99 },
-  'CHF': { basic: 27.99, standard: 46.99, premium: 65.99 },
+  'CHF': { basic: 40, standard: 50, premium: 60 },
   'CZK': { basic: 699.99, standard: 1166.99, premium: 1633.99 },
   'BGN': { basic: 54.99, standard: 91.99, premium: 128.99 },
   'HUF': { basic: 10999.99, standard: 18333.99, premium: 25666.99 },
@@ -36,8 +36,8 @@ export const CURRENCY_SYMBOLS: Record<string, string> = {
   'UAH': '₴',
 }
 
-export function getPrice(packageId: 'basic' | 'standard' | 'premium', currency = 'USD') {
-  const pricing = PRICING_MAP[currency] || PRICING_MAP['USD']
+export function getPrice(packageId: 'basic' | 'standard' | 'premium', currency = 'EUR') {
+  const pricing = PRICING_MAP[currency] || PRICING_MAP['EUR']
   return pricing[packageId]
 }
 
@@ -53,72 +53,25 @@ export function getExternalPriceId(packageId: 'basic' | 'standard' | 'premium') 
   return EXTERNAL_PRICE_IDS[packageId]
 }
 
-// Paddle LIVE price IDs (vendor 281569)
-export const PADDLE_PRICE_IDS: Record<'basic' | 'standard' | 'premium', string> = {
-  basic: 'pri_01khxfc9tfzf9ga0w1v08tgr7f',
-  standard: 'pri_01khxffh3rqh863kh5t4sg6qdh',
-  premium: 'pri_01khxfh1fjz5h4s5qbsk9sytaa',
-}
-
-// Paddle SANDBOX price IDs (vendor 46857) — for localhost testing
-export const PADDLE_SANDBOX_PRICE_IDS: Record<'basic' | 'standard' | 'premium', string> = {
-  basic: 'pri_01kjfkhw9q42rpb0cnz1y0qdh8',
-  standard: 'pri_01khy0w50afz9hp3wmanbrs3b8',
-  premium: 'pri_01khy0xjespqh3vq2zgbxby1wk',
-}
-
-
-// Paddle LIVE product IDs (pro_...) — vendor 281569
-export const PADDLE_PRODUCT_IDS: Record<'basic' | 'standard' | 'premium', string> = {
-  basic: 'pro_01khxf9prxrddmv9n4dbycjakk',
-  standard: 'pro_01khxfe3dee51ttsgg6b0fr579',
-  premium: 'pro_01khxfgmmjq7ttbm69xbyj8dh2',
-}
-
-// Paddle SANDBOX product IDs (pro_...) — vendor 46857 (UPDATED)
-export const PADDLE_SANDBOX_PRODUCT_IDS: Record<'basic' | 'standard' | 'premium', string> = {
-  basic: 'pro_01kjfkga4zxcbpja1phyav5xck',
-  standard: 'pro_01khy0vcm33yqq36kg3q6t2yw6',
-  premium: 'pro_01khy0x2qtbj6b0ha8b3gqwf4b',
-}
-
-// Deprecated — kept for backwards compatibility
-export const PADDLE_TEST_PRICE_IDS: Record<'basic' | 'standard' | 'premium', string> = PADDLE_SANDBOX_PRICE_IDS
-export const PADDLE_TEST_PRODUCT_IDS: Record<'basic' | 'standard' | 'premium', string> = PADDLE_SANDBOX_PRODUCT_IDS
-
-// Unified package mapping — automatically picks sandbox or live based on environment variable
-const paddleEnv = process.env.NEXT_PUBLIC_PADDLE_ENV || 'sandbox'
-const isLive = (paddleEnv === 'production' || paddleEnv === 'live')
-
-export const PACKAGES: Record<'basic' | 'standard' | 'premium', { priceId: string; productId: string }> = {
-  basic: { 
-    priceId: isLive ? PADDLE_PRICE_IDS.basic : PADDLE_SANDBOX_PRICE_IDS.basic, 
-    productId: isLive ? PADDLE_PRODUCT_IDS.basic : PADDLE_SANDBOX_PRODUCT_IDS.basic 
-  },
-  standard: { 
-    priceId: isLive ? PADDLE_PRICE_IDS.standard : PADDLE_SANDBOX_PRICE_IDS.standard, 
-    productId: isLive ? PADDLE_PRODUCT_IDS.standard : PADDLE_SANDBOX_PRODUCT_IDS.standard 
-  },
-  premium: { 
-    priceId: isLive ? PADDLE_PRICE_IDS.premium : PADDLE_SANDBOX_PRICE_IDS.premium, 
-    productId: isLive ? PADDLE_PRODUCT_IDS.premium : PADDLE_SANDBOX_PRODUCT_IDS.premium 
-  },
-}
+// External provider price IDs (public identifiers used for checkout links)
+// The app keeps this helper to resolve package pricing, but no specific
+// Paddle integration is required in the active deployment.
 
 export function getPaddlePriceId(packageId: 'basic' | 'standard' | 'premium') {
-  // Use packages mapping which automatically handles sandbox/production environment
-  return PACKAGES[packageId]?.priceId
+  // Fall back to any external price id mapping if present, otherwise undefined.
+  return EXTERNAL_PRICE_IDS[packageId]
 }
 
-export function getPaddleProductId(packageId: 'basic' | 'standard' | 'premium') {
-  return PACKAGES[packageId]?.productId || PADDLE_TEST_PRODUCT_IDS[packageId]
+export function getPaddleProductId(_: 'basic' | 'standard' | 'premium') {
+  // No external product IDs are configured for this deployment.
+  return undefined
 }
 
-export function getCurrencySymbol(currency = 'USD') {
-  return CURRENCY_SYMBOLS[currency] || '$'
+export function getCurrencySymbol(currency = 'EUR') {
+  return CURRENCY_SYMBOLS[currency] || '€'
 }
 
-export function formatCurrency(amount: number, currency = 'USD', locale = 'en-US') {
+export function formatCurrency(amount: number, currency = 'EUR', locale = 'en-US') {
   try {
     return new Intl.NumberFormat(locale, { style: 'currency', currency, maximumFractionDigits: 2 }).format(amount)
   } catch (e) {

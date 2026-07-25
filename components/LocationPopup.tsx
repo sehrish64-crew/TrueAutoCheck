@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from 'react'
 import { useCountry } from '@/contexts/CountryContext'
+import { useTranslations } from '@/lib/translations'
 import { MapPin } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 
 export default function LocationPopup() {
   const { selectedCountry, setSelectedCountry } = useCountry()
+  const { t } = useTranslations()
   const [searchQuery, setSearchQuery] = useState('')
   const { countries } = require('@/contexts/CountryContext')
 
@@ -61,8 +63,8 @@ export default function LocationPopup() {
           <div className="flex items-center gap-3">
             <MapPin className="w-6 h-6 text-white" />
             <div>
-              <h2 className="text-2xl font-bold text-white">Change Location</h2>
-              <p className="text-blue-100 text-sm">Select your country to adjust currency and language</p>
+              <h2 className="text-2xl font-bold text-white">{t('location_change_title')}</h2>
+              <p className="text-blue-100 text-sm">{t('location_change_subtitle')}</p>
             </div>
           </div>
           <button
@@ -79,7 +81,7 @@ export default function LocationPopup() {
           <div className="relative">
             <input
               type="text"
-              placeholder="Search by country name or code..."
+              placeholder={t('location_search_placeholder')}
               value={searchQuery}
               onChange={(e) => handleSearch(e.target.value)}
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -113,7 +115,7 @@ export default function LocationPopup() {
               ))
             ) : (
               <div className="col-span-2 text-center py-8 text-gray-500">
-                <p>No countries found matching "{searchQuery}"</p>
+                <p>{t('location_no_countries').replace('{query}', searchQuery)}</p>
               </div>
             )}
           </div>
@@ -122,13 +124,13 @@ export default function LocationPopup() {
         {/* Footer */}
         <div className="border-t border-gray-200 p-4 bg-gray-50 flex justify-between items-center">
           <p className="text-sm text-gray-600">
-            Currently selected: <span className="font-semibold">{selectedCountry.name}</span>
+            {t('location_currently_selected')} <span className="font-semibold">{selectedCountry.name}</span>
           </p>
           <button
             onClick={() => setIsOpen(false)}
             className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-semibold"
           >
-            Done
+            {t('button_done')}
           </button>
         </div>
       </div>

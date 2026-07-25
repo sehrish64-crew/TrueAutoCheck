@@ -12,14 +12,14 @@ import { parseJsonSafe } from '@/lib/utils'
 const contactInfo = [
   {
     icon: Mail,
-    title: 'Email',
-    details: ['info@trueautocheck.com'],
+    titleKey: 'contact_info_email',
+    details: ['Info@autofactscheck.com'],
     gradient: 'from-blue-500 to-cyan-500'
   },
 
   {
     icon: MapPin,
-    title: 'Office',
+    titleKey: 'contact_info_office',
     details: ['351A GREEN STREET LONDON ENGLAND E13 9AR'],
     gradient: 'from-blue-600 to-blue-500'
   }
@@ -180,7 +180,7 @@ export default function ContactUsClient() {
                       <info.icon className="w-5 sm:w-6 h-5 sm:h-6 text-white" strokeWidth={2} />
                     </div>
                     <div>
-                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg mb-1.5 sm:mb-2">{info.title}</h3>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg mb-1.5 sm:mb-2">{t(info.titleKey)}</h3>
                       {info.details.map((detail, idx) => (
                         <p key={idx} className={`text-gray-600 ${idx === 0 ? 'font-medium text-2xs sm:text-xs md:text-sm' : 'text-2xs sm:text-xs'}`}>
                           {detail}
@@ -199,9 +199,9 @@ export default function ContactUsClient() {
             <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
               <div className="bg-gradient-to-r from-blue-600 to-cyan-500 px-4 sm:px-6 md:px-8 py-6 sm:py-8 text-white">
                 <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3">
-                  Fill this form and your request will be answered as soon as possible
+                  {t('contact_form_heading')}
                 </h2>
-                <p className="text-xs sm:text-sm text-blue-50">We'll get back to you within 24 hours</p>
+                <p className="text-xs sm:text-sm text-blue-50">{t('contact_form_subtitle')}</p>
               </div>
 
               <div className="p-4 sm:p-6 md:p-8 lg:p-12">
@@ -209,7 +209,7 @@ export default function ContactUsClient() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
                     <div>
                       <label htmlFor="name" className="block text-2xs sm:text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2">
-                        Your Name
+                        {t('contact_label_name')}
                       </label>
                       <Input
                         id="name"
@@ -228,12 +228,12 @@ export default function ContactUsClient() {
 
                     <div>
                       <label htmlFor="email" className="block text-2xs sm:text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2">
-                        Your Email
+                        {t('contact_label_email')}
                       </label>
                       <Input
                         id="email"
                         type="email"
-                        placeholder="john@example.com"
+                        placeholder={t('contact_placeholder_email')}
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         onFocus={() => setFocusedField('email')}
@@ -248,12 +248,12 @@ export default function ContactUsClient() {
 
                   <div>
                     <label htmlFor="subject" className="block text-2xs sm:text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2">
-                      Subject
+                      {t('contact_label_subject')}
                     </label>
                     <Input
                       id="subject"
                       type="text"
-                      placeholder="How can we help you?"
+                      placeholder={t('contact_placeholder_subject')}
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                       onFocus={() => setFocusedField('subject')}
@@ -267,11 +267,11 @@ export default function ContactUsClient() {
 
                   <div>
                     <label htmlFor="message" className="block text-2xs sm:text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2">
-                      Your Message
+                      {t('contact_label_message')}
                     </label>
                     <Textarea
                       id="message"
-                      placeholder="Tell us more about your inquiry..."
+                      placeholder={t('contact_placeholder_message')}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       onFocus={() => setFocusedField('message')}

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Lock, CreditCard } from 'lucide-react';
 import BuyButton from './BuyButton';
-import { getPaddlePriceId, getPrice } from '@/lib/prices';
+import { getPrice } from '@/lib/prices';
 import CheckoutSummary from './CheckoutSummary';
 import Image from 'next/image';
 
@@ -31,12 +31,9 @@ function normalizeCategory(input: any) {
 export default function CheckoutClient({ order }: { order: any }) {
   const [error, setError] = useState<string | null>(null);
 
-  // Get the Paddle price ID for this order's package type
   // Normalize package type so values like "Premium ", "PREMIUM package" still map correctly
   const packageKey = normalizePackageKey(order?.package_type || order?.package || order?.package_type_name)
-  const priceId = getPaddlePriceId(packageKey as 'basic' | 'standard' | 'premium')
-  // Use stored amount from order, don't recalculate
-  const displayAmount = order?.amount || getPrice(packageKey as 'basic' | 'standard' | 'premium', order?.currency || 'USD')
+  const displayAmount = order?.amount || getPrice(packageKey as 'basic' | 'standard' | 'premium', order?.currency || 'EUR')
 
   console.log('[CheckoutClient] Order loaded:', {
     order_id: order?.id,
@@ -46,7 +43,6 @@ export default function CheckoutClient({ order }: { order: any }) {
     stored_amount: order?.amount,
     display_amount: displayAmount,
     currency: order?.currency,
-    priceId: priceId
   })
 
   const category = normalizeCategory(order.category || order.vehicle_type || order.package_type || order.vehicle_type)
@@ -59,18 +55,6 @@ export default function CheckoutClient({ order }: { order: any }) {
   };
   const imgSrc = imageMap[category] || imageMap['default'];
 
-  if (!priceId) {
-    return (
-      <div className="p-4">
-        <div className="p-4 border rounded mb-4 bg-white">
-          <h2 className="font-semibold">Package</h2>
-          <div className="text-lg font-bold">{order.package_type}</div>
-          <div className="text-sm text-gray-600">{order.currency} {order.amount}</div>
-        </div>
-        <div className="text-red-600">No Paddle price ID configured for {order.package_type}</div>
-      </div>
-    );
-  }
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -99,7 +83,7 @@ export default function CheckoutClient({ order }: { order: any }) {
             </div>
             <div>
               <div className="text-xs uppercase opacity-90 tracking-widest">Secure checkout</div>
-              <div className="text-sm opacity-90">Powered by Paddle</div>
+              <div className="text-sm opacity-90">Secure payment</div>
             </div>
             <div className="ml-auto flex items-center gap-3">
               <div className="flex items-center gap-2 bg-white/10 px-2 py-1 rounded-full">
@@ -119,7 +103,7 @@ export default function CheckoutClient({ order }: { order: any }) {
               </div>
 
               <div className="mt-3 text-sm text-gray-700">
-                Instant access to your vehicle report after payment.
+                Payments are currently disabled in this deployment.
               </div>
 
               <div className="mt-4 flex flex-wrap gap-2">
@@ -134,7 +118,7 @@ export default function CheckoutClient({ order }: { order: any }) {
 
             <div className="md:col-span-1">
               <div className="w-full">
-                <BuyButton priceId={priceId} quantity={1}>
+                <BuyButton quantity={1}>
                   <div className="flex items-center justify-center gap-2">
                     <span className="text-sm">Pay</span>
                     <span className="font-semibold">{order.currency} {Number(displayAmount).toFixed(2)}</span>
@@ -159,7 +143,7 @@ export default function CheckoutClient({ order }: { order: any }) {
             <div className="min-w-[220px]">raw package_type: <code className="bg-white px-1 rounded">{String(order?.package_type)}</code></div>
             <div className="min-w-[160px]">normalized: <code className="bg-white px-1 rounded">{packageKey}</code></div>
             <div className="min-w-[220px]">displayAmount: <code className="bg-white px-1 rounded">{order?.currency} {displayAmount}</code></div>
-            <div className="min-w-[300px]">resolved priceId: <code className="bg-white px-1 rounded break-all">{priceId}</code></div>
+            <div className="min-w-[300px]">resolved priceId: <code className="bg-white px-1 rounded break-all">N/A</code></div>
           </div>
         </div>
       )}

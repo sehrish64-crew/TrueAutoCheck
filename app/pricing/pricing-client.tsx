@@ -16,7 +16,7 @@ import { PRICING_MAP, CURRENCY_SYMBOLS, getPrice, formatCurrency } from '@/lib/p
 
 const basePricingPlans = [
   {
-    name: 'Premium',
+    nameKey: 'pricing_plan_premium_name',
     badge: 'GOLD',
     badgeColor: 'bg-yellow-400',
     priceKey: 'premium' as const,
@@ -26,20 +26,20 @@ const basePricingPlans = [
     iconBg: 'bg-yellow-50',
     iconColor: 'text-yellow-600',
     features: [
-      'All Premium Features',
-      'Accident Records',
-      'Theft Records',
-      'Salvage Records',
-      'Open Recalls',
-      'Odometer Readings',
-      'Loan Details',
-      'Possible Market Value',
-      'Additional Specification',
+      'pricing_feature_all_premium',
+      'pricing_feature_accident_records',
+      'pricing_feature_theft_records',
+      'pricing_feature_salvage_records',
+      'pricing_feature_open_recalls',
+      'pricing_feature_odometer_readings',
+      'pricing_feature_loan_details',
+      'pricing_feature_possible_market_value',
+      'pricing_feature_additional_specification',
     ],
-    buttonText: 'Select plan',
+    buttonTextKey: 'pricing_select_plan',
   },
   {
-    name: 'Basic',
+    nameKey: 'pricing_plan_basic_name',
     badge: 'MOST POPULAR',
     badgeColor: 'bg-blue-600',
     priceKey: 'basic' as const,
@@ -49,17 +49,17 @@ const basePricingPlans = [
     iconBg: 'bg-blue-50',
     iconColor: 'text-blue-600',
     features: [
-      'All Basic Features',
-      'Accident Records',
-      'Theft Records',
-      'Salvage Records',
-      'Open Recalls',
-      'Lease Records',
+      'pricing_feature_all_basic',
+      'pricing_feature_accident_records',
+      'pricing_feature_theft_records',
+      'pricing_feature_salvage_records',
+      'pricing_feature_open_recalls',
+      'pricing_feature_lease_records',
     ],
-    buttonText: 'Select plan',
+    buttonTextKey: 'pricing_select_plan',
   },
   {
-    name: 'Standard',
+    nameKey: 'pricing_plan_standard_name',
     badge: 'DIAMOND',
     badgeColor: 'bg-cyan-500',
     priceKey: 'standard' as const,
@@ -69,16 +69,16 @@ const basePricingPlans = [
     iconBg: 'bg-cyan-50',
     iconColor: 'text-cyan-600',
     features: [
-      'All Standard Features',
-      'Accident Records',
-      'Theft Records',
-      'Salvage Records',
-      'Open Recalls',
-      'Odometer Readings',
-      'Loan Details',
-      'Possible Market Value',
+      'pricing_feature_all_standard',
+      'pricing_feature_accident_records',
+      'pricing_feature_theft_records',
+      'pricing_feature_salvage_records',
+      'pricing_feature_open_recalls',
+      'pricing_feature_odometer_readings',
+      'pricing_feature_loan_details',
+      'pricing_feature_possible_market_value',
     ],
-    buttonText: 'Select plan',
+    buttonTextKey: 'pricing_select_plan',
   },
 ]
 
@@ -109,8 +109,8 @@ export default function PricingClient() {
   const [selectedPlan, setSelectedPlan] = useState<string>('')
   const sectionRef = useRef<HTMLDivElement>(null)
 
-  const currencySymbol = CURRENCY_SYMBOLS[selectedCountry.currency] || '$'
-  const pricing = PRICING_MAP[selectedCountry.currency] || PRICING_MAP['USD']
+  const currencySymbol = CURRENCY_SYMBOLS[selectedCountry.currency] || '€'
+  const pricing = PRICING_MAP[selectedCountry.currency] || PRICING_MAP['EUR']
 
   const pricingPlans = basePricingPlans.map(plan => ({
     ...plan,
@@ -192,9 +192,7 @@ export default function PricingClient() {
                   <p className="text-2xs sm:text-xs md:text-sm text-white/90">
                     {t('pricing_protect_desc')}
                   </p>
-                  <p className="text-center text-sm text-gray-600">
-  All plans are charged as a one-time payment. No monthly or recurring fees.
-</p>
+                  <p className="text-center text-sm text-gray-600">{t('pricing_one_time_notice')}</p>
                 </div>
               </div>
             </div>
@@ -227,7 +225,7 @@ export default function PricingClient() {
                           <plan.icon className={`w-6 sm:w-8 h-6 sm:h-8 ${plan.iconColor}`} strokeWidth={2.5} />
                         </div>
 
-                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">{plan.name}</h3>
+                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">{t(plan.nameKey)}</h3>
 
                         <div className="" style={{ marginTop: "12px" }}>
                           <div className="flex items-start justify-center gap-1">
@@ -238,8 +236,7 @@ export default function PricingClient() {
                               {plan.price}
                             </span>
                           </div>
-                          <p className="text-gray-600 text-sm font-semibold mt-2">One Time Payment</p>
-                          {/* <p className="text-gray-600 text-base mt-3">{plan.description}</p> */}
+                          <p className="text-gray-600 text-sm font-semibold mt-2">{t('pricing_one_time_payment')}</p>
                         </div>
                       </div>
 
@@ -254,7 +251,7 @@ export default function PricingClient() {
                             >
                               <Check className="w-2.5 sm:w-3.5 h-2.5 sm:h-3.5 text-blue-600" strokeWidth={3} />
                             </div>
-                            <span className="text-2xs sm:text-sm text-gray-700 font-medium leading-relaxed">{feature}</span>
+                            <span className="text-2xs sm:text-sm text-gray-700 font-medium leading-relaxed">{t(feature)}</span>
                           </div>
                         ))}
                       </div>
@@ -267,7 +264,7 @@ export default function PricingClient() {
                           } hover:scale-105`}
                       >
                         <span className="relative z-10">
-                          {plan.buttonText}
+                          {t(plan.buttonTextKey)}
                         </span>
                       </button>
                     </div>
@@ -307,17 +304,17 @@ export default function PricingClient() {
                 <ul>
                       <li>
                         <p className='font-bold text-1xl text-gray-600'>
-                          All plans are charged as a one-time payment. No monthly or recurring fees.
+                          {t('pricing_one_time_notice')}
                         </p>
                       </li>
                       <li>
                         <p className='font-bold text-1xl text-gray-600'>
-                          We offer a 14-day money-back guarantee on all purchases. See our Refund Policy for details.
+                          {t('pricing_refund_notice')}
                         </p>
                       </li>
                   <li>
                     <p className='font-bold text-1xl text-gray-600'>
-                      All services are delivered digitally and processed automatically. No physical goods or manual services are included.
+                      {t('pricing_digital_notice')}
                     </p>
                   </li>
 
@@ -339,10 +336,10 @@ export default function PricingClient() {
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
-              Frequently Asked Questions
+              {t('faq_title')}
             </h2>
             <p className="text-xs sm:text-sm md:text-lg text-gray-600">
-              Find answers to common questions about vehicle inspections and our inspection process.
+              {t('faq_subtitle')}
             </p>
           </div>
 
@@ -350,10 +347,10 @@ export default function PricingClient() {
             <div className="bg-white p-4 sm:p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200">
               <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 flex items-start gap-3">
                 <span className="text-blue-600 font-bold text-base sm:text-lg mt-1">Q1.</span>
-                <span>What is a vehicle inspection?</span>
+                <span>{t('faq_q1_title')}</span>
               </h3>
               <p className="text-2xs sm:text-sm text-gray-600 leading-relaxed">
-                A vehicle inspection is a process where a car's condition is checked, including engine, brakes, suspension, body, and documents, to provide the buyer with an accurate overview of the vehicle.
+                {t('faq_q1_desc')}
               </p>
             </div>
 
@@ -361,10 +358,10 @@ export default function PricingClient() {
             <div className="bg-white p-4 sm:p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200">
               <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 flex items-start gap-3">
                 <span className="text-blue-600 font-bold text-base sm:text-lg mt-1">Q2.</span>
-                <span>What is checked during a vehicle inspection?</span>
+                <span>{t('faq_q2_title')}</span>
               </h3>
               <p className="text-2xs sm:text-sm text-gray-600 leading-relaxed">
-                During an inspection, the engine performance, accident history, paint condition, brakes, tyres, suspension, electrical system, and mileage are verified.
+                {t('faq_q2_desc')}
               </p>
             </div>
 
@@ -372,10 +369,10 @@ export default function PricingClient() {
             <div className="bg-white p-4 sm:p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200">
               <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 flex items-start gap-3">
                 <span className="text-blue-600 font-bold text-base sm:text-lg mt-1">Q3.</span>
-                <span>How long does it take to get the inspection report?</span>
+                <span>{t('faq_q3_title')}</span>
               </h3>
               <p className="text-2xs sm:text-sm text-gray-600 leading-relaxed">
-                Usually, a detailed digital inspection report is provided to the customer within 24 hours after the inspection is completed.
+                {t('faq_q3_desc')}
               </p>
             </div>
 
@@ -383,10 +380,10 @@ export default function PricingClient() {
             <div className="bg-white p-4 sm:p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200">
               <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 flex items-start gap-3">
                 <span className="text-blue-600 font-bold text-base sm:text-lg mt-1">Q4.</span>
-                <span>Do I need to book an appointment for a vehicle inspection?</span>
+                <span>{t('faq_q4_title')}</span>
               </h3>
               <p className="text-2xs sm:text-sm text-gray-600 leading-relaxed">
-                Yes, it is recommended to book an appointment in advance to ensure the inspection is carried out properly and on time.
+                {t('faq_q4_desc')}
               </p>
             </div>
           </div>

@@ -9,13 +9,14 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import SwiperCore from "swiper";
 import { Navigation, Autoplay } from "swiper/modules";
+import { useTranslations } from '@/lib/translations'
 SwiperCore.use([Navigation, Autoplay]);
 
 const supportStats = [
   {
     icon: Megaphone,
     value: '97%',
-    label: 'satisfaction rate',
+    labelKey: 'support_stat_satisfaction',
     color: 'from-blue-500 to-blue-600',
     iconColor: 'text-blue-600',
     bgColor: 'bg-blue-50',
@@ -23,7 +24,7 @@ const supportStats = [
   {
     icon: Clock,
     value: '24/7',
-    label: 'always available',
+    labelKey: 'support_stat_available',
     color: 'from-yellow-400 to-yellow-500',
     iconColor: 'text-yellow-600',
     bgColor: 'bg-yellow-50',
@@ -31,7 +32,7 @@ const supportStats = [
   {
     icon: Mail,
     value: '12-24h',
-    label: 'avg. response time',
+    labelKey: 'support_stat_response',
     color: 'from-cyan-500 to-cyan-600',
     iconColor: 'text-cyan-600',
     bgColor: 'bg-cyan-50',
@@ -82,6 +83,7 @@ const dummyReviews = [
 ]
 
 export default function Support() {
+  const { t } = useTranslations()
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
 
@@ -147,18 +149,18 @@ export default function Support() {
             }`}
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.3]">
-              Got questions?
+              {t('support_heading_pre')}
               <br />
               <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent block text-2xl sm:text-3xl md:text-5xl lg:text-5xl">
-                We&apos;re here to help 24/7
+                {t('support_heading_highlight')}
               </span>
             </h2>
             <p className="text-sm sm:text-base md:text-xl lg:text-2xl text-gray-700 max-w-3xl mx-auto leading-[1.6]">
-              Get the answers you need – whenever you need them.{' '}
+              {t('support_subtitle_start')}{' '}
               <Link href="/contact-us" className="text-blue-600 hover:text-blue-700 font-semibold underline decoration-2 underline-offset-4 hover:decoration-blue-700 transition-colors duration-300">
-                Drop us a message
+                {t('support_cta_link')}
               </Link>{' '}
-              and we&apos;ll get back to you.
+              {t('support_subtitle_end')}
             </p>
           </div>
 
@@ -187,7 +189,7 @@ export default function Support() {
                         {stat.value}
                       </div>
                       <p className="text-xs sm:text-sm md:text-lg text-gray-600 font-medium">
-                        {stat.label}
+                        {t(stat.labelKey)}
                       </p>
                     </div>
                   </div>

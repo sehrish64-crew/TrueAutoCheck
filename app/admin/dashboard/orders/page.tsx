@@ -584,7 +584,6 @@ export default function OrdersPage() {
           </select>
           <select value={currencyFilter || ''} onChange={(e) => setCurrencyFilter(e.target.value || undefined)} className="border rounded-md p-2 text-xs sm:text-sm w-full">
             <option value="">Any currency</option>
-            <option value="USD">USD</option>
             <option value="EUR">EUR</option>
           </select>
         </div>

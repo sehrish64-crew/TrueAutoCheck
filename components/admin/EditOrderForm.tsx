@@ -11,9 +11,9 @@ export default function EditOrderForm({ order, onClose, onUpdated }: { order: Or
     vehicle_type: order.vehicle_type || '',
     vin_number: order.vin_number || '',
     package_type: order.package_type || '',
-    country_code: order.country_code || 'US',
+    country_code: order.country_code || 'IE',
     state: order.state || '',
-    currency: order.currency || 'USD',
+    currency: order.currency || 'EUR',
     amount: String(order.amount || ''),
     payment_status: order.payment_status || 'pending',
     status: order.status || 'pending',
@@ -27,9 +27,9 @@ export default function EditOrderForm({ order, onClose, onUpdated }: { order: Or
       vehicle_type: order.vehicle_type || '',
       vin_number: order.vin_number || '',
       package_type: order.package_type || '',
-      country_code: order.country_code || 'US',
+      country_code: order.country_code || 'IE',
       state: order.state || '',
-      currency: order.currency || 'USD',
+      currency: order.currency || 'EUR',
       amount: String(order.amount || ''),
       payment_status: order.payment_status || 'pending',
       status: order.status || 'pending',
@@ -141,7 +141,6 @@ export default function EditOrderForm({ order, onClose, onUpdated }: { order: Or
         <div>
           <label className="text-sm font-semibold text-gray-500">Currency</label>
           <select value={form.currency} onChange={(e) => handleChange('currency', e.target.value)} className="border rounded-md p-2 w-full">
-            <option value="USD">USD</option>
             <option value="EUR">EUR</option>
           </select>
         </div>

@@ -3,14 +3,14 @@ import { Metadata } from 'next';
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-  title: 'Health Check - TrueAutoCheck',
+  title: 'Health Check - Auto Facts Check',
   robots: 'noindex',
 };
 
 export default function HealthPage() {
   return (
     <div style={{ padding: '40px', fontFamily: 'monospace', backgroundColor: '#f5f5f5', minHeight: '100vh' }}>
-      <h1>🏥 TrueAutoCheck Health Check</h1>
+      <h1>🏥 Auto Facts Check Health Check</h1>
       
       <div style={{ marginTop: '20px', backgroundColor: 'white', padding: '20px', borderRadius: '5px' }}>
         <h2>✅ Site Status</h2>

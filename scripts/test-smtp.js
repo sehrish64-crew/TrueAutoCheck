@@ -18,9 +18,9 @@ async function testSMTP() {
   const host = process.env.SMTP_HOST || 'smtp.gmail.com'
   const port = process.env.SMTP_PORT ? Number(process.env.SMTP_PORT) : 465
   const secure = (process.env.SMTP_SECURE || 'true').toLowerCase() === 'true'
-  const user = process.env.SMTP_USER || 'info@trueautocheck.com'
+  const user = process.env.SMTP_USER || 'Info@autofactscheck.com'
   const pass = process.env.SMTP_PASS || 'your_app_password_here'
-  const from = process.env.EMAIL_FROM || '"Vehicle Reports" <info@trueautocheck.com>'
+  const from = process.env.EMAIL_FROM || '"Vehicle Reports" <Info@autofactscheck.com>'
   const to = process.env.TO || 'sehrishnadeem39@gmail.com'
 
   const transporter = nodemailer.createTransport({

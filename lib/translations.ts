@@ -2,11 +2,12 @@ import { useCountry } from '@/contexts/CountryContext'
 import en from './i18n/en.json'
 import de from './i18n/de.json'
 import el from './i18n/el.json'
+import fi from './i18n/fi.json'
 import pl from './i18n/pl.json'
 import pt from './i18n/pt.json'
 
 export const translationsMap: Record<string, Record<string, string>> = {
-  en, de, el, pl, pt,
+  en, de, el, fi, pl, pt,
 }
 
 // Mutable copy used for runtime fallbacks

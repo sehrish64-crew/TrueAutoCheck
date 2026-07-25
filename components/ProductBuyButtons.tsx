@@ -1,11 +1,11 @@
 "use client";
 import React from 'react';
 import BuyButton from './BuyButton';
-import { getPrice, getCurrencySymbol, getPaddlePriceId } from '@/lib/prices';
+import { getPrice, getCurrencySymbol } from '@/lib/prices';
 
 type PackageId = 'basic' | 'standard' | 'premium';
 
-export default function ProductBuyButtons({ currency = 'USD' }: { currency?: string }) {
+export default function ProductBuyButtons({ currency = 'EUR' }: { currency?: string }) {
   const packages: { id: PackageId; label: string }[] = [
     { id: 'basic', label: 'Basic' },
     { id: 'standard', label: 'Standard' },
@@ -17,20 +17,13 @@ export default function ProductBuyButtons({ currency = 'USD' }: { currency?: str
       {packages.map((p) => {
         const price = getPrice(p.id, currency as any) as number
         const symbol = getCurrencySymbol(currency)
-        const externalId = getPaddlePriceId(p.id)
         return (
           <div key={p.id} className="p-4 border rounded-lg text-center">
             <h3 className="font-semibold mb-2">{p.label}</h3>
             <div className="text-lg font-bold mb-3">{symbol} {price}</div>
-            {externalId ? (
-              <BuyButton priceId={externalId}>
-                Buy {p.label}
-              </BuyButton>
-            ) : (
-              <button disabled className="w-full bg-gray-400 text-white py-2 rounded-lg">
-                Not available
-              </button>
-            )}
+            <BuyButton>
+              Buy {p.label}
+            </BuyButton>
           </div>
         )
       })}

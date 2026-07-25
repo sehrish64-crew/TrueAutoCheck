@@ -26,17 +26,10 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Use the fixed $30 price ID from Paddle
-    // You should replace this with your actual Paddle price ID for $30 vehicle registration
-    const priceId = process.env.NEXT_PUBLIC_PADDLE_REGISTRATION_PRICE_ID ||
-      'pri_01aryz69g6eezd0yy1jchj7pxe' // Placeholder - replace with actual Paddle price ID
-
-    return NextResponse.json({
-      success: true,
-      priceId,
-      amount: price,
-      currency,
-    })
+    return NextResponse.json(
+      { success: false, message: 'Payment integration removed' },
+      { status: 410 }
+    )
   } catch (error) {
     console.error('Error initiating payment:', error)
     return NextResponse.json(

@@ -48,7 +48,7 @@ export default function Banner() {
       }
     } else {
       if (!plateNumber.trim()) {
-        setPlateError('Please enter a plate number to continue')
+        setPlateError(t('vin_checker_plate_error'))
         setTimeout(() => setPlateError(''), 3000)
         return
       }
@@ -100,8 +100,8 @@ export default function Banner() {
                       suppressHydrationWarning
                     >
                       <Key className="w-3 sm:w-4 h-3 sm:h-4" />
-                      <span className="hidden sm:inline">By VIN</span>
-                      <span className="sm:hidden">VIN</span>
+                      <span className="hidden sm:inline">{t('vin_checker_by_vin')}</span>
+                      <span className="sm:hidden">{t('vin_short')}</span>
                     </button>
                     <button 
                       type="button" 
@@ -110,8 +110,8 @@ export default function Banner() {
                       suppressHydrationWarning
                     >
                       <Hash className="w-3 sm:w-4 h-3 sm:h-4" />
-                      <span className="hidden sm:inline">By Plate</span>
-                      <span className="sm:hidden">Plate</span>
+                      <span className="hidden sm:inline">{t('vin_checker_by_plate')}</span>
+                      <span className="sm:hidden">{t('plate_short')}</span>
                     </button>
                   </div>
                 </div>
@@ -135,7 +135,7 @@ export default function Banner() {
                   <div className={isHydrated && vehicleIdType === 'plate' ? 'block' : 'hidden'}>
                     <Input
                       type="text"
-                      placeholder="Enter Plate Number"
+                      placeholder={t('vin_checker_plate_placeholder')}
                       value={plateNumber}
                       onChange={(e) => { setPlateNumber(e.target.value.toUpperCase()); if (plateError) setPlateError('') }}
                       className="h-12 pr-10 text-base sm:text-lg w-full bg-white"
@@ -173,7 +173,7 @@ export default function Banner() {
                     {isLoadingReport ? (
                       <span className="flex items-center gap-2">
                         <Loader className="w-4 h-4 animate-spin" />
-                        Loading...
+                        {t('form_loading')}
                       </span>
                     ) : (
                       t('banner_get_report')
@@ -368,7 +368,7 @@ export default function Banner() {
               {/* Information Box */}
               <div className="bg-blue-50 border-l-4 border-blue-600 p-5 rounded-r">
                 <p className="text-sm text-slate-700 leading-relaxed">
-                  <span className="font-semibold text-blue-900">Information Notice:</span> This report contains basic vehicle information extracted from the National Highway Traffic Safety Administration (NHTSA) VIN decoder database. For a comprehensive vehicle history report including accident records, ownership history, title information, and more, please upgrade to the Full Report.
+                  <span className="font-semibold text-blue-900">Information Notice:</span> This report contains basic vehicle information extracted from the National Highway Traffic Safety Administration (NHTSA) VIN decoder database. For a comprehensive Digital pdf report including accident records, ownership history, title information, and more, please upgrade to the Full Report.
                 </p>
               </div>
 
@@ -391,7 +391,7 @@ export default function Banner() {
 
             {/* Professional Footer */}
             <div className="bg-slate-50 px-8 py-4 border-t border-slate-200 text-center text-xs text-slate-500">
-              <p>TrueAutoCheck Vehicle Report • Report Generated from NHTSA Database</p>
+              <p>Auto Facts Check Vehicle Report • Report Generated from NHTSA Database</p>
             </div>
           </div>
         </div>

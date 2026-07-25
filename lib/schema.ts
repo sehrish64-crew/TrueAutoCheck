@@ -3,8 +3,8 @@ export function getOrganizationSchema() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'TrueAutoCheck',
-    url: 'https://trueautocheck.com',
-    logo: 'https://trueautocheck.com/favicon.ico',
+    url: 'https://autofactscheck.com',
+    logo: 'https://autofactscheck.com/favicon.ico',
     description: "Trust data, not words. Check any car's history in seconds",
     sameAs: [],
     contactPoint: {
@@ -21,14 +21,14 @@ export function getLocalBusinessSchema() {
     '@type': 'LocalBusiness',
     name: 'TrueAutoCheck',
     description: "Trust data, not words. Check any car's history in seconds",
-    image: 'https://trueautocheck.com/favicon.ico',
-    url: 'https://trueautocheck.com',
+    image: 'https://autofactscheck.com/favicon.ico',
+    url: 'https://autofactscheck.com',
     priceRange: '$$',
     areaServed: {
       '@type': 'Country',
       name: 'Global',
     },
-    serviceType: 'Vehicle History Reports',
+    serviceType: 'Digital pdf reports',
   };
 }
 
@@ -45,7 +45,7 @@ export function getProductSchema() {
     offers: {
       '@type': 'AggregateOffer',
       availability: 'https://schema.org/InStock',
-      priceCurrency: 'USD',
+      priceCurrency: 'EUR',
       offerCount: '3',
     },
   };

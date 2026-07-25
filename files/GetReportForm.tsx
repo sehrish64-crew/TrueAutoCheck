@@ -24,9 +24,21 @@ interface GetReportFormProps {
 const vehicleTypes = ['Car', 'Motorcycle', 'Truck', 'Boat', 'ATV', 'Campervan', 'RV', 'Travel Trailer', 'Fifth Wheel', 'Toy Hauler', 'JETSKI']
 
 const packages = [
-  { id: 'basic', name: 'Basic Report' },
-  { id: 'standard', name: 'Standard Report' },
-  { id: 'premium', name: 'Premium Report' },
+  {
+    id: 'basic',
+    name: 'Basic Report',
+    stripeUrl: 'https://buy.stripe.com/9B6dR9axN0Nx1JPcMybo405',
+  },
+  {
+    id: 'standard',
+    name: 'Standard Report',
+    stripeUrl: 'https://buy.stripe.com/cNi4gzcFVgMv0FL8wibo406',
+  },
+  {
+    id: 'premium',
+    name: 'Premium Report',
+    stripeUrl: 'https://buy.stripe.com/aFabJ121heEn0FL3bYbo407',
+  },
 ]
 
 export default function GetReportForm({ isOpen, onClose, preselectedPackage, prefilledIdentType, prefilledIdentValue }: GetReportFormProps) {
@@ -39,7 +51,7 @@ export default function GetReportForm({ isOpen, onClose, preselectedPackage, pre
   const [plateNumber, setPlateNumber] = useState('')
   const [customerEmail, setCustomerEmail] = useState('')
   const [selectedPackage, setSelectedPackage] = useState(preselectedPackage || '')
-  const [selectedCountryCode, setSelectedCountryCode] = useState<string>(selectedCountry?.code || 'US')
+  const [selectedCountryCode, setSelectedCountryCode] = useState<string>(selectedCountry?.code || 'IE')
   // search filter for country dropdown
   const [countryFilter, setCountryFilter] = useState<string>('')
   const [error, setError] = useState('')
@@ -116,6 +128,18 @@ export default function GetReportForm({ isOpen, onClose, preselectedPackage, pre
     }
 
     setIsSubmitting(true)
+
+    // If the selected package has a direct Stripe URL, navigate there (same tab)
+    // Use same-tab navigation to avoid popup blockers preventing window.open.
+    const selectedPkg = packages.find(p => p.id === selectedPackage)
+    if (selectedPkg && selectedPkg.stripeUrl) {
+      if (typeof window !== 'undefined') {
+        // Direct navigation preserves the user gesture and avoids popup blocking.
+        window.location.href = selectedPkg.stripeUrl
+      }
+      // No need to continue client-side order creation after redirect.
+      return
+    }
 
     try {
       const packageData = packages.find(p => p.id === selectedPackage)
@@ -395,17 +419,20 @@ export default function GetReportForm({ isOpen, onClose, preselectedPackage, pre
 
             <div>
               <Label className="block text-sm font-semibold text-gray-900 mb-2">Package</Label>
-              <div className="flex gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {packages.map((pkg) => (
-                  <button
-                    key={pkg.id}
-                    type="button"
-                    onClick={() => setSelectedPackage(pkg.id)}
-                    className={`flex-1 p-3 rounded-lg border transition-all text-left ${selectedPackage === pkg.id ? 'bg-gradient-to-r from-yellow-400 to-yellow-300 text-gray-900 border-transparent shadow' : 'bg-white border-gray-200 hover:shadow-sm'}`}
-                  >
-                    <div className="font-semibold">{pkg.name}</div>
-                    <div className="text-sm text-gray-500 mt-1">{formatCurrency(getPrice(pkg.id as any, selectedCountry.currency), selectedCountry.currency, `${selectedCountry.language}-${selectedCountry.code}`)}</div>
-                  </button>
+                  <div key={pkg.id} className={`rounded-lg border border-gray-200 bg-white p-3 transition-shadow hover:shadow-sm ${selectedPackage === pkg.id ? 'ring-2 ring-blue-300' : ''}`}>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedPackage(pkg.id)}
+                      className="w-full text-left"
+                    >
+                      <div className="font-semibold">{pkg.name}</div>
+                      <div className="text-sm text-gray-500 mt-1">
+                        {formatCurrency(getPrice(pkg.id as any, selectedCountry.currency), selectedCountry.currency, `${selectedCountry.language}-${selectedCountry.code}`)}
+                      </div>
+                    </button>
+                  </div>
                 ))}
               </div>
             </div>
@@ -431,7 +458,7 @@ export default function GetReportForm({ isOpen, onClose, preselectedPackage, pre
                   className="flex-1 h-12 bg-blue-600 hover:bg-blue-700 text-white"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? 'Creating Order...' : t('form_continue')}
+                  {isSubmitting ? 'Creating Order...' : `${t('form_continue')} - ${formatCurrency(getPackageAmount(), selectedCountry.currency, `${selectedCountry.language}-${selectedCountry.code}`)}`}
                 </Button>
               </div>
           </form>

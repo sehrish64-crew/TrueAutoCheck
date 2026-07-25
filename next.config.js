@@ -19,7 +19,7 @@ const nextConfig = {
 
   // ========================================
   // SECURITY: Content Security Policy (CSP)
-  // Allows Paddle Checkout iframe
+  // Generic application policy for safe script and frame sources.
   // ========================================
   async headers() {
     return [
@@ -30,13 +30,13 @@ const nextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self' https: data: blob:",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.paddle.com https://*.paddle.com https://public.profitwell.com https://*.ngrok-free.app https://*.ngrok.app https://*.ngrok-free.dev https://*.loca.lt",
-              "style-src 'self' 'unsafe-inline' https://cdn.paddle.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://public.profitwell.com https://*.ngrok-free.app https://*.ngrok.app https://*.ngrok-free.dev https://*.loca.lt",
+              "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: blob: https:",
               "font-src 'self' data: https: fonts.gstatic.com",
-              "connect-src 'self' https://cdn.paddle.com https://*.paddle.com https://public.profitwell.com https://*.ngrok-free.app https://*.ngrok.app https://*.ngrok-free.dev https://*.loca.lt",
-              "frame-src 'self' https: https://buy.paddle.com https://*.paddle.com https://public.profitwell.com https://*.ngrok-free.app https://*.ngrok.app https://*.ngrok-free.dev https://*.loca.lt",
-              "frame-ancestors 'self' https: https://*.paddle.com http://localhost:* http://127.0.0.1:* https://*.ngrok.app https://*.ngrok-free.app https://*.ngrok-free.dev https://*.loca.lt",
+              "connect-src 'self' https://public.profitwell.com https://*.ngrok-free.app https://*.ngrok.app https://*.ngrok-free.dev https://*.loca.lt",
+              "frame-src 'self' https:",
+              "frame-ancestors 'self' https: http://localhost:* http://127.0.0.1:* https://*.ngrok.app https://*.ngrok-free.app https://*.ngrok-free.dev https://*.loca.lt",
             ].join("; "),
           },
         ],

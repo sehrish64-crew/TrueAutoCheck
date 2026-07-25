@@ -41,9 +41,8 @@ export default function BillingForm({ onSubmit }: { onSubmit?: (data: any) => vo
         <label className="text-sm font-medium">Country</label>
         <select name="country" className="mt-1 block w-full rounded-md border-gray-200 shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
           <option value="">Select country</option>
-          <option>United States</option>
-          <option>United Kingdom</option>
-          <option>Canada</option>
+          <option>Ireland</option>
+          <option>Finland</option>
         </select>
       </div>
 

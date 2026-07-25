@@ -2,19 +2,15 @@ export const dynamic = 'force-dynamic'
 
 import './globals.css';
 import type { Metadata } from 'next';
+import { cookies } from 'next/headers';
 import { Inter } from 'next/font/google';
 import LayoutWrapper from '@/components/LayoutWrapper';
-import Script from 'next/script';
-// PaddleInit moved out of global layout so it doesn't render on all pages (e.g. Pricing).
-// Keep Paddle script in head and mount PaddleInit only on the dedicated checkout page.
 import { getOrganizationSchema } from '@/lib/schema';
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
 });
-
-import PaddleInitialization from '@/components/PaddleInitialization';
 
 // Use dynamic metadata so server-rendered metadata can be localized via cookie
 export async function generateMetadata(): Promise<Metadata> {
@@ -57,11 +53,11 @@ export async function generateMetadata(): Promise<Metadata> {
   const tmap = getTranslationsForLang(lang)
 
   return {
-    title: `TrueAutoCheck - ${tmap['banner_title'] || "Check any car's history"}`,
-    description: tmap['banner_subtitle'] || "VIN Check Can Save You Thousands — Get a Full Vehicle History Report",
+    title: `Auto Facts Check - ${tmap['banner_title'] || "Check any car's history"}`,
+    description: tmap['banner_subtitle'] || "VIN Check Can Save You Thousands — Get a Full Digital pdf report",
     keywords: ['car history', 'vehicle report', 'VIN check', 'used car', 'vehicle history check', 'car background check'],
-    authors: [{ name: 'TrueAutoCheck' }],
-    creator: 'TrueAutoCheck',
+    authors: [{ name: 'Auto Facts Check' }],
+    creator: 'Auto Facts Check',
     icons: {
       icon: [
         { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
@@ -72,17 +68,17 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       type: 'website',
       url: 'https://trueautocheck.com',
-      title: `TrueAutoCheck - ${tmap['banner_title'] || "Check any car's history"}`,
-      description: tmap['banner_subtitle'] || "VIN Check Can Save You Thousands — Get a Full Vehicle History Report",
-      siteName: 'TrueAutoCheck',
+      title: `Auto Facts Check - ${tmap['banner_title'] || "Check any car's history"}`,
+      description: tmap['banner_subtitle'] || "VIN Check Can Save You Thousands — Get a Full Digital pdf report",
+      siteName: 'Auto Facts Check',
       images: [
         { url: 'https://trueautocheck.com/banner-hero.png', width: 1200, height: 630 },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `TrueAutoCheck - ${tmap['banner_title'] || "Check any car's history"}`,
-      description: tmap['banner_subtitle'] || "VIN Check Can Save You Thousands — Get a Full Vehicle History Report",
+      title: `Auto Facts Check - ${tmap['banner_title'] || "Check any car's history"}`,
+      description: tmap['banner_subtitle'] || "VIN Check Can Save You Thousands — Get a Full Digital pdf report",
       images: [
         { url: 'https://trueautocheck.com/banner-hero.png' },
       ],
@@ -90,17 +86,30 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const schemaMarkup = getOrganizationSchema();
+  let htmlLang = 'en'
+
+  try {
+    const ckCandidate = cookies()
+    const ck = await Promise.resolve(ckCandidate)
+    const langCookie = typeof ck?.get === 'function' ? ck.get('cv_locale') : undefined
+    if (langCookie && typeof langCookie.value === 'string') {
+      htmlLang = langCookie.value
+    }
+  } catch (e) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn('[i18n] Could not read cookies in RootLayout:', e)
+    }
+  }
 
   return (
-    <html lang="en">
+    <html lang={htmlLang}>
       <head>
-        <PaddleInitialization />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaMarkup) }}

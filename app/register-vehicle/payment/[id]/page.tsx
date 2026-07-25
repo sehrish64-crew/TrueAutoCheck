@@ -22,50 +22,10 @@ export default function PaymentPage() {
     setError('')
 
     try {
-      // Check if Paddle is available
-      if (!window.Paddle) {
-        throw new Error('Payment system not available. Please refresh the page.')
-      }
-
-      // Get checkout items or create payment intent
-      const response = await fetch('/api/vehicle-registration/payment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          registrationId,
-          price: registrationPrice,
-          currency: selectedCountry.currency,
-        }),
-      })
-
-      let data
-      try {
-        data = await parseJsonSafe(response)
-      } catch (err) {
-        console.error('Failed to parse payment response:', err)
-        throw new Error('Invalid response from payment server')
-      }
-
-      if (!response.ok) {
-        throw new Error(data?.error || 'Failed to initiate payment')
-      }
-
-      // Open Paddle checkout
-      window.Paddle?.Checkout.open({
-        items: [{ priceId: data.priceId }],
-        customData: {
-          registrationId: registrationId,
-        },
-      })
-
-      // After a delay, redirect to success page
-      // In production, you'd verify payment via webhook
-      setTimeout(() => {
-        router.push(`/register-vehicle/success/${registrationId}`)
-      }, 3000)
+      setError('Payment flows have been removed from this deployment. Please contact support for further assistance.')
     } catch (err) {
-      console.error('Payment error:', err)
-      setError(err instanceof Error ? err.message : 'Payment failed')
+      console.error('Payment flow error:', err)
+      setError('Payment failed or is unavailable.')
     } finally {
       setIsProcessing(false)
     }
@@ -153,15 +113,15 @@ export default function PaymentPage() {
             </Button>
             <Button
               onClick={handlePayment}
-              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-lg py-6"
-              disabled={isProcessing}
+              className="flex-1 bg-gray-400 text-white text-lg py-6"
+              disabled={true}
             >
-              {isProcessing ? 'Processing...' : `Pay ${selectedCountry.currency} ${registrationPrice.toFixed(2)}`}
+              Payment Disabled
             </Button>
           </div>
 
           <p className="text-center text-sm text-gray-500 mt-4">
-            Secure payment powered by Paddle
+            Payment processing has been disabled in this deployment.
           </p>
         </div>
       </div>

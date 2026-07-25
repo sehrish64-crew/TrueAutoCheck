@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import pool from '@/lib/mysql'
 import { getTranslationsForLang } from '@/lib/translations'
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'sehrishnadeem39@gmail.com'
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'autofactschecks@gmail.com'
 const RESEND_API_KEY = process.env.RESEND_API_KEY || ''
 
 function generateOrderNotificationEmail(data: any, lang = 'en'): string {
@@ -49,13 +49,13 @@ function generatePaymentSuccessAdminEmail(data: any): string {
     <div style="font-family: sans-serif; max-width: 600px; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
       <h2 style="color: #22c55e;">Payment Successful! 🥳</h2>
       <p>Hello Admin,</p>
-      <p>A new payment has been received for a vehicle history report via <strong>Trueautocheck</strong>.</p>
+      <p>A new payment has been received for a Digital pdf report via <strong>Trueautocheck</strong>.</p>
       
       <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; margin-top: 20px;">
         <h3 style="margin-top: 0; color: #333; border-bottom: 2px solid #ddd; padding-bottom: 10px;">Payment Details:</h3>
         <p style="margin: 8px 0;"><strong>Transaction ID:</strong> ${data.transactionId || 'N/A'}</p>
         <p style="margin: 8px 0;"><strong>Product:</strong> ${data.packageType || 'N/A'}</p>
-        <p style="margin: 8px 0;"><strong>Amount:</strong> ${data.currency || 'USD'} ${Number(data.amount).toFixed(2)}</p>
+        <p style="margin: 8px 0;"><strong>Amount:</strong> ${data.currency || 'EUR'} ${Number(data.amount).toFixed(2)}</p>
         <p style="margin: 8px 0;"><strong>Customer Email:</strong> ${data.customerEmail}</p>
         <p style="margin: 8px 0;"><strong>Customer Name:</strong> ${data.customerName || 'Valued Customer'}</p>
         <p style="margin: 8px 0;"><strong>VIN:</strong> ${data.vinNumber || data.identificationValue || 'N/A'}</p>
@@ -75,7 +75,7 @@ function generatePaymentSuccessCustomerEmail(data: any): string {
       
       <div style="background: #eff6ff; padding: 15px; border-radius: 8px; border-left: 4px solid #3b82f6; margin: 20px 0;">
         <p style="margin: 0; color: #1e40af; font-weight: bold;">Wait Time Notice:</p>
-        <p style="margin: 5px 0 0 0; color: #1e40af;">Your vehicle history report will be ready in approximately <strong>12 to 13 hours</strong>. We will send you a separate email with the full report once it has been generated.</p>
+        <p style="margin: 5px 0 0 0; color: #1e40af;">Your Digital pdf report will be ready in approximately <strong>12 to 13 hours</strong>. We will send you a separate email with the full report once it has been generated.</p>
       </div>
       
       <p>If you have any questions, feel free to contact us.</p>

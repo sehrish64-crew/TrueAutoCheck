@@ -6,7 +6,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Client-Info, Apikey",
 };
 
-const ADMIN_EMAIL = "sehrishnadeem39@gmail.com";
+const ADMIN_EMAIL = "autofactschecks@gmail.com";
 
 interface OrderEmailData {
   type: "order_notification" | "order_confirmation";
@@ -93,7 +93,7 @@ function generateOrderNotificationEmail(data: OrderEmailData): string {
       </div>
     </div>
     <div class="footer">
-      <p>This is an automated notification from your vehicle history report system.</p>
+      <p>This is an automated notification from your Digital pdf report system.</p>
     </div>
   </div>
 </body>
@@ -128,7 +128,7 @@ function generateOrderConfirmationEmail(data: OrderEmailData): string {
         <span class="success-badge">Payment Successful</span>
       </div>
       
-      <p style="font-size: 16px; margin-bottom: 20px;">Thank you for your order! Your vehicle history report is being prepared.</p>
+      <p style="font-size: 16px; margin-bottom: 20px;">Thank you for your order! Your Digital pdf report is being prepared.</p>
       
       <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0;">
         <h2 style="margin-top: 0; color: #2563eb;">Order Details</h2>
@@ -156,7 +156,7 @@ function generateOrderConfirmationEmail(data: OrderEmailData): string {
       
       <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 16px; border-radius: 4px; margin: 20px 0;">
         <p style="margin: 0; color: #92400e;"><strong>What's Next?</strong></p>
-        <p style="margin: 8px 0 0 0; color: #92400e;">You will receive your vehicle history report within 1-3 hours via email.</p>
+        <p style="margin: 8px 0 0 0; color: #92400e;">You will receive your Digital pdf report within 1-3 hours via email.</p>
       </div>
     </div>
     <div class="footer">

@@ -7,12 +7,12 @@ import { Input } from '@/components/ui/input'
 import GetReportForm from './GetReportForm'
 import { useTranslations } from '@/lib/translations'
 
-const trustLogos = [
-  { name: 'AutoBild', width: 'w-20' },
-  { name: 'TopGear', width: 'w-20' },
-  { name: 'Forbes', width: 'w-20' },
-  { name: 'REUTERS', width: 'w-20' },
-]
+// const trustLogos = [
+//   { name: 'AutoBild', width: 'w-20' },
+//   { name: 'TopGear', width: 'w-20' },
+//   { name: 'Forbes', width: 'w-20' },
+//   { name: 'REUTERS', width: 'w-20' },
+// ]
 
 export default function VinChecker() {
   const [vin, setVin] = useState('')
@@ -68,10 +68,10 @@ export default function VinChecker() {
             >
               <div className="space-y-4">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-                  Let the data do the talking
+                  {t('vin_checker_title')}
                 </h2>
                 <p className="text-sm sm:text-base md:text-lg text-blue-50 leading-relaxed">
-                  Look deeper before you drive further – get access to verified records that reveal your vehicle&apos;s history.
+                  {t('vin_checker_subtitle')}
                 </p>
               </div>
 
@@ -79,11 +79,11 @@ export default function VinChecker() {
                 <div className="flex items-center space-x-2 text-blue-50">
                   <CheckCircle className="w-5 h-5 flex-shrink-0" strokeWidth={2} />
                   <span className="text-xs sm:text-sm md:text-base font-medium">
-                    Trusted by 4,500,000+ people across 35 countries
+                    {t('vin_checker_trusted')}
                   </span>
                 </div>
 
-                <div className="flex flex-wrap items-center justify-start gap-3 md:gap-6 pt-2">
+                {/* <div className="flex flex-wrap items-center justify-start gap-3 md:gap-6 pt-2">
                   {trustLogos.map((logo, index) => (
                     <div
                       key={logo.name}
@@ -98,7 +98,7 @@ export default function VinChecker() {
                       </div>
                     </div>
                   ))}
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -116,14 +116,14 @@ export default function VinChecker() {
                   <div className="inline-flex items-center bg-[#8787871a] p-1 rounded-full gap-1">
                     <button suppressHydrationWarning type="button" onClick={() => setVehicleIdType('vin')} className={`flex items-center gap-2 px-3 py-1 rounded-full transition-all ${vehicleIdType === 'vin' ? 'bg-gradient-to-r from-yellow-400 to-yellow-300 text-gray-900 shadow' : 'text-black hover:bg-white/10'}`}>
                       <Key className="w-4 h-4" />
-                      <span className="text-sm font-medium">By VIN</span>
+                      <span className="text-sm font-medium">{t('vin_checker_by_vin')}</span>
                     </button>
                     <button suppressHydrationWarning type="button" onClick={() => setVehicleIdType('plate')} className={`flex items-center gap-2 px-3 py-1 rounded-full transition-all ${vehicleIdType === 'plate' ? 'bg-gradient-to-r from-blue-500 to-cyan-400 text-white shadow' : 'text-black hover:bg-white/10'}`}>
                       <Hash className="w-4 h-4" />
-                      <span className="text-sm font-medium">By Plate</span>
+                      <span className="text-sm font-medium">{t('vin_checker_by_plate')}</span>
                     </button>
                   </div>
-                  <div className="text-sm text-white/70">{vehicleIdType === 'vin' ? 'VIN' : 'Plate'}</div>
+                  <div className="text-sm text-white/70">{vehicleIdType === 'vin' ? 'VIN' : t('vin_checker_by_plate')}</div>
                 </div>
 
                 <div className="mb-3">
@@ -157,7 +157,7 @@ export default function VinChecker() {
                         <Input
                           suppressHydrationWarning
                           type="text"
-                          placeholder="Enter Plate Number"
+                          placeholder={t('vin_checker_plate_placeholder')}
                           value={plate}
                           onChange={(e) => { setPlate(e.target.value.toUpperCase()); if (plateError) setPlateError('') }}
                           onFocus={() => setIsFocused(true)}
@@ -177,13 +177,13 @@ export default function VinChecker() {
                     size="lg"
                     onClick={() => {
                       if (vehicleIdType === 'vin' && !vin.trim()) {
-                        setVinError('Please enter a VIN to continue')
+                        setVinError(t('vin_checker_vin_error'))
                         setIsFocused(true)
                         setTimeout(() => setIsFocused(false), 500)
                         return
                       }
                       if (vehicleIdType === 'plate' && !plate.trim()) {
-                        setPlateError('Please enter a plate number to continue')
+                        setPlateError(t('vin_checker_plate_error'))
                         setIsFocused(true)
                         setTimeout(() => setIsFocused(false), 500)
                         return
@@ -193,7 +193,7 @@ export default function VinChecker() {
                     disabled={vehicleIdType === 'vin' ? !vin.trim() : !plate.trim()}
                     className={`bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg ${(vehicleIdType === 'vin' ? (!vin.trim()) : (!plate.trim())) ? 'opacity-60 cursor-not-allowed hover:scale-100' : ''}`}
                   >
-                    Get report
+                    {t('vin_get_report')}
                   </Button>
                 </div>
 

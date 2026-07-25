@@ -3,7 +3,7 @@ import RefundPolicyPageClient from './refund-policy-client'
 
 export const metadata: Metadata = {
   title: 'Refund Policy - TrueAutoCheck',
-  description: 'Learn about TrueAutoCheck refund policy and how to request a refund for your vehicle history report.',
+  description: 'Learn about TrueAutoCheck refund policy and how to request a refund for your Digital pdf report.',
   openGraph: {
     title: 'Refund Policy - TrueAutoCheck',
     description: 'Our customer-friendly refund policy details.',

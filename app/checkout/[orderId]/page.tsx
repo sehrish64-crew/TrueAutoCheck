@@ -1,7 +1,5 @@
 import { getOrderById, getOrderByNumber } from '@/lib/database'
 import CheckoutSummary from '@/components/CheckoutSummary'
-import OrderPay from '@/components/OrderPay'
-import { getPaddlePriceId } from '@/lib/prices'
 
 export default async function CheckoutPage({ params }: { params: Promise<{ orderId: string }> }) {
   // In Next.js 13+, params is now a Promise
@@ -61,9 +59,9 @@ export default async function CheckoutPage({ params }: { params: Promise<{ order
         <div className="max-w-xl mx-auto">
           <CheckoutSummary order={order} />
 
-          {/* Compute Paddle priceId on the server and pass to client pay button */}
-          <div className="mt-4">
-            <OrderPay priceId={getPaddlePriceId((order.package_type || 'standard') as any)} currency={order.currency} amount={order.amount} />
+          <div className="mt-6 rounded-2xl border border-orange-200 bg-orange-50 p-6 text-orange-900">
+            <h2 className="text-xl font-semibold mb-3">Payment flow removed</h2>
+            <p>Your order has been created, but the payment checkout has been disabled in this deployment. Please contact support if you need to complete your purchase.</p>
           </div>
         </div>
       </div>

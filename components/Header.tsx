@@ -31,7 +31,7 @@ export default function Header() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <img src="/logo.png" alt="TrueAutoCheck" className="h-8 sm:h-10 w-auto" />
+              <img src="/logo.png" alt="Auto Facts Check" className="h-8 sm:h-10 w-auto" />
             </Link>
 
             <nav className="hidden md:flex items-center space-x-8">
@@ -93,7 +93,7 @@ export default function Header() {
             <div className="p-6 space-y-6">
               <div className="flex items-center justify-between pb-6 border-b border-gray-200">
                 <Link href="/" className="flex items-center gap-2">
-                  <img src="/logo.png" alt="TrueAutoCheck" className="h-8 w-auto" />
+                  <img src="/logo.png" alt="Auto Facts Check" className="h-8 w-auto" />
                 </Link>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}

@@ -1,7 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
-import { getPaddlePriceId } from '@/lib/prices'
+import React from 'react'
 
 const packages = [
   { key: 'basic', name: 'Basic Plan' },
@@ -10,51 +9,20 @@ const packages = [
 ]
 
 export default function SubscribeButtons() {
-  const [initialized, setInitialized] = useState(false)
-
-  useEffect(() => {
-    const checkPaddle = () => {
-      const w = window as any
-      if (w.Paddle && w.Paddle.Checkout) {
-        setInitialized(true)
-      } else {
-        setTimeout(checkPaddle, 500)
-      }
-    }
-    checkPaddle()
-  }, [])
-
-  const handleCheckout = async (pkgKey: string) => {
-    const w = window as any
-    if (!w.Paddle?.Checkout?.open) {
-      alert('Paddle SDK not yet ready. Please wait a moment.')
-      return
-    }
-
-    const priceId = getPaddlePriceId(pkgKey as any)
-    if (!priceId) {
-      alert('Product ID not configured for this plan.')
-      return
-    }
-
-    w.Paddle.Checkout.open({
-      items: [{ priceId, quantity: 1 }],
-      settings: {
-        displayMode: 'overlay',
-      },
-    })
+  const handleCheckout = async () => {
+    alert('Payment checkout has been disabled in this deployment.')
   }
 
   return (
-    <div className="flex gap-3">
+    <div className="flex flex-col gap-3">
       {packages.map((pkg) => (
         <button
           key={pkg.key}
-          onClick={() => handleCheckout(pkg.key)}
-          className={`px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition ${!initialized ? 'opacity-50 cursor-not-allowed' : ''}`}
-          disabled={!initialized}
+          onClick={handleCheckout}
+          className="px-4 py-2 rounded bg-gray-400 text-white cursor-not-allowed"
+          disabled
         >
-          Subscribe to {pkg.name}
+          Subscription Disabled
         </button>
       ))}
     </div>
